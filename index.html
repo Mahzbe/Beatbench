@@ -1,155 +1,162 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Beatbench DAW</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .daw-container {
-            width: 100%;
-            max-width: 1200px;
-            background-color: #333;
-            color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        }
-        .track {
-            margin-bottom: 15px;
-        }
-        .track button {
-            margin-right: 10px;
-        }
-        .controls {
-            margin-top: 20px;
-            text-align: center;
-        }
-    </style>
+	<title>BeatBench DAW</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			font-family: Arial, sans-serif;
+		}
+
+		.daw-container {
+			display: flex;
+			flex-direction: row;
+			width: 100vw;
+			height: 100vh;
+			background-color: #2c2c2c;
+			color: white;
+		}
+
+		.tracks-container, .controls-container {
+			padding: 10px;
+			box-sizing: border-box;
+		}
+
+		.tracks-container {
+			width: 70%;
+			border-right: 2px solid #444;
+			overflow-y: auto;
+		}
+
+		.track {
+			background-color: #444;
+			margin-bottom: 10px;
+			padding: 10px;
+			border-radius: 5px;
+		}
+
+		.controls-container {
+			width: 30%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.toolbar, .mixer, .effects, .master, .automix {
+			width: 100%;
+			padding: 10px;
+			background-color: #333;
+			margin-bottom: 10px;
+			border-radius: 5px;
+		}
+
+		button {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 10px;
+			background-color: #555;
+			border: none;
+			color: white;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+
+		button:hover {
+			background-color: #777;
+		}
+
+		input[type="range"] {
+			width: 100%;
+		}
+	</style>
 </head>
 <body>
-    <div class="daw-container">
-        <h2>Beatbench DAW</h2>
+	<div class="daw-container">
+		<div class="tracks-container">
+			<div class="track" id="track1">Track 1 - Record Vocals</div>
+			<div class="track" id="track2">Track 2 - Add Beat</div>
+			<div class="track" id="track3">Track 3 - Generate Beat</div>
+		</div>
+		<div class="controls-container">
+			<div class="toolbar">
+				<button id="play-button">Play All</button>
+				<button id="stop-button">Stop</button>
+				<button id="record-button">Record Vocals</button>
+				<button id="load-button">Load Project/MP3</button>
+			</div>
+			<div class="automix">
+				<button id="automix-button">Automix</button>
+			</div>
+			<div class="mixer">
+				<h3>Mixer</h3>
+				<label>Master Volume</label>
+				<input type="range" min="0" max="100" id="master-volume-control">
+				<label>Track 1 Volume</label>
+				<input type="range" min="0" max="100" id="track1-volume-control">
+				<label>Track 2 Volume</label>
+				<input type="range" min="0" max="100" id="track2-volume-control">
+				<label>Track 3 Volume</label>
+				<input type="range" min="0" max="100" id="track3-volume-control">
+			</div>
+			<div class="effects">
+				<h3>Effects</h3>
+				<label>Reverb</label>
+				<input type="range" min="0" max="100" id="reverb-control">
+				<label>Delay</label>
+				<input type="range" min="0" max="100" id="delay-control">
+			</div>
+			<div class="master">
+				<h3>Master EQ</h3>
+				<label>Low</label>
+				<input type="range" min="0" max="100" id="low-eq-control">
+				<label>Mid</label>
+				<input type="range" min="0" max="100" id="mid-eq-control">
+				<label>High</label>
+				<input type="range" min="0" max="100" id="high-eq-control">
+			</div>
+		</div>
+	</div>
 
-        <!-- Track 1: Record Vocals -->
-        <div class="track">
-            <h3>Track 1: Record Vocals</h3>
-            <button onclick="startRecording()">Record</button>
-            <button onclick="stopRecording()">Stop</button>
-            <audio id="vocals-audio" controls></audio>
-        </div>
+	<script>
+		let isRecording = false;
+		let isPlaying = false;
+		let isBeatAdded = false;
 
-        <!-- Track 2: Add Beat -->
-        <div class="track">
-            <h3>Track 2: Add Beat</h3>
-            <input type="file" id="beat-file" accept="audio/*">
-            <audio id="beat-audio" controls></audio>
-        </div>
+		document.getElementById('record-button').addEventListener('click', () => {
+			isRecording = !isRecording;
+			if (isRecording) {
+				console.log('Recording Vocals...');
+				if (isBeatAdded) {
+					console.log('Playing beat during recording...');
+				}
+			} else {
+				console.log('Stopped Recording');
+			}
+		});
 
-        <!-- Track 3: Generate Beat -->
-        <div class="track">
-            <h3>Track 3: Generate Beat</h3>
-            <button onclick="generateBeat()">Generate Beat</button>
-            <audio id="generated-beat-audio" controls></audio>
-        </div>
+		document.getElementById('play-button').addEventListener('click', () => {
+			isPlaying = true;
+			console.log('Playing all tracks together...');
+		});
 
-        <!-- Save/Load Controls -->
-        <div class="controls">
-            <button onclick="saveProject()">Save Project</button>
-            <input type="file" id="load-project" onchange="loadProject()" style="display:none;">
-            <button onclick="document.getElementById('load-project').click()">Load Project</button>
-        </div>
-    </div>
+		document.getElementById('stop-button').addEventListener('click', () => {
+			isPlaying = false;
+			isRecording = false;
+			console.log('Stopped playback and recording');
+		});
 
-    <script>
-        let audioContext;
-        let recorder;
+		document.getElementById('automix-button').addEventListener('click', () => {
+			console.log('Applying Automix...');
+			// Automix logic here
+		});
 
-        // Track 1: Record Vocals
-        function startRecording() {
-            navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const input = audioContext.createMediaStreamSource(stream);
-                recorder = audioContext.createScriptProcessor(2048, 1, 1);
-                input.connect(recorder);
-                recorder.connect(audioContext.destination);
-
-                const chunks = [];
-                recorder.onaudioprocess = e => {
-                    chunks.push(e.inputBuffer.getChannelData(0));
-                };
-
-                recorder.onended = () => {
-                    const blob = new Blob(chunks, { type: 'audio/wav' });
-                    const url = URL.createObjectURL(blob);
-                    document.getElementById('vocals-audio').src = url;
-                };
-            });
-        }
-
-        function stopRecording() {
-            recorder.disconnect();
-            audioContext.close();
-        }
-
-        // Track 2: Add Beat
-        document.getElementById('beat-file').addEventListener('change', function() {
-            const file = this.files[0];
-            const url = URL.createObjectURL(file);
-            document.getElementById('beat-audio').src = url;
-        });
-
-        // Track 3: Generate Beat (basic AI music generation)
-        function generateBeat() {
-            // Simple beat generation using a sine wave (placeholder for AI music generation)
-            const context = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = context.createOscillator();
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(440, context.currentTime);
-            oscillator.connect(context.destination);
-            oscillator.start();
-            oscillator.stop(context.currentTime + 1);
-
-            oscillator.onended = () => {
-                const audio = document.getElementById('generated-beat-audio');
-                audio.src = context.destination;
-                audio.play();
-            };
-        }
-
-        // Save/Load Functions
-        function saveProject() {
-            const data = {
-                vocals: document.getElementById('vocals-audio').src,
-                beat: document.getElementById('beat-audio').src,
-                generatedBeat: document.getElementById('generated-beat-audio').src
-            };
-            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'project.json';
-            a.click();
-        }
-
-        function loadProject() {
-            const file = document.getElementById('load-project').files[0];
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const data = JSON.parse(event.target.result);
-                document.getElementById('vocals-audio').src = data.vocals;
-                document.getElementById('beat-audio').src = data.beat;
-                document.getElementById('generated-beat-audio').src = data.generatedBeat;
-            };
-            reader.readAsText(file);
-        }
-    </script>
+		document.getElementById('load-button').addEventListener('click', () => {
+			console.log('Loading project or MP3...');
+			// Load project or MP3 logic here
+		});
+	</script>
 </body>
 </html>

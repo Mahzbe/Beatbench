@@ -11,16 +11,18 @@
 <body>
     <h1>AI Mastering Tool</h1>
     <input type="file" id="upload" accept=".mp3">
-    <button onclick="uploadAndMaster()">Upload & AI Master</button>
+    <button id="uploadAndMasterBtn" onclick="uploadAndMaster()">AI Master</button>
     <div id="result" class="hidden">
         <h3>Mastered Audio</h3>
         <audio id="audioPlayer" controls></audio>
         <button onclick="adjustMastering()">Adjust Mastering</button>
         <button onclick="downloadMasteredTrack()">Download Mastered Track</button>
+        <a id="downloadLink" style="display: none;">Download</a>
     </div>
     <script>
         let audioContext;
         let audioBuffer;
+        let masteredAudioBlob;
         function uploadAndMaster() {
             const fileInput = document.getElementById('upload');
             const file = fileInput.files[0];
@@ -35,13 +37,16 @@
                 audioContext.decodeAudioData(audioData, (buffer) => {
                     audioBuffer = buffer;
                     const masteredAudio = applyBasicMasteringEffects(audioBuffer);
-                    const audioBlob = new Blob([masteredAudio], { type: 'audio/wav' });
-                    const audioURL = URL.createObjectURL(audioBlob);
+                    masteredAudioBlob = new Blob([masteredAudio], { type: 'audio/wav' });
+                    const audioURL = URL.createObjectURL(masteredAudioBlob);
                     const audioPlayer = document.getElementById('audioPlayer');
                     audioPlayer.src = audioURL;
                     audioPlayer.load();
                     audioPlayer.play();
                     document.getElementById('result').classList.remove('hidden');
+                    document.getElementById('uploadAndMasterBtn').innerText = 'AI Mastered';
+                    document.getElementById('downloadLink').href = audioURL;
+                    document.getElementById('downloadLink').style.display = 'inline';
                 });
             };
             reader.readAsArrayBuffer(file);
@@ -53,7 +58,8 @@
             /* ... */
         }
         function downloadMasteredTrack() {
-            /* ... */
+            const link = document.getElementById('downloadLink');
+            link.click();
         }
     </script>
 </body>

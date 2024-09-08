@@ -26,7 +26,7 @@
             margin-bottom: 20px;
         }
 
-        #sample-library, #controls, #upload-section {
+        #upload-section {
             margin: 20px 0;
         }
 
@@ -60,28 +60,8 @@
     <div class="container">
         <header>
             <h1>Beatbench</h1>
-            <p>Select samples, upload a file, and apply AI-like mastering.</p>
+            <p>Upload a track and apply AI-like mastering.</p>
         </header>
-
-        <section id="sample-library">
-            <h2>Sample Library</h2>
-            <div class="samples">
-                <button onclick="playSample('samples/kick.mp3')">Kick Drum</button>
-                <button onclick="playSample('samples/snare.mp3')">Snare Drum</button>
-                <button onclick="playSample('samples/bass.mp3')">Bass Loop</button>
-            </div>
-        </section>
-
-        <section id="controls">
-            <h2>AI Mastering</h2>
-            <label for="genre">Choose Genre:</label>
-            <select id="genre">
-                <option value="hiphop">Hip-Hop</option>
-                <option value="edm">EDM</option>
-                <option value="rock">Rock</option>
-            </select>
-            <button onclick="applyMastering()">Apply Mastering</button>
-        </section>
 
         <section id="upload-section">
             <h2>Upload and Master Your Track</h2>
@@ -102,27 +82,6 @@
     </div>
 
     <script>
-        // Function to play samples
-        function playSample(samplePath) {
-            let audio = new Audio(samplePath);
-            audio.play();
-        }
-
-        // Function to apply AI-like mastering (simulation)
-        function applyMastering() {
-            let genre = document.getElementById('genre').value;
-            alert(`Applying mastering for ${genre} genre...`);
-
-            // Simulate genre-specific mastering adjustments
-            if (genre === 'hiphop') {
-                console.log('Adjusting bass levels and adding warmth for Hip-Hop.');
-            } else if (genre === 'edm') {
-                console.log('Enhancing highs and adding depth for EDM.');
-            } else if (genre === 'rock') {
-                console.log('Balancing mids and adding punch for Rock.');
-            }
-        }
-
         // Function to handle file upload and simulation of mastering
         function uploadAndMaster() {
             const fileInput = document.getElementById('upload');

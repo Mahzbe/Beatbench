@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beatbench - Upload & Master</title>
+    <title>Beatbench - AI Auto Mastering</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #eee;
+            background-color: #1d1f21;
+            color: #c5c6c7;
             text-align: center;
             padding: 20px;
         }
@@ -16,14 +16,15 @@
             margin: 20px;
         }
         button {
-            background-color: #444;
-            color: #eee;
+            background-color: #45a29e;
+            color: white;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
+            margin-top: 20px;
         }
         button:hover {
-            background-color: #555;
+            background-color: #66fcf1;
         }
         .hidden {
             display: none;
@@ -32,14 +33,14 @@
 </head>
 <body>
 
-    <h1>Beatbench - AI Mastering</h1>
-    <p>Upload an MP3 file and let AI master it for you.</p>
+    <h1>Beatbench - AI Auto Mastering</h1>
+    <p>Upload an MP3 file, and let AI master it for you automatically.</p>
 
     <input type="file" id="upload" accept=".mp3">
     <button onclick="uploadAndMaster()">Upload & Master</button>
 
     <div id="result" class="hidden">
-        <h3>Mastered Track</h3>
+        <h3>Your Mastered Track</h3>
         <audio id="audioPlayer" controls></audio>
         <a id="downloadLink" href="#" download="mastered_track.mp3">
             <button>Download Mastered Track</button>
@@ -62,16 +63,21 @@
                 return;
             }
 
-            // Simulate the AI mastering process by using the uploaded file directly
-            const audioURL = URL.createObjectURL(file);
-            const audioPlayer = document.getElementById('audioPlayer');
-            const downloadLink = document.getElementById('downloadLink');
+            // Simulate AI mastering process
+            const resultSection = document.getElementById('result');
+            resultSection.classList.add('hidden'); // Hide result section while processing
+            setTimeout(() => {
+                // Simulate mastering by directly using the uploaded file
+                const audioURL = URL.createObjectURL(file);
+                const audioPlayer = document.getElementById('audioPlayer');
+                const downloadLink = document.getElementById('downloadLink');
 
-            audioPlayer.src = audioURL;
-            downloadLink.href = audioURL;
+                audioPlayer.src = audioURL;
+                downloadLink.href = audioURL;
 
-            // Show the result section
-            document.getElementById('result').classList.remove('hidden');
+                // Show the result section after mastering
+                resultSection.classList.remove('hidden');
+            }, 3000); // Simulate a 3-second AI mastering process
         }
     </script>
 

@@ -11,18 +11,32 @@
 <body>
     <h1>AI Mastering Tool</h1>
     <input type="file" id="upload" accept=".mp3">
-    <button id="uploadAndMasterBtn" onclick="uploadAndMaster()">AI Master</button>
+    <select id="genreSelect">
+        <option value="pop">Pop</option>
+        <option value="rock">Rock</option>
+        <option value="hiphop">Hip Hop</option>
+        <!-- Add more genres as needed -->
+    </select>
+    <button id="chooseGenreBtn" onclick="chooseGenre()">Choose Genre</button>
+    <button id="uploadAndMasterBtn" onclick="uploadAndMaster()" disabled>AI Master</button>
     <div id="result" class="hidden">
         <h3>Mastered Audio</h3>
         <audio id="audioPlayer" controls></audio>
         <button onclick="adjustMastering()">Adjust Mastering</button>
         <button onclick="downloadMasteredTrack()">Download Mastered Track</button>
         <a id="downloadLink" style="display: none;">Download</a>
+        <p id="countdown">10:00</p>
     </div>
     <script>
         let audioContext;
         let audioBuffer;
         let masteredAudioBlob;
+        let countdownInterval;
+        let genre;
+        function chooseGenre() {
+            genre = document.getElementById('genreSelect').value;
+            document.getElementById('uploadAndMasterBtn').disabled = false;
+        }
         function uploadAndMaster() {
             const fileInput = document.getElementById('upload');
             const file = fileInput.files[0];
@@ -36,7 +50,7 @@
                 audioContext = new AudioContext();
                 audioContext.decodeAudioData(audioData, (buffer) => {
                     audioBuffer = buffer;
-                    const masteredAudio = applyBasicMasteringEffects(audioBuffer);
+                    const masteredAudio = applyBasicMasteringEffects(audioBuffer, genre);
                     masteredAudioBlob = new Blob([masteredAudio], { type: 'audio/wav' });
                     const audioURL = URL.createObjectURL(masteredAudioBlob);
                     const audioPlayer = document.getElementById('audioPlayer');
@@ -47,11 +61,12 @@
                     document.getElementById('uploadAndMasterBtn').innerText = 'AI Mastered';
                     document.getElementById('downloadLink').href = audioURL;
                     document.getElementById('downloadLink').style.display = 'inline';
+                    startCountdown();
                 });
             };
             reader.readAsArrayBuffer(file);
         }
-        function applyBasicMasteringEffects(audioBuffer) {
+        function applyBasicMasteringEffects(audioBuffer, genre) {
             /* ... */
         }
         function adjustMastering() {
@@ -60,6 +75,21 @@
         function downloadMasteredTrack() {
             const link = document.getElementById('downloadLink');
             link.click();
+        }
+        function startCountdown() {
+            let time = 600; // 10 minutes in seconds
+            countdownInterval = setInterval(() => {
+                const minutes = Math.floor(time / 60);
+                const seconds = time % 60;
+                document.getElementById('countdown').innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                time--;
+                if (time <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('result').classList.add('hidden');
+                    document.getElementById('uploadAndMasterBtn').innerText = 'AI Master';
+                    document.getElementById('downloadLink').style.display = 'none';
+                }
+            }, 1000);
         }
     </script>
 </body>

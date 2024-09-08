@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Music DAW</title>
+	<style>
+		.daw {
+			font-family: Arial, sans-serif;
+			color: #444;
+			background-color: #f0f0f0;
+			width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ddd;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+		.toolbar {
+			background-color: #333;
+			color: #fff;
+			padding: 10px;
+			border-radius: 10px 10px 0 0;
+		}
+		.tracks {
+			padding: 20px;
+		}
+		.mixer {
+			padding: 20px;
+		}
+		.effects {
+			padding: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="daw">
+		<div class="toolbar">
+			<button id="play-button">Play</button>
+			<button id="stop-button">Stop</button>
+			<button id="record-button">Record</button>
+		</div>
+		<div class="tracks">
+			<div>Track 1</div>
+			<div>Track 2</div>
+			<div>Track 3</div>
+		</div>
+		<div class="mixer">
+			<div>
+				<label>Volume</label>
+				<input type="range" min="0" max="100" id="volume-control">
+			</div>
+			<div>
+				<label>Pan</label>
+				<input type="range" min="-100" max="100" id="pan-control">
+			</div>
+		</div>
+		<div class="effects">
+			<div>
+				<label>Reverb</label>
+				<input type="range" min="0" max="100" id="reverb-control">
+			</div>
+			<div>
+				<label>Delay</label>
+				<input type="range" min="0" max="100" id="delay-control">
+			</div>
+		</div>
+		<div class="master">
+			<div>
+				<label>Master Volume</label>
+				<input type="range" min="0" max="100" id="master-volume-control">
+			</div>
+		</div>
+		<div class="eq">
+			<div>
+				<label>Low</label>
+				<input type="range" min="0" max="100" id="low-eq-control">
+			</div>
+			<div>
+				<label>Mid</label>
+				<input type="range" min="0" max="100" id="mid-eq-control">
+			</div>
+			<div>
+				<label>High</label>
+				<input type="range" min="0" max="100" id="high-eq-control">
+			</div>
+		</div>
+		<div class="compression">
+			<div>
+				<label>Threshold</label>
+				<input type="range" min="0" max="100" id="compression-threshold-control">
+			</div>
+		</div>
+		<div class="reverb-room">
+			<div>
+				<label>Room</label>
+				<input type="range" min="0" max="100" id="reverb-room-control">
+			</div>
+		</div>
+		<div class="delay-room">
+			<div>
+				<label>Room</label>
+				<input type="range" min="0" max="100" id="delay-room-control">
+			</div>
+		</div>
+		<div class="stereo-widener">
+			<div>
+				<label>Width</label>
+				<input type="range" min="0" max="100" id="stereo-widener-control">
+			</div>
+		</div>
+	</div>
+	<script>
+		// Get all tracks
+		const tracks = document.querySelectorAll('.tracks div');
+		// Add event listeners for track volume and pan
+		tracks.forEach(track => {
+			const volumeInput = track.querySelector('input[type="range"][data-control="volume"]');
+			const panInput = track.querySelector('input[type="range"][data-control="pan"]');
+
+			volumeInput.addEventListener('input', e => {
+				// Update track volume
+				console.log(`Track ${track.innerText} volume: ${e.target.value}`);
+			});
+
+			panInput.addEventListener('input', e => {
+				// Update track pan
+				console.log(`Track ${track.innerText} pan: ${e.target.value}`);
+			});
+		});
+
+		// Add event listeners for master volume, EQ, compression, reverb, delay, and stereo widener
+		const masterVolumeInput = document.getElementById('master-volume-control');
+		const lowEqInput = document.getElementById('low-eq-control');
+		const midEqInput = document.getElementById('mid-eq-control');
+		const highEqInput = document.getElementById('high-eq-control');
+		const compressionThresholdInput = document.getElementById('compression-threshold-control');
+		const reverbRoomInput = document.getElementById('reverb-room-control');
+		const delayRoomInput = document.getElementById('delay-room-control');
+		const stereoWidenerInput = document.getElementById('stereo-widener-control');
+
+		masterVolumeInput.addEventListener('input', e => {
+			// Update master volume
+			console.log(`Master volume: ${e.target.value}`);
+		});
+
+		lowEqInput.addEventListener('input', e => {
+			// Update low EQ
+			console.log(`Low EQ: ${e.target.value}`);
+		});
+
+		midEqInput.addEventListener('input', e => {
+			// Update mid EQ
+			console.log(`Mid EQ: ${e.target.value}`);
+		});
+
+		highEqInput.addEventListener('input', e => {
+			// Update high EQ
+			console.log(`High EQ: ${e.target.value}`);
+		});
+
+		compressionThresholdInput.addEventListener('input', e => {
+			// Update compression threshold
+			console.log(`Compression threshold: ${e.target.value}`);
+		});
+
+		reverbRoomInput.addEventListener('input', e => {
+			// Update reverb room
+			console.log(`Reverb room: ${e.target.value}`);
+		});
+
+		delayRoomInput.addEventListener('input', e => {
+			// Update delay room
+			console.log(`Delay room: ${e.target.value}`);
+		});
+
+		stereoWidenerInput.addEventListener('input', e => {
+			// Update stereo widener
+			console.log(`Stereo widener: ${e.target.value}`);
+		});
+
+		// Add event listeners for play, stop, and record buttons
+		const playButton = document.getElementById('play-button');
+		const stopButton = document.getElementById('stop-button');
+		const recordButton = document.getElementById('record-button');
+
+		playButton.addEventListener('click', () => {
+			// Play
+			console.log('Playing');
+		});
+
+		stopButton.addEventListener('click', () => {
+			// Stop
+			console.log('Stopped');
+		});
+
+		recordButton.addEventListener('click', () => {
+			// Record
+			console.log('Recording');
+		});
+	</script>
+</body>
+</html>

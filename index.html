@@ -1,91 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Beatbench Music DAW</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatbench DAW</title>
     <style>
         body {
             margin: 0;
-            overflow: hidden;
-        }
-
-        .daw {
+            padding: 0;
+            background-color: #2e2e2e;
+            color: #fff;
             font-family: Arial, sans-serif;
-            color: #444;
-            background-color: #f0f0f0;
+        }
+        .daw {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
             width: 100vw;
             height: 100vh;
+            padding: 10px;
+        }
+        .toolbar, .tracks, .mixer, .effects {
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #333;
+            padding: 10px;
+        }
+        .toolbar {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-right: 10px;
+        }
+        .tracks {
+            flex: 2;
+            margin-right: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 10px;
+        }
+        .mixer, .effects, .master-controls {
+            flex: 1;
             display: flex;
             flex-direction: column;
         }
-
-        .toolbar {
-            background-color: #333;
-            color: #fff;
+        .master-controls {
+            margin-top: 10px;
             padding: 10px;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .content {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        .tracks, .mixer, .effects, .ai-tools {
-            padding: 20px;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .mixer, .effects {
-            border-left: 1px solid #ddd;
-        }
-
-        .ai-tools {
-            border-left: 1px solid #ddd;
-            background-color: #e0e0e0;
-        }
-
-        .footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .button-group {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .button-group button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #555;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .button-group button:hover {
-            background-color: #777;
-        }
-
-        .ai-tools button {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: none;
-            background-color: #444;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .ai-tools button:hover {
-            background-color: #666;
+            background-color: #222;
         }
     </style>
 </head>
@@ -98,92 +62,84 @@
             <button id="save-button">Save</button>
             <button id="load-button">Load</button>
         </div>
-
-        <div class="content">
-            <div class="tracks">
-                <div>Track 1</div>
-                <div>Track 2</div>
-                <div>Track 3</div>
+        <div class="tracks">
+            <div>Track 1</div>
+            <div>Track 2</div>
+            <div>Track 3</div>
+        </div>
+        <div class="mixer">
+            <div>
+                <label>Volume</label>
+                <input type="range" min="0" max="100" id="volume-control">
             </div>
-
-            <div class="mixer">
-                <h3>Mixer</h3>
-                <div>
-                    <label>Volume</label>
-                    <input type="range" min="0" max="100" id="volume-control">
-                </div>
-                <div>
-                    <label>Pan</label>
-                    <input type="range" min="-100" max="100" id="pan-control">
-                </div>
-            </div>
-
-            <div class="effects">
-                <h3>Effects</h3>
-                <div>
-                    <label>Reverb</label>
-                    <input type="range" min="0" max="100" id="reverb-control">
-                </div>
-                <div>
-                    <label>Delay</label>
-                    <input type="range" min="0" max="100" id="delay-control">
-                </div>
-            </div>
-
-            <div class="ai-tools">
-                <h3>AI Music Tools</h3>
-                <button id="generate-music-button">Generate AI Music</button>
-                <button id="auto-mix-button">Auto Mix</button>
+            <div>
+                <label>Pan</label>
+                <input type="range" min="-100" max="100" id="pan-control">
             </div>
         </div>
-
-        <div class="footer">
-            Beatbench DAW © 2024
+        <div class="effects">
+            <div>
+                <label>Reverb</label>
+                <input type="range" min="0" max="100" id="reverb-control">
+            </div>
+            <div>
+                <label>Delay</label>
+                <input type="range" min="0" max="100" id="delay-control">
+            </div>
+            <div>
+                <label>Stereo Widener</label>
+                <input type="range" min="0" max="100" id="stereo-widener-control">
+            </div>
+        </div>
+        <div class="master-controls">
+            <div>
+                <label>Master Volume</label>
+                <input type="range" min="0" max="100" id="master-volume-control">
+            </div>
+            <div>
+                <label>AI Music Editing</label>
+                <button id="ai-edit-button">Generate/Edit Music</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Simple track controls
-        const playButton = document.getElementById('play-button');
-        const stopButton = document.getElementById('stop-button');
-        const recordButton = document.getElementById('record-button');
-        const saveButton = document.getElementById('save-button');
-        const loadButton = document.getElementById('load-button');
-        const generateMusicButton = document.getElementById('generate-music-button');
-        const autoMixButton = document.getElementById('auto-mix-button');
-
-        // Event listeners for play, stop, and record buttons
-        playButton.addEventListener('click', () => console.log('Playing'));
-        stopButton.addEventListener('click', () => console.log('Stopped'));
-        recordButton.addEventListener('click', () => console.log('Recording'));
-
-        // Saving and loading functionality (mockup)
-        saveButton.addEventListener('click', () => {
-            const data = JSON.stringify({ tracks: 'savedData' });
-            localStorage.setItem('beatbenchSave', data);
-            alert('Project Saved');
+        document.getElementById('save-button').addEventListener('click', function() {
+            const projectData = {
+                tracks: [...document.querySelectorAll('.tracks div')].map(track => track.innerText),
+                volume: document.getElementById('volume-control').value,
+                pan: document.getElementById('pan-control').value,
+                reverb: document.getElementById('reverb-control').value,
+                delay: document.getElementById('delay-control').value,
+                stereoWidener: document.getElementById('stereo-widener-control').value,
+                masterVolume: document.getElementById('master-volume-control').value
+            };
+            const projectJSON = JSON.stringify(projectData);
+            localStorage.setItem('dawProject', projectJSON);
+            alert('Project saved!');
         });
 
-        loadButton.addEventListener('click', () => {
-            const data = localStorage.getItem('beatbenchSave');
-            if (data) {
-                const project = JSON.parse(data);
-                console.log('Loaded Project:', project);
-                alert('Project Loaded');
+        document.getElementById('load-button').addEventListener('click', function() {
+            const projectJSON = localStorage.getItem('dawProject');
+            if (projectJSON) {
+                const projectData = JSON.parse(projectJSON);
+                document.getElementById('volume-control').value = projectData.volume;
+                document.getElementById('pan-control').value = projectData.pan;
+                document.getElementById('reverb-control').value = projectData.reverb;
+                document.getElementById('delay-control').value = projectData.delay;
+                document.getElementById('stereo-widener-control').value = projectData.stereoWidener;
+                document.getElementById('master-volume-control').value = projectData.masterVolume;
+                alert('Project loaded!');
             } else {
-                alert('No saved project found');
+                alert('No saved project found!');
             }
         });
 
-        // Simple AI functionality (mockup)
-        generateMusicButton.addEventListener('click', () => {
-            console.log('AI-generated music added');
-            alert('AI Music Generated');
-        });
-
-        autoMixButton.addEventListener('click', () => {
-            console.log('Auto-mix applied');
-            alert('Auto Mix Complete');
+        // Simple AI Music Editing function
+        document.getElementById('ai-edit-button').addEventListener('click', function() {
+            const generatedMusic = `Track ${Math.ceil(Math.random() * 5)} generated!`;
+            document.querySelector('.tracks').innerHTML += `<div>${generatedMusic}</div>`;
+            alert('AI generated music: ' + generatedMusic);
         });
     </script>
 </body>

@@ -37,7 +37,10 @@
                     const masteredAudio = applyBasicMasteringEffects(audioBuffer);
                     const audioBlob = new Blob([masteredAudio], { type: 'audio/wav' });
                     const audioURL = URL.createObjectURL(audioBlob);
-                    document.getElementById('audioPlayer').src = audioURL;
+                    const audioPlayer = document.getElementById('audioPlayer');
+                    audioPlayer.src = audioURL;
+                    audioPlayer.load();
+                    audioPlayer.play();
                     document.getElementById('result').classList.remove('hidden');
                 });
             };

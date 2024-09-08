@@ -1,162 +1,220 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>BeatBench DAW</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-			font-family: Arial, sans-serif;
-		}
-
-		.daw-container {
-			display: flex;
-			flex-direction: row;
-			width: 100vw;
-			height: 100vh;
-			background-color: #2c2c2c;
-			color: white;
-		}
-
-		.tracks-container, .controls-container {
-			padding: 10px;
-			box-sizing: border-box;
-		}
-
-		.tracks-container {
-			width: 70%;
-			border-right: 2px solid #444;
-			overflow-y: auto;
-		}
-
-		.track {
-			background-color: #444;
-			margin-bottom: 10px;
-			padding: 10px;
-			border-radius: 5px;
-		}
-
-		.controls-container {
-			width: 30%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: space-between;
-		}
-
-		.toolbar, .mixer, .effects, .master, .automix {
-			width: 100%;
-			padding: 10px;
-			background-color: #333;
-			margin-bottom: 10px;
-			border-radius: 5px;
-		}
-
-		button {
-			width: 100%;
-			padding: 10px;
-			margin-bottom: 10px;
-			background-color: #555;
-			border: none;
-			color: white;
-			cursor: pointer;
-			border-radius: 5px;
-		}
-
-		button:hover {
-			background-color: #777;
-		}
-
-		input[type="range"] {
-			width: 100%;
-		}
-	</style>
+    <title>Music DAW</title>
+    <style>
+        .daw {
+            font-family: Arial, sans-serif;
+            color: #444;
+            background-color: #f0f0f0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            width: 20%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .content {
+            width: 80%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toolbar, .controls, .mixer, .effects, .master, .eq, .compression, .reverb-room, .delay-room, .stereo-widener {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .toolbar button, .controls button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #555;
+            color: #fff;
+        }
+        .toolbar button:hover, .controls button:hover {
+            background-color: #777;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-	<div class="daw-container">
-		<div class="tracks-container">
-			<div class="track" id="track1">Track 1 - Record Vocals</div>
-			<div class="track" id="track2">Track 2 - Add Beat</div>
-			<div class="track" id="track3">Track 3 - Generate Beat</div>
-		</div>
-		<div class="controls-container">
-			<div class="toolbar">
-				<button id="play-button">Play All</button>
-				<button id="stop-button">Stop</button>
-				<button id="record-button">Record Vocals</button>
-				<button id="load-button">Load Project/MP3</button>
-			</div>
-			<div class="automix">
-				<button id="automix-button">Automix</button>
-			</div>
-			<div class="mixer">
-				<h3>Mixer</h3>
-				<label>Master Volume</label>
-				<input type="range" min="0" max="100" id="master-volume-control">
-				<label>Track 1 Volume</label>
-				<input type="range" min="0" max="100" id="track1-volume-control">
-				<label>Track 2 Volume</label>
-				<input type="range" min="0" max="100" id="track2-volume-control">
-				<label>Track 3 Volume</label>
-				<input type="range" min="0" max="100" id="track3-volume-control">
-			</div>
-			<div class="effects">
-				<h3>Effects</h3>
-				<label>Reverb</label>
-				<input type="range" min="0" max="100" id="reverb-control">
-				<label>Delay</label>
-				<input type="range" min="0" max="100" id="delay-control">
-			</div>
-			<div class="master">
-				<h3>Master EQ</h3>
-				<label>Low</label>
-				<input type="range" min="0" max="100" id="low-eq-control">
-				<label>Mid</label>
-				<input type="range" min="0" max="100" id="mid-eq-control">
-				<label>High</label>
-				<input type="range" min="0" max="100" id="high-eq-control">
-			</div>
-		</div>
-	</div>
+    <div class="daw">
+        <div class="sidebar">
+            <button id="play-all-button">Play All</button>
+            <button id="automix-button">Automix</button>
+            <button id="generate-beat-button">Generate Beat</button>
+        </div>
+        <div class="content">
+            <div class="toolbar">
+                <button id="play-button">Play</button>
+                <button id="stop-button">Stop</button>
+                <button id="record-button">Record</button>
+            </div>
+            <div class="tracks">
+                <div id="track1">
+                    <h3>Track 1 - Record Vocals</h3>
+                    <!-- Add controls for Track 1 if needed -->
+                </div>
+                <div id="track2">
+                    <h3>Track 2 - Add Beat</h3>
+                    <!-- Add controls for Track 2 if needed -->
+                </div>
+                <div id="track3">
+                    <h3>Track 3 - Generate Beat</h3>
+                    <p id="track3-content">Generated beats will appear here.</p>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="play-button">Play</button>
+                <button id="stop-button">Stop</button>
+                <button id="record-button">Record</button>
+            </div>
+            <div class="mixer">
+                <div>
+                    <label>Volume</label>
+                    <input type="range" min="0" max="100" id="volume-control">
+                </div>
+                <div>
+                    <label>Pan</label>
+                    <input type="range" min="-100" max="100" id="pan-control">
+                </div>
+            </div>
+            <div class="effects">
+                <div>
+                    <label>Reverb</label>
+                    <input type="range" min="0" max="100" id="reverb-control">
+                </div>
+                <div>
+                    <label>Delay</label>
+                    <input type="range" min="0" max="100" id="delay-control">
+                </div>
+            </div>
+            <div class="master">
+                <div>
+                    <label>Master Volume</label>
+                    <input type="range" min="0" max="100" id="master-volume-control">
+                </div>
+            </div>
+            <div class="eq">
+                <div>
+                    <label>Low</label>
+                    <input type="range" min="0" max="100" id="low-eq-control">
+                </div>
+                <div>
+                    <label>Mid</label>
+                    <input type="range" min="0" max="100" id="mid-eq-control">
+                </div>
+                <div>
+                    <label>High</label>
+                    <input type="range" min="0" max="100" id="high-eq-control">
+                </div>
+            </div>
+            <div class="compression">
+                <div>
+                    <label>Threshold</label>
+                    <input type="range" min="0" max="100" id="compression-threshold-control">
+                </div>
+            </div>
+            <div class="reverb-room">
+                <div>
+                    <label>Room</label>
+                    <input type="range" min="0" max="100" id="reverb-room-control">
+                </div>
+            </div>
+            <div class="delay-room">
+                <div>
+                    <label>Room</label>
+                    <input type="range" min="0" max="100" id="delay-room-control">
+                </div>
+            </div>
+            <div class="stereo-widener">
+                <div>
+                    <label>Width</label>
+                    <input type="range" min="0" max="100" id="stereo-widener-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Functionality for Automix
+        document.getElementById('automix-button').addEventListener('click', () => {
+            document.getElementById('volume-control').value = 75;
+            document.getElementById('pan-control').value = 0;
 
-	<script>
-		let isRecording = false;
-		let isPlaying = false;
-		let isBeatAdded = false;
+            document.getElementById('volume-control').value = 60;
+            document.getElementById('pan-control').value = -10;
 
-		document.getElementById('record-button').addEventListener('click', () => {
-			isRecording = !isRecording;
-			if (isRecording) {
-				console.log('Recording Vocals...');
-				if (isBeatAdded) {
-					console.log('Playing beat during recording...');
-				}
-			} else {
-				console.log('Stopped Recording');
-			}
-		});
+            document.getElementById('volume-control').value = 60;
+            document.getElementById('pan-control').value = 10;
 
-		document.getElementById('play-button').addEventListener('click', () => {
-			isPlaying = true;
-			console.log('Playing all tracks together...');
-		});
+            document.getElementById('low-eq-control').value = 60;
+            document.getElementById('mid-eq-control').value = 80;
+            document.getElementById('high-eq-control').value = 70;
 
-		document.getElementById('stop-button').addEventListener('click', () => {
-			isPlaying = false;
-			isRecording = false;
-			console.log('Stopped playback and recording');
-		});
+            alert('Automix applied successfully!');
+        });
 
-		document.getElementById('automix-button').addEventListener('click', () => {
-			console.log('Applying Automix...');
-			// Automix logic here
-		});
+        // Functionality for Beat Generation
+        document.getElementById('generate-beat-button').addEventListener('click', () => {
+            const beatPattern = "Kick-Snare-Kick-Snare";
+            document.getElementById('track3-content').innerText = beatPattern;
 
-		document.getElementById('load-button').addEventListener('click', () => {
-			console.log('Loading project or MP3...');
-			// Load project or MP3 logic here
-		});
-	</script>
+            alert('New beat generated and added to Track 3!');
+        });
+
+        // Functionality for Play All
+        document.getElementById('play-all-button').addEventListener('click', () => {
+            playTrack1();
+            playTrack2();
+            playTrack3();
+            console.log('All tracks playing together');
+        });
+
+        function playTrack1() {
+            console.log('Playing Track 1');
+        }
+
+        function playTrack2() {
+            console.log('Playing Track 2');
+        }
+
+        function playTrack3() {
+            console.log('Playing Track 3');
+        }
+
+        // Functionality for Play, Stop, and Record buttons
+        document.getElementById('play-button').addEventListener('click', () => {
+            console.log('Playing');
+        });
+
+        document.getElementById('stop-button').addEventListener('click', () => {
+            console.log('Stopped');
+        });
+
+        document.getElementById('record-button').addEventListener('click', () => {
+            console.log('Recording');
+        });
+    </script>
 </body>
 </html>

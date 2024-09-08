@@ -26,7 +26,7 @@
             margin-bottom: 20px;
         }
 
-        #sample-library, #controls {
+        #sample-library, #controls, #upload-section {
             margin: 20px 0;
         }
 
@@ -46,13 +46,21 @@
         footer {
             margin-top: 20px;
         }
+
+        input[type="file"] {
+            margin: 10px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Beatbench</h1>
-            <p>Select samples and apply AI-like mastering.</p>
+            <p>Select samples, upload a file, and apply AI-like mastering.</p>
         </header>
 
         <section id="sample-library">
@@ -73,6 +81,19 @@
                 <option value="rock">Rock</option>
             </select>
             <button onclick="applyMastering()">Apply Mastering</button>
+        </section>
+
+        <section id="upload-section">
+            <h2>Upload and Master Your Track</h2>
+            <input type="file" id="upload" accept="audio/mp3">
+            <button onclick="uploadAndMaster()">Upload & Master</button>
+            <div id="download-section" class="hidden">
+                <h3>Mastered Track</h3>
+                <audio id="masteredAudio" controls></audio>
+                <a id="downloadLink" href="#" download="mastered_track.mp3">
+                    <button>Download Mastered Track</button>
+                </a>
+            </div>
         </section>
 
         <footer>
@@ -100,6 +121,28 @@
             } else if (genre === 'rock') {
                 console.log('Balancing mids and adding punch for Rock.');
             }
+        }
+
+        // Function to handle file upload and simulation of mastering
+        function uploadAndMaster() {
+            const fileInput = document.getElementById('upload');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please upload a file first.');
+                return;
+            }
+
+            // Simulate processing the file (this part is just a placeholder)
+            const audioURL = URL.createObjectURL(file);
+            const masteredAudio = document.getElementById('masteredAudio');
+            const downloadLink = document.getElementById('downloadLink');
+
+            masteredAudio.src = audioURL;  // Simulate mastered file playback
+            downloadLink.href = audioURL;   // Simulate download link
+
+            // Show the download section
+            document.getElementById('download-section').classList.remove('hidden');
         }
     </script>
 </body>

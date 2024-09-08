@@ -1,150 +1,190 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Beatbench - Music DAW</title>
-	<style>
-		.daw {
-			font-family: Arial, sans-serif;
-			color: #444;
-			background-color: #f0f0f0;
-			width: 1000px;
-			margin: 0 auto;
-			padding: 20px;
-			border: 1px solid #ddd;
-			border-radius: 10px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		}
-		.toolbar {
-			background-color: #333;
-			color: #fff;
-			padding: 10px;
-			border-radius: 10px 10px 0 0;
-			display: flex;
-			justify-content: space-between;
-		}
-		.tracks, .mixer, .effects, .automation, .midi {
-			padding: 20px;
-			border-bottom: 1px solid #ddd;
-		}
-		.track, .automation-track {
-			background-color: #e0e0e0;
-			margin-bottom: 10px;
-			padding: 10px;
-			border-radius: 5px;
-		}
-		.mixer-controls {
-			display: flex;
-			justify-content: space-between;
-		}
-		.mixer-controls div {
-			flex: 1;
-			margin-right: 10px;
-		}
-		.mixer-controls div:last-child {
-			margin-right: 0;
-		}
-		.automation-track {
-			background-color: #d0d0d0;
-		}
-		.sample-editor {
-			padding: 20px;
-		}
-	</style>
+    <title>Beatbench Music DAW</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .daw {
+            font-family: Arial, sans-serif;
+            color: #444;
+            background-color: #f0f0f0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toolbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .content {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .tracks, .mixer, .effects, .ai-tools {
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .mixer, .effects {
+            border-left: 1px solid #ddd;
+        }
+
+        .ai-tools {
+            border-left: 1px solid #ddd;
+            background-color: #e0e0e0;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button-group button:hover {
+            background-color: #777;
+        }
+
+        .ai-tools button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .ai-tools button:hover {
+            background-color: #666;
+        }
+    </style>
 </head>
 <body>
-	<div class="daw">
-		<div class="toolbar">
-			<div>
-				<button id="play-button">Play</button>
-				<button id="stop-button">Stop</button>
-				<button id="record-button">Record</button>
-			</div>
-			<div>
-				<button id="save-button">Save</button>
-				<button id="load-button">Load</button>
-			</div>
-		</div>
-		<div class="tracks">
-			<h3>Tracks</h3>
-			<div class="track">Track 1</div>
-			<div class="track">Track 2</div>
-			<div class="track">Track 3</div>
-			<!-- Add more tracks as needed -->
-		</div>
-		<div class="mixer">
-			<h3>Mixer</h3>
-			<div class="mixer-controls">
-				<div>
-					<label>Volume</label>
-					<input type="range" min="0" max="100" id="volume-control">
-				</div>
-				<div>
-					<label>Pan</label>
-					<input type="range" min="-100" max="100" id="pan-control">
-				</div>
-				<div>
-					<label>Reverb</label>
-					<input type="range" min="0" max="100" id="reverb-control">
-				</div>
-				<div>
-					<label>Delay</label>
-					<input type="range" min="0" max="100" id="delay-control">
-				</div>
-				<!-- Add more mixer controls here -->
-			</div>
-		</div>
-		<div class="effects">
-			<h3>Effects</h3>
-			<div>
-				<label>Compression</label>
-				<input type="range" min="0" max="100" id="compression-control">
-			</div>
-			<div>
-				<label>EQ</label>
-				<input type="range" min="0" max="100" id="eq-control">
-			</div>
-			<!-- Add more effects controls here -->
-		</div>
-		<div class="automation">
-			<h3>Automation</h3>
-			<div class="automation-track">Track 1 Automation</div>
-			<div class="automation-track">Track 2 Automation</div>
-			<!-- Add more automation tracks as needed -->
-		</div>
-		<div class="midi">
-			<h3>MIDI Controls</h3>
-			<button id="add-midi">Add MIDI Track</button>
-			<!-- MIDI functionality to be added -->
-		</div>
-		<div class="sample-editor">
-			<h3>Sample Editor</h3>
-			<button id="edit-sample">Edit Sample</button>
-			<!-- Sample editing functionality to be added -->
-		</div>
-	</div>
-	<script>
-		// Add event listeners for play, stop, record, save, and load buttons
-		document.getElementById('play-button').addEventListener('click', () => {
-			console.log('Playing');
-		});
+    <div class="daw">
+        <div class="toolbar">
+            <button id="play-button">Play</button>
+            <button id="stop-button">Stop</button>
+            <button id="record-button">Record</button>
+            <button id="save-button">Save</button>
+            <button id="load-button">Load</button>
+        </div>
 
-		document.getElementById('stop-button').addEventListener('click', () => {
-			console.log('Stopped');
-		});
+        <div class="content">
+            <div class="tracks">
+                <div>Track 1</div>
+                <div>Track 2</div>
+                <div>Track 3</div>
+            </div>
 
-		document.getElementById('record-button').addEventListener('click', () => {
-			console.log('Recording');
-		});
+            <div class="mixer">
+                <h3>Mixer</h3>
+                <div>
+                    <label>Volume</label>
+                    <input type="range" min="0" max="100" id="volume-control">
+                </div>
+                <div>
+                    <label>Pan</label>
+                    <input type="range" min="-100" max="100" id="pan-control">
+                </div>
+            </div>
 
-		document.getElementById('save-button').addEventListener('click', () => {
-			console.log('Saving project');
-		});
+            <div class="effects">
+                <h3>Effects</h3>
+                <div>
+                    <label>Reverb</label>
+                    <input type="range" min="0" max="100" id="reverb-control">
+                </div>
+                <div>
+                    <label>Delay</label>
+                    <input type="range" min="0" max="100" id="delay-control">
+                </div>
+            </div>
 
-		document.getElementById('load-button').addEventListener('click', () => {
-			console.log('Loading project');
-		});
+            <div class="ai-tools">
+                <h3>AI Music Tools</h3>
+                <button id="generate-music-button">Generate AI Music</button>
+                <button id="auto-mix-button">Auto Mix</button>
+            </div>
+        </div>
 
-		// Add more functionality as required
-	</script>
+        <div class="footer">
+            Beatbench DAW © 2024
+        </div>
+    </div>
+
+    <script>
+        // Simple track controls
+        const playButton = document.getElementById('play-button');
+        const stopButton = document.getElementById('stop-button');
+        const recordButton = document.getElementById('record-button');
+        const saveButton = document.getElementById('save-button');
+        const loadButton = document.getElementById('load-button');
+        const generateMusicButton = document.getElementById('generate-music-button');
+        const autoMixButton = document.getElementById('auto-mix-button');
+
+        // Event listeners for play, stop, and record buttons
+        playButton.addEventListener('click', () => console.log('Playing'));
+        stopButton.addEventListener('click', () => console.log('Stopped'));
+        recordButton.addEventListener('click', () => console.log('Recording'));
+
+        // Saving and loading functionality (mockup)
+        saveButton.addEventListener('click', () => {
+            const data = JSON.stringify({ tracks: 'savedData' });
+            localStorage.setItem('beatbenchSave', data);
+            alert('Project Saved');
+        });
+
+        loadButton.addEventListener('click', () => {
+            const data = localStorage.getItem('beatbenchSave');
+            if (data) {
+                const project = JSON.parse(data);
+                console.log('Loaded Project:', project);
+                alert('Project Loaded');
+            } else {
+                alert('No saved project found');
+            }
+        });
+
+        // Simple AI functionality (mockup)
+        generateMusicButton.addEventListener('click', () => {
+            console.log('AI-generated music added');
+            alert('AI Music Generated');
+        });
+
+        autoMixButton.addEventListener('click', () => {
+            console.log('Auto-mix applied');
+            alert('Auto Mix Complete');
+        });
+    </script>
 </body>
 </html>

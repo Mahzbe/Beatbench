@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beatbench - AI Auto Mastering</title>
+    <title>AI Mastering Tool</title>
     <style>
         /* ... */
     </style>
 </head>
 <body>
-    <!-- ... -->
+    <h1>AI Mastering Tool</h1>
+    <input type="file" id="upload" accept=".mp3">
+    <button onclick="uploadAndMaster()">Upload & AI Master</button>
+    <div id="result" class="hidden">
+        <h3>Mastered Audio</h3>
+        <audio id="audioPlayer" controls></audio>
+        <button onclick="adjustMastering()">Adjust Mastering</button>
+        <button onclick="downloadMasteredTrack()">Download Mastered Track</button>
+    </div>
     <script>
         let audioContext;
         let audioBuffer;
@@ -18,54 +26,9 @@
         }
         function applyBasicMasteringEffects(audioBuffer) {
             /* ... */
-            // Apply EQ effects
-            const eqGain = 2;
-            for (let i = 0; i < audioBuffer.length; i++) {
-                audioBuffer[i] += eqGain;
-            }
-            // Apply compression effects
-            const compressionThreshold = 0.5;
-            const compressionRatio = 4;
-            for (let i = 0; i < audioBuffer.length; i++) {
-                if (audioBuffer[i] > compressionThreshold) {
-                    audioBuffer[i] = compressionRatio * (audioBuffer[i] - compressionThreshold);
-                }
-            }
-            // Apply limiting effects
-            const limitThreshold = 0.9;
-            for (let i = 0; i < audioBuffer.length; i++) {
-                if (audioBuffer[i] > limitThreshold) {
-                    audioBuffer[i] = limitThreshold;
-                }
-            }
-            // Apply stereo widening effects
-            const stereoWidenAmount = 0.5;
-            for (let i = 0; i < audioBuffer.length; i += 2) {
-                audioBuffer[i] += stereoWidenAmount;
-                audioBuffer[i + 1] -= stereoWidenAmount;
-            }
-            return audioBuffer;
         }
         function adjustMastering() {
-            // Apply multiband compression
-            const multibandCompressionBands = [
-                { frequency: 100, gain: -2 },
-                { frequency: 500, gain: 1 },
-                { frequency: 2000, gain: -1 },
-            ];
-            for (let i = 0; i < multibandCompressionBands.length; i++) {
-                const band = multibandCompressionBands[i];
-                for (let j = 0; j < audioBuffer.length; j++) {
-                    if (audioBuffer[j] > band.frequency) {
-                        audioBuffer[j] += band.gain;
-                    }
-                }
-            }
-            // Apply saturation effects
-            const saturationAmount = 0.5;
-            for (let i = 0; i < audioBuffer.length; i++) {
-                audioBuffer[i] += saturationAmount;
-            }
+            /* ... */
         }
         function downloadMasteredTrack() {
             /* ... */

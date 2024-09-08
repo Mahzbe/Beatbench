@@ -22,7 +22,26 @@
         let audioContext;
         let audioBuffer;
         function uploadAndMaster() {
-            /* ... */
+            const fileInput = document.getElementById('upload');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please upload an MP3 file.');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const audioData = e.target.result;
+                audioContext = new AudioContext();
+                audioContext.decodeAudioData(audioData, (buffer) => {
+                    audioBuffer = buffer;
+                    const masteredAudio = applyBasicMasteringEffects(audioBuffer);
+                    const audioBlob = new Blob([masteredAudio], { type: 'audio/wav' });
+                    const audioURL = URL.createObjectURL(audioBlob);
+                    document.getElementById('audioPlayer').src = audioURL;
+                    document.getElementById('result').classList.remove('hidden');
+                });
+            };
+            reader.readAsArrayBuffer(file);
         }
         function applyBasicMasteringEffects(audioBuffer) {
             /* ... */

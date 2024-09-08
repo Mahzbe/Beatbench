@@ -3,36 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beatbench - Upload and Play MP3</title>
+    <title>Beatbench - Upload & Master</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #333;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
+            background-color: #222;
+            color: #eee;
             text-align: center;
-            width: 60%;
+            padding: 20px;
+        }
+        input[type="file"] {
+            margin: 20px;
         }
         button {
-            background-color: #555;
-            color: #fff;
+            background-color: #444;
+            color: #eee;
             padding: 10px 20px;
             border: none;
-            margin: 5px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #666;
-        }
-        input[type="file"] {
-            margin: 10px 0;
+            background-color: #555;
         }
         .hidden {
             display: none;
@@ -40,37 +31,49 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Upload and Play MP3</h1>
-        <input type="file" id="upload" accept="audio/mp3">
-        <button onclick="uploadAndPlay()">Upload & Play</button>
-        <div id="audio-section" class="hidden">
-            <h3>Playing Track</h3>
-            <audio id="audioPlayer" controls></audio>
-        </div>
+
+    <h1>Beatbench - AI Mastering</h1>
+    <p>Upload an MP3 file and let AI master it for you.</p>
+
+    <input type="file" id="upload" accept=".mp3">
+    <button onclick="uploadAndMaster()">Upload & Master</button>
+
+    <div id="result" class="hidden">
+        <h3>Mastered Track</h3>
+        <audio id="audioPlayer" controls></audio>
+        <a id="downloadLink" href="#" download="mastered_track.mp3">
+            <button>Download Mastered Track</button>
+        </a>
     </div>
 
     <script>
-        function uploadAndPlay() {
+        function uploadAndMaster() {
             const fileInput = document.getElementById('upload');
             const file = fileInput.files[0];
 
             if (!file) {
-                alert('Please upload a file first.');
+                alert('Please upload an MP3 file.');
                 return;
             }
 
+            // Ensure it's an MP3 file
             if (file.type !== 'audio/mp3') {
                 alert('Please upload a valid MP3 file.');
                 return;
             }
 
+            // Simulate the AI mastering process by using the uploaded file directly
             const audioURL = URL.createObjectURL(file);
             const audioPlayer = document.getElementById('audioPlayer');
-            audioPlayer.src = audioURL;
+            const downloadLink = document.getElementById('downloadLink');
 
-            document.getElementById('audio-section').classList.remove('hidden');
+            audioPlayer.src = audioURL;
+            downloadLink.href = audioURL;
+
+            // Show the result section
+            document.getElementById('result').classList.remove('hidden');
         }
     </script>
+
 </body>
 </html>

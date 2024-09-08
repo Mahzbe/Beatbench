@@ -51,6 +51,9 @@
             padding: 10px;
             background-color: #222;
         }
+        .hidden-input {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +64,7 @@
             <button id="record-button">Record</button>
             <button id="save-button">Save</button>
             <button id="load-button">Load</button>
+            <input type="file" id="file-input" class="hidden-input" accept=".mp3, .wav, .json">
         </div>
         <div class="tracks">
             <div>Track 1</div>
@@ -103,7 +107,10 @@
         </div>
     </div>
 
+    <audio id="audio-player" controls class="hidden-input"></audio>
+
     <script>
+        // Save project data to local storage
         document.getElementById('save-button').addEventListener('click', function() {
             const projectData = {
                 tracks: [...document.querySelectorAll('.tracks div')].map(track => track.innerText),
@@ -119,19 +126,40 @@
             alert('Project saved!');
         });
 
+        // Load project data from local storage
         document.getElementById('load-button').addEventListener('click', function() {
-            const projectJSON = localStorage.getItem('dawProject');
-            if (projectJSON) {
-                const projectData = JSON.parse(projectJSON);
-                document.getElementById('volume-control').value = projectData.volume;
-                document.getElementById('pan-control').value = projectData.pan;
-                document.getElementById('reverb-control').value = projectData.reverb;
-                document.getElementById('delay-control').value = projectData.delay;
-                document.getElementById('stereo-widener-control').value = projectData.stereoWidener;
-                document.getElementById('master-volume-control').value = projectData.masterVolume;
-                alert('Project loaded!');
-            } else {
-                alert('No saved project found!');
+            document.getElementById('file-input').click(); // Trigger file selection
+        });
+
+        // Handle file input for loading
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.type === "audio/mp3" || file.type === "audio/wav") {
+                    const audioPlayer = document.getElementById('audio-player');
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        audioPlayer.src = e.target.result;
+                        audioPlayer.classList.remove('hidden-input');
+                        alert('Audio loaded!');
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type === "application/json") {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const projectData = JSON.parse(e.target.result);
+                        document.getElementById('volume-control').value = projectData.volume;
+                        document.getElementById('pan-control').value = projectData.pan;
+                        document.getElementById('reverb-control').value = projectData.reverb;
+                        document.getElementById('delay-control').value = projectData.delay;
+                        document.getElementById('stereo-widener-control').value = projectData.stereoWidener;
+                        document.getElementById('master-volume-control').value = projectData.masterVolume;
+                        alert('Project loaded!');
+                    };
+                    reader.readAsText(file);
+                } else {
+                    alert('Unsupported file type!');
+                }
             }
         });
 

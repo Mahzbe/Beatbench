@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beatbench DAW</title>
+    <title>Beatbench - Sample and Mastering</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            color: #444;
-            background-color: #f0f0f0;
+            background-color: #333;
+            color: #fff;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,259 +16,91 @@
             align-items: center;
             height: 100vh;
         }
-        .daw {
-            background-color: #fff;
-            width: 1200px;
-            height: 800px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+
+        .container {
+            text-align: center;
+            width: 60%;
         }
-        .toolbar {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        header {
+            margin-bottom: 20px;
         }
-        .toolbar button {
-            background-color: #2196F3;
+
+        #sample-library, #controls {
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: #555;
             color: #fff;
-            padding: 10px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .toolbar button:hover {
-            background-color: #1976D2;
-        }
-        .title {
-            color: #fff;
-            font-size: 24px;
-            margin: 0;
-        }
-        .content {
-            display: flex;
-            flex: 1;
-            padding: 20px;
-            overflow: auto;
-        }
-        .tracks, .mixer, .effects, .master, .eq, .compression, .reverb-room, .delay-room, .stereo-widener {
-            flex: 1;
-            padding: 10px;
             margin: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .tracks div, .effects div, .mixer div, .eq div, .compression div, .reverb-room div, .delay-room div, .stereo-widener div {
-            margin-bottom: 10px;
-        }
-        .master, .eq, .compression, .reverb-room, .delay-room, .stereo-widener {
-            display: flex;
-            flex-direction: column;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .button-container button {
-            background-color: #FF5722;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
-            margin: 0 5px;
         }
-        .button-container button:hover {
-            background-color: #E64A19;
+
+        button:hover {
+            background-color: #666;
         }
-        .title-container {
-            background-color: #f0f0f0;
-            text-align: center;
-            padding: 20px;
-        }
-        .empty-space {
-            background-color: #d0d0d0;
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            font-size: 24px;
-            color: #333;
+
+        footer {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="daw">
-        <div class="toolbar">
-            <span class="title">Beatbench</span>
-            <div>
-                <button id="play-button">Play</button>
-                <button id="stop-button">Stop</button>
-                <button id="record-button">Record</button>
-                <button id="automix-button">Automix</button>
-                <button id="play-all-button">Play All</button>
+    <div class="container">
+        <header>
+            <h1>Beatbench</h1>
+            <p>Select samples and apply AI-like mastering.</p>
+        </header>
+
+        <section id="sample-library">
+            <h2>Sample Library</h2>
+            <div class="samples">
+                <button onclick="playSample('samples/kick.mp3')">Kick Drum</button>
+                <button onclick="playSample('samples/snare.mp3')">Snare Drum</button>
+                <button onclick="playSample('samples/bass.mp3')">Bass Loop</button>
             </div>
-        </div>
-        <div class="content">
-            <div class="tracks">
-                <h3>Tracks</h3>
-                <div id="track1">Track 1: Record Vocals</div>
-                <div id="track2">Track 2: Add Beat</div>
-                <div id="track3">Track 3: Generate Beat</div>
-            </div>
-            <div class="mixer">
-                <h3>Mixer</h3>
-                <div>
-                    <label>Volume</label>
-                    <input type="range" min="0" max="100" id="volume-control">
-                </div>
-                <div>
-                    <label>Pan</label>
-                    <input type="range" min="-100" max="100" id="pan-control">
-                </div>
-            </div>
-            <div class="effects">
-                <h3>Effects</h3>
-                <div>
-                    <label>Reverb</label>
-                    <input type="range" min="0" max="100" id="reverb-control">
-                </div>
-                <div>
-                    <label>Delay</label>
-                    <input type="range" min="0" max="100" id="delay-control">
-                </div>
-            </div>
-            <div class="master">
-                <h3>Master</h3>
-                <div>
-                    <label>Master Volume</label>
-                    <input type="range" min="0" max="100" id="master-volume-control">
-                </div>
-            </div>
-            <div class="eq">
-                <h3>EQ</h3>
-                <div>
-                    <label>Low</label>
-                    <input type="range" min="0" max="100" id="low-eq-control">
-                </div>
-                <div>
-                    <label>Mid</label>
-                    <input type="range" min="0" max="100" id="mid-eq-control">
-                </div>
-                <div>
-                    <label>High</label>
-                    <input type="range" min="0" max="100" id="high-eq-control">
-                </div>
-            </div>
-            <div class="compression">
-                <h3>Compression</h3>
-                <div>
-                    <label>Threshold</label>
-                    <input type="range" min="0" max="100" id="compression-threshold-control">
-                </div>
-            </div>
-            <div class="reverb-room">
-                <h3>Reverb Room</h3>
-                <div>
-                    <label>Room</label>
-                    <input type="range" min="0" max="100" id="reverb-room-control">
-                </div>
-            </div>
-            <div class="delay-room">
-                <h3>Delay Room</h3>
-                <div>
-                    <label>Room</label>
-                    <input type="range" min="0" max="100" id="delay-room-control">
-                </div>
-            </div>
-            <div class="stereo-widener">
-                <h3>Stereo Widener</h3>
-                <div>
-                    <label>Width</label>
-                    <input type="range" min="0" max="100" id="stereo-widener-control">
-                </div>
-            </div>
-            <div class="empty-space">
-                Beatbench
-            </div>
-        </div>
-        <div class="button-container">
-            <button id="load-button">Load Project/MP3</button>
-            <button id="save-button">Save Project</button>
-        </div>
+        </section>
+
+        <section id="controls">
+            <h2>AI Mastering</h2>
+            <label for="genre">Choose Genre:</label>
+            <select id="genre">
+                <option value="hiphop">Hip-Hop</option>
+                <option value="edm">EDM</option>
+                <option value="rock">Rock</option>
+            </select>
+            <button onclick="applyMastering()">Apply Mastering</button>
+        </section>
+
+        <footer>
+            <p>© 2024 Beatbench</p>
+        </footer>
     </div>
+
     <script>
-        // Functionality for track controls
-        function playTrack(trackId) {
-            console.log(`${trackId} playing`);
+        // Function to play samples
+        function playSample(samplePath) {
+            let audio = new Audio(samplePath);
+            audio.play();
         }
 
-        function stopTrack(trackId) {
-            console.log(`${trackId} stopped`);
+        // Function to apply AI-like mastering (simulation)
+        function applyMastering() {
+            let genre = document.getElementById('genre').value;
+            alert(`Applying mastering for ${genre} genre...`);
+
+            // Simulate genre-specific mastering adjustments
+            if (genre === 'hiphop') {
+                console.log('Adjusting bass levels and adding warmth for Hip-Hop.');
+            } else if (genre === 'edm') {
+                console.log('Enhancing highs and adding depth for EDM.');
+            } else if (genre === 'rock') {
+                console.log('Balancing mids and adding punch for Rock.');
+            }
         }
-
-        function recordTrack(trackId) {
-            console.log(`${trackId} recording`);
-        }
-
-        function generateBeat() {
-            console.log('Generating beat...');
-        }
-
-        function automateMix() {
-            console.log('Automixing...');
-        }
-
-        function playAll() {
-            console.log('Playing all tracks...');
-        }
-
-        // Event listeners for buttons
-        document.getElementById('play-button').addEventListener('click', () => playAll());
-        document.getElementById('stop-button').addEventListener('click', () => stopTrack('All'));
-        document.getElementById('record-button').addEventListener('click', () => recordTrack('Vocals'));
-        document.getElementById('automix-button').addEventListener('click', () => automateMix());
-        document.getElementById('play-all-button').addEventListener('click', () => playAll());
-
-        // Event listeners for load and save buttons
-        document.getElementById('load-button').addEventListener('click', () => {
-            // Handle file selection and loading
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.mp3, .wav, .json'; // Acceptable file types
-            input.addEventListener('change', (event) => {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const contents = e.target.result;
-                        console.log('File contents:', contents);
-                        // Handle file contents here
-                    };
-                    reader.readAsText(file);
-                }
-            });
-            input.click();
-        });
-
-        document.getElementById('save-button').addEventListener('click', () => {
-            // Handle saving project functionality
-            console.log('Saving project...');
-            // Example: Create a Blob and download it
-            const blob = new Blob(['Sample data'], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'project.txt';
-            a.click();
-            URL.revokeObjectURL(url);
-        });
     </script>
 </body>
 </html>

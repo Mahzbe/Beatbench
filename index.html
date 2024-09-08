@@ -92,6 +92,12 @@
                 return;
             }
 
+            // Check if the file is an MP3
+            if (file.type !== 'audio/mp3') {
+                alert('Please upload a valid MP3 file.');
+                return;
+            }
+
             // Simulate processing the file (this part is just a placeholder)
             const audioURL = URL.createObjectURL(file);
             const masteredAudio = document.getElementById('masteredAudio');

@@ -32,132 +32,26 @@
     <h2>Sampling Packs</h2>
     <div>
         <p>Piano-and-Keys-Soulful-jazzy-sample-pack.zip</p>
-        <a href="Piano-and-Keys-Soulful-jazzy-sample-pack.zip" download>
-            <button>Download</button>
-        </a>
+        <button onclick="window.location.href='Piano-and-Keys-Soulful-jazzy-sample-pack.zip'">Download</button>
     </div>
 
-    <script>
-        let audioContext;
-        let audioBuffer;
-        let masteredAudioBlob;
-        let countdownInterval;
-        let genre;
-
-        function chooseGenre() {
-            genre = document.getElementById('genreSelect').value;
-            document.getElementById('uploadAndMasterBtn').disabled = false;
-        }
-
-        function uploadAndMaster() {
-            const fileInput = document.getElementById('upload');
-            const file = fileInput.files[0];
-
-            if (!file) {
-                alert('Please upload an MP3 file.');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const audioData = e.target.result;
-                audioContext = new AudioContext();
-                audioContext.decodeAudioData(audioData, (buffer) => {
-                    audioBuffer = buffer;
-
-                    // Apply basic mastering effects
-                    const masteredAudioBuffer = applyBasicMasteringEffects(audioBuffer, genre);
-
-                    // Convert mastered audio buffer to WAV
-                    const wavData = audioBufferToWAV(masteredAudioBuffer);
-                    masteredAudioBlob = new Blob([wavData], { type: 'audio/wav' });
-
-                    // Create object URL for playback and download
-                    const audioURL = URL.createObjectURL(masteredAudioBlob);
-                    const audioPlayer = document.getElementById('audioPlayer');
-                    audioPlayer.src = audioURL;
-                    audioPlayer.load();
-                    audioPlayer.play();
-
-                    // Show the result section
-                    document.getElementById('result').classList.remove('hidden');
-                    document.getElementById('uploadAndMasterBtn').innerText = 'AI Mastered';
-                    
-                    // Prepare download link
-                    const downloadLink = document.getElementById('downloadLink');
-                    downloadLink.href = audioURL;
-                    downloadLink.download = 'mastered_track.wav';
-                    downloadLink.style.display = 'inline';
-
-                    startCountdown();
-                });
-            };
-            reader.readAsArrayBuffer(file);
-        }
-
-        function applyBasicMasteringEffects(audioBuffer, genre) {
-            return audioBuffer; 
-        }
-
-        function downloadMasteredTrack() {
-            const link = document.getElementById('downloadLink');
-            link.click();
-        }
-
-        function startCountdown() {
-            let time = 600; // 10 minutes in seconds
-            countdownInterval = setInterval(() => {
-                const minutes = Math.floor(time / 60);
-                const seconds = time % 60;
-                document.getElementById('countdown').innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                time--;
-                if (time <= 0) {
-                    clearInterval(countdownInterval);
-                    document.getElementById('result').classList.add('hidden');
-                    document.getElementById('uploadAndMasterBtn').innerText = 'AI Master';
-                    document.getElementById('downloadLink').style.display = 'none';
-                }
-            }, 1000);
-        }
-
-        function audioBufferToWAV(audioBuffer) {
-            const numOfChannels = audioBuffer.numberOfChannels;
-            const length = audioBuffer.length * numOfChannels * 2 + 44;
-            const buffer = new ArrayBuffer(length);
-            const view = new DataView(buffer);
-
-            writeString(view, 0, 'RIFF');
-            view.setUint32(4, 36 + audioBuffer.length * numOfChannels * 2, true);
-            writeString(view, 8, 'WAVE');
-            writeString(view, 12, 'fmt ');
-            view.setUint32(16, 16, true);
-            view.setUint16(20, 1, true);
-            view.setUint16(22, numOfChannels, true);
-            view.setUint32(24, audioBuffer.sampleRate, true);
-            view.setUint32(28, audioBuffer.sampleRate * numOfChannels * 2, true);
-            view.setUint16(32, numOfChannels * 2, true);
-            view.setUint16(34, 16, true);
-            writeString(view, 36, 'data');
-            view.setUint32(40, audioBuffer.length * numOfChannels * 2, true);
-
-            let offset = 44;
-            for (let i = 0; i < audioBuffer.length; i++) {
-                for (let channel = 0; channel < numOfChannels; channel++) {
-                    const sample = audioBuffer.getChannelData(channel)[i];
-                    const intSample = Math.max(-1, Math.min(1, sample));
-                    view.setInt16(offset, intSample < 0 ? intSample * 0x8000 : intSample * 0x7FFF, true);
-                    offset += 2;
-                }
-            }
-
-            return new Uint8Array(buffer);
-        }
-
-        function writeString(view, offset, string) {
-            for (let i = 0; i < string.length; i++) {
-                view.setUint8(offset + i, string.charCodeAt(i));
-            }
-        }
-    </script>
+    <!-- About Section -->
+    <h2>About Beatbench</h2>
+    <p>
+        Beatbench is a user-friendly digital audio workstation (DAW) designed to streamline music production, 
+        from uploading your tracks to applying AI-powered mastering. With features that allow genre selection, 
+        automatic mastering, and a variety of sampling packs, Beatbench simplifies the creation of high-quality music tracks.
+    </p>
+    <p>
+        Whether you’re a beginner or a seasoned producer, Beatbench provides the tools you need to craft your sound, 
+        combining simplicity with powerful functionality in a compact and efficient layout. The platform also includes 
+        an AI-driven automix feature, making it easier than ever to achieve professional-quality results in minutes.
+    </p>
+    <p>
+        Founded by Thabang Mosoana, previously known as Mahzbe and now going by the name TH Mpini, Beatbench reflects 
+        his passion for music and technology. TH Mpini’s vision was to create a DAW that caters to both novices and experts, 
+        offering an intuitive experience without compromising on the depth of control. His journey in the music industry has 
+        informed the design of Beatbench, aiming to empower creators at every level.
+    </p>
 </body>
 </html>

@@ -5,7 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beatbench Tool</title>
     <style>
-        /* Add your styles here */
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #uploadAndMasterBtn:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        #uploadAndMasterBtn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #countdown {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        #downloadLink {
+            display: inline;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Background animation */
+        @keyframes colorCycle {
+            0% { background-color: #1e3a8a; }
+            25% { background-color: #4b5563; }
+            50% { background-color: #2563eb; }
+            75% { background-color: #9333ea; }
+            100% { background-color: #1e3a8a; }
+        }
+
+        body {
+            animation: colorCycle 10s infinite;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
     </style>
 </head>
 <body>
@@ -24,34 +85,9 @@
         <audio id="audioPlayer" controls></audio>
         <button onclick="adjustMastering()">Adjust Mastering</button>
         <button onclick="downloadMasteredTrack()">Download Mastered Track</button>
-        <a id="downloadLink" href="https://file.io/eBEQKxLFitWQ" style="display: none;">Download</a>
+        <a id="downloadLink" style="display: none;">Download</a>
         <p id="countdown">10:00</p>
     </div>
-
-    <h2>Sampling Packs</h2>
-    <ul>
-        <li>
-            Piano-and-Keys-Soulful-jazzy-sample-pack.zip 
-            <a href="https://file.io/eBEQKxLFitWQ" download>Piano-and-Keys-Soulful-jazzy-sample-pack.zip</a>
-        </li>
-    </ul>
-
-    <h2>About Beatbench</h2>
-    <p>
-        Beatbench is a user-friendly digital audio workstation (DAW) designed to streamline music production, 
-        from uploading your tracks to applying AI-powered mastering. With features that allow genre selection, 
-        automatic mastering, and a variety of sampling packs, Beatbench simplifies the creation of high-quality music tracks.
-    </p>
-    <p>
-        Whether you’re a beginner or a seasoned producer, Beatbench provides the tools you need to craft your sound, 
-        combining simplicity with powerful functionality in a compact and efficient layout. The platform also includes 
-        an AI-driven automix feature, making it easier than ever to achieve professional-quality results in minutes.
-    </p>
-    <p>
-        Founded by Italian Gogo, formerly known as Mahzbe, who has now dedicated his musical skills to aiding others 
-        in their music paths after his Sangoma initiation. With a passion for music and a commitment to spiritual growth, 
-        Italian Gogo uses Beatbench as a tool to empower and uplift other creators on their musical journeys.
-    </p>
 
     <script>
         let audioContext;
@@ -101,7 +137,7 @@
                     
                     // Prepare download link
                     const downloadLink = document.getElementById('downloadLink');
-                    downloadLink.href = audioURL;
+                    downloadLink.href = 'https://file.io/eBEQKxLFitWQ';
                     downloadLink.download = 'mastered_track.wav';
                     downloadLink.style.display = 'inline';
 
@@ -178,5 +214,10 @@
             }
         }
     </script>
+
+    <div class="footer">
+        <p>Beatbench is founded by Thabang Mosoana, formerly known as Mahzbe and now Italian Gogo. After my sangoma initiation, I have dedicated my musical skills to aiding others in their music paths.</p>
+        <p>&copy; 2024 Thabang Mosoana. All rights reserved.</p>
+    </div>
 </body>
 </html>

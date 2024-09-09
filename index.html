@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Mastering Tool</title>
     <style>
-        /* ... */
+        /* Add your styles here */
     </style>
 </head>
 <body>
@@ -27,55 +27,77 @@
         <a id="downloadLink" style="display: none;">Download</a>
         <p id="countdown">10:00</p>
     </div>
+
     <script>
         let audioContext;
         let audioBuffer;
         let masteredAudioBlob;
         let countdownInterval;
         let genre;
+
         function chooseGenre() {
             genre = document.getElementById('genreSelect').value;
             document.getElementById('uploadAndMasterBtn').disabled = false;
         }
+
         function uploadAndMaster() {
             const fileInput = document.getElementById('upload');
             const file = fileInput.files[0];
+
             if (!file) {
                 alert('Please upload an MP3 file.');
                 return;
             }
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 const audioData = e.target.result;
                 audioContext = new AudioContext();
                 audioContext.decodeAudioData(audioData, (buffer) => {
                     audioBuffer = buffer;
-                    const masteredAudio = applyBasicMasteringEffects(audioBuffer, genre);
-                    masteredAudioBlob = new Blob([masteredAudio], { type: 'audio/wav' });
+
+                    // Apply basic mastering effects
+                    const masteredAudioBuffer = applyBasicMasteringEffects(audioBuffer, genre);
+
+                    // Convert mastered audio buffer to WAV
+                    const wavData = audioBufferToWAV(masteredAudioBuffer);
+                    masteredAudioBlob = new Blob([wavData], { type: 'audio/wav' });
+
+                    // Create object URL for playback and download
                     const audioURL = URL.createObjectURL(masteredAudioBlob);
                     const audioPlayer = document.getElementById('audioPlayer');
                     audioPlayer.src = audioURL;
                     audioPlayer.load();
                     audioPlayer.play();
+
+                    // Show the result section
                     document.getElementById('result').classList.remove('hidden');
                     document.getElementById('uploadAndMasterBtn').innerText = 'AI Mastered';
-                    document.getElementById('downloadLink').href = audioURL;
-                    document.getElementById('downloadLink').style.display = 'inline';
+                    
+                    // Prepare download link
+                    const downloadLink = document.getElementById('downloadLink');
+                    downloadLink.href = audioURL;
+                    downloadLink.download = 'mastered_track.wav';
+                    downloadLink.style.display = 'inline';
+
                     startCountdown();
                 });
             };
             reader.readAsArrayBuffer(file);
         }
+
         function applyBasicMasteringEffects(audioBuffer, genre) {
-            /* ... */
+            // Apply some effects based on the genre (this is a placeholder)
+            // For example, apply equalization, compression, etc.
+            // Return the processed audio buffer (this should be replaced with actual processing logic)
+            return audioBuffer; 
         }
-        function adjustMastering() {
-            /* ... */
-        }
+
         function downloadMasteredTrack() {
             const link = document.getElementById('downloadLink');
             link.click();
         }
+
         function startCountdown() {
             let time = 600; // 10 minutes in seconds
             countdownInterval = setInterval(() => {
@@ -90,6 +112,45 @@
                     document.getElementById('downloadLink').style.display = 'none';
                 }
             }, 1000);
+        }
+
+        function audioBufferToWAV(audioBuffer) {
+            const numOfChannels = audioBuffer.numberOfChannels;
+            const length = audioBuffer.length * numOfChannels * 2 + 44;
+            const buffer = new ArrayBuffer(length);
+            const view = new DataView(buffer);
+
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + audioBuffer.length * numOfChannels * 2, true);
+            writeString(view, 8, 'WAVE');
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, numOfChannels, true);
+            view.setUint32(24, audioBuffer.sampleRate, true);
+            view.setUint32(28, audioBuffer.sampleRate * numOfChannels * 2, true);
+            view.setUint16(32, numOfChannels * 2, true);
+            view.setUint16(34, 16, true);
+            writeString(view, 36, 'data');
+            view.setUint32(40, audioBuffer.length * numOfChannels * 2, true);
+
+            let offset = 44;
+            for (let i = 0; i < audioBuffer.length; i++) {
+                for (let channel = 0; channel < numOfChannels; channel++) {
+                    const sample = audioBuffer.getChannelData(channel)[i];
+                    const intSample = Math.max(-1, Math.min(1, sample));
+                    view.setInt16(offset, intSample < 0 ? intSample * 0x8000 : intSample * 0x7FFF, true);
+                    offset += 2;
+                }
+            }
+
+            return new Uint8Array(buffer);
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
         }
     </script>
 </body>

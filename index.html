@@ -23,6 +23,7 @@
             margin: 0;
             padding: 0;
             animation: colorCycle 10s infinite;
+            padding-bottom: 20px; /* Add padding to the bottom of the page */
         }
 
         h1 {
@@ -119,9 +120,12 @@
             margin-top: 10px;
         }
 
-        /* Add some padding to the bottom of the page */
-        body {
-            padding-bottom: 20px;
+        /* Ad styles */
+        .ad-container {
+            text-align: center;
+            margin-top: 20px;
+            max-height: 90px; /* Limit the ad height */
+            overflow: hidden; /* Hide any overflowing content */
         }
 
         /* About section styles */
@@ -148,7 +152,7 @@
     <p style="text-align: center;">Reminder: AI function is 60% operational and will be fully operational soon.</p>
 
     <!-- AdSense Ad Unit -->
-    <div style="text-align: center; margin-top: 20px;">
+    <div class="ad-container">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-5981445960827471"
@@ -225,11 +229,45 @@
 
                 if (countdown <= 0) {
                     clearInterval(countdownInterval);
-                    // Hide popup and redirect to the download link
+                    // Hide popup
                     document.getElementById('popup').style.display = 'none';
+                    // Redirect to download link
                     window.location.href = downloadLink;
                 }
             }, 1000);
+        }
+
+        function chooseGenre() {
+            const genre = document.getElementById('genreSelect').value;
+            console.log('Selected genre:', genre);
+        }
+
+        function uploadAndMaster() {
+            const fileInput = document.getElementById('upload');
+            const file = fileInput.files[0];
+            if (file) {
+                // Simulate AI mastering process
+                document.getElementById('result').classList.remove('hidden');
+                const audioPlayer = document.getElementById('audioPlayer');
+                audioPlayer.src = URL.createObjectURL(file);
+
+                // Start countdown
+                let countdown = 10;
+                const countdownInterval = setInterval(() => {
+                    countdown--;
+                    document.getElementById('countdown').textContent = `0:${countdown < 10 ? '0' : ''}${countdown}`;
+                    if (countdown <= 0) {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+            }
+        }
+
+        function downloadMasteredTrack() {
+            const link = document.getElementById('downloadLink');
+            link.href = document.getElementById('audioPlayer').src;
+            link.download = 'mastered-track.mp3';
+            link.click();
         }
     </script>
 </body>

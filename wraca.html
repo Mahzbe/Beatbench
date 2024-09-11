@@ -79,6 +79,18 @@
         .header {
             display: flex;
             align-items: center;
+            flex-direction: column;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #e7f3fe;
+            border-color: #b7e0f9;
+            padding: 10px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+        .question {
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -86,28 +98,27 @@
 
 <div class="main-container">
     <div class="header">
-        <img src="wraca.png" alt="WracA Logo" class="logo">
         <h1>Welcome to WracA Music Academy</h1>
+        <img src="wraca.png" alt="WracA Logo" class="logo">
     </div>
-    <p>WracA is a free music academy dedicated to empowering budding musicians with the skills and knowledge needed for music production. Explore our comprehensive courses that cover a range of topics from basic production techniques to advanced specialization.</p>
+    <p>WracA is a free music academy dedicated to empowering budding musicians with the skills and knowledge needed for music production. Explore our comprehensive courses that cover a range of topics from basic production techniques to advanced composition.</p>
 
     <button onclick="showSection('course1')">Music Production Basics</button>
     <button onclick="showSection('course2')">Music Production Fundamentals</button>
-    <button onclick="showSection('course3')">Music Production Specialization</button>
-
     <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
 
     <!-- Course 1: Music Production Basics -->
     <div id="course1" class="course hidden">
         <h2>Course 1: Music Production Basics</h2>
         <button onclick="returnToHome()">Return to Home</button>
-        
+
         <!-- Module 1 -->
         <div class="module" onclick="toggleContent('module1_1_content')">
             <h3>Module 1: Introduction to Music Production</h3>
         </div>
         <div id="module1_1_content" class="module-content">
-            <p>This module covers the fundamentals of music production including its history, key terms, and basic concepts. Understanding the importance of different roles in music production is crucial for aspiring producers.</p>
+            <p>This module covers the fundamentals of music production including its history, key terms, and basic concepts. Music production is an intricate process that involves various stages including composition, arrangement, recording, mixing, and mastering. Understanding the importance of different roles within this process is crucial for aspiring producers. A producer typically collaborates with artists and musicians, guiding them through the creative process while also having a strong understanding of technical aspects.</p>
+            <p>The music production landscape has evolved significantly with the advent of technology, enabling many aspiring creators to produce high-quality sounds from their homes. Adequate knowledge of both analog and digital recording techniques is necessary, as this will help a producer to adapt to various situations in recording environments. Familiarity with music theory can also provide a solid foundation for song composition, allowing producers to craft melodies and harmonies effectively.</p>
             <iframe src="https://www.youtube.com/embed/LgsxN4FNgwU" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz1_1')">Take Quiz</button>
         </div>
@@ -117,7 +128,8 @@
             <h3>Module 2: Setting Up Your DAW</h3>
         </div>
         <div id="module1_2_content" class="module-content">
-            <p>Learn how to set up and configure your Digital Audio Workstation (DAW) for optimal music production. This includes essential plugins, recording techniques and navigating the software interface.</p>
+            <p>Learn how to set up and configure your Digital Audio Workstation (DAW) for optimal music production. Your choice of DAW can significantly affect your workflow and creativity in music production; popular options include Ableton Live, FL Studio, and Logic Pro. Each platform has its unique features, and familiarity with the software's interface can greatly enhance your efficiency.</p>
+            <p>Essential components of a DAW setup include audio interfaces, microphones, MIDI controllers, and a variety of virtual instruments and plugins. Understanding your audio interface's routing and configuration is vital for managing audio input and output. Furthermore, knowing how to organize your project workspace, create templates, and navigate key functions like the mixer and MIDI editing window can elevate your production process. These foundational skills ensure that you can focus on creating music rather than getting lost in technicalities.</p>
             <iframe src="https://www.youtube.com/embed/qCROzUb5y9Q" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz1_2')">Take Quiz</button>
         </div>
@@ -127,7 +139,8 @@
             <h3>Module 3: Basic Recording Techniques</h3>
         </div>
         <div id="module1_3_content" class="module-content">
-            <p>Explore the basic techniques of recording audio, including microphone placement, gain staging, and monitoring levels.</p>
+            <p>Explore the basic techniques of recording audio, including microphone placement, gain staging, and monitoring levels. The arrangement of your audio equipment can significantly affect the quality and character of a recording. Knowledge of different microphone types — such as dynamic, condenser, and ribbon microphones — coupled with their appropriate applications can help you capture sounds effectively.</p>
+            <p>Gain staging is another critical concept; learners must understand the adjustment of audio levels throughout the recording process to avoid distortion while maintaining a strong signal. Additionally, implementing proper monitoring techniques ensures that you are listening accurately to what is being recorded. Mastery of these basic recording techniques sets the foundation for all subsequent work in music production.</p>
             <iframe src="https://www.youtube.com/embed/tWhQgu9ESFg" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz1_3')">Take Quiz</button>
         </div>
@@ -143,7 +156,8 @@
             <h3>Module 1: Understanding Audio Mixing</h3>
         </div>
         <div id="module2_1_content" class="module-content">
-            <p>This module explains the basics of audio mixing including levels, panning, and introducing effects. Key concepts include the importance of balance in a mix.</p>
+            <p>This module explains the basics of audio mixing, including levels, panning, and introducing effects. Mixing is the art and science of blending individual audio tracks into a coherent stereo format, focusing on elements such as volume, frequency distribution, and stereo positioning. Each element in a mix has a role and contributes to the overall dynamic and tonal qualities of the musical piece.</p>
+            <p>Developing an ear for mixing requires practice and a deep understanding of the effects and processing tools available. Techniques such as equalization (EQ) are essential for adjusting the balance of different frequencies within a track. Meanwhile, panning allows you to position sounds within the stereo field, creating a sense of dimension. Learning how to use compressors, limiters, and other post-production effects can aid in achieving well-rounded and polished mixes.</p>
             <iframe src="https://www.youtube.com/embed/5z3J9W6Rtc4" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz2_1')">Take Quiz</button>
         </div>
@@ -153,7 +167,8 @@
             <h3>Module 2: Essential Audio Effects</h3>
         </div>
         <div id="module2_2_content" class="module-content">
-            <p>Learn about essential audio effects like reverb, delay, compression, and EQ. This module dives into how these effects can enhance your mixes.</p>
+            <p>Learn about essential audio effects like reverb, delay, compression, and EQ. Each effect serves a unique purpose: reverb creates a spatial effect, while delay adds a time-based effect to create depth in your audio. Compression helps control the dynamic range of sounds, making them more consistent in volume. EQ allows you to shape the sonic characteristics of your mix to ensure clarity and space for each instrument.</p>
+            <p>Understanding how to apply these effects creatively can dramatically improve the quality of your mixes. For instance, using send and return tracks effectively can manage effect levels properly without cluttering individual channels. A well-planned usage of audio effects not only enhances your tracks but also helps in establishing a unique sound character for your music.</p>
             <iframe src="https://www.youtube.com/embed/cna4v0BU1lU" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz2_2')">Take Quiz</button>
         </div>
@@ -163,117 +178,496 @@
             <h3>Module 3: Introduction to MIDI</h3>
         </div>
         <div id="module2_3_content" class="module-content">
-            <p>Understand the fundamentals of MIDI, including how to use MIDI controllers and basic MIDI programming within your DAW.</p>
+            <p>Understand the fundamentals of MIDI, including how to use MIDI controllers and basic MIDI programming within your DAW. MIDI, or Musical Instrument Digital Interface, enables various electronic musical instruments, computers, and other devices to communicate and synchronize. Unlike audio, MIDI transmits information about notes, including pitch and velocity, allowing for flexible editing.</p>
+            <p>Mastering MIDI programming can open a world of creative possibilities. With a good MIDI controller, you can perform and manipulate virtual instruments seamlessly. Additionally, sequencers provide tools for arranging and editing your MIDI performances, making it easy to experiment with different sounds and harmonies. This module will equip learners with the basic skills to incorporate MIDI into their music production workflow effectively.</p>
             <iframe src="https://www.youtube.com/embed/A_h8yO-73Vg" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz2_3')">Take Quiz</button>
-        </div>
-    </div>
-
-    <!-- Course 3: Music Production Specialization -->
-    <div id="course3" class="course hidden">
-        <h2>Course 3: Music Production Specialization</h2>
-        <button onclick="returnToHome()">Return to Home</button>
-        
-        <!-- Module 1 -->
-        <div class="module" onclick="toggleContent('module3_1_content')">
-            <h3>Module 1: Advanced Sound Design</h3>
-        </div>
-        <div id="module3_1_content" class="module-content">
-            <p>Explore advanced sound design techniques using software synths, including oscillators and filters to create unique sounds.</p>
-            <iframe src="https://www.youtube.com/embed/r9TEFvovskiM" frameborder="0" allowfullscreen></iframe>
-            <button onclick="showQuiz('quiz3_1')">Take Quiz</button>
-        </div>
-
-        <!-- Module 2 -->
-        <div class="module" onclick="toggleContent('module3_2_content')">
-            <h3>Module 2: Mastering Your Tracks</h3>
-        </div>
-        <div id="module3_2_content" class="module-content">
-            <p>Learn the essentials of mastering your music. Understand the importance of dynamic range, loudness, and finalizing your mixes for distribution.</p>
-            <iframe src="https://www.youtube.com/embed/2KENzKqhFfw" frameborder="0" allowfullscreen></iframe>
-            <button onclick="showQuiz('quiz3_2')">Take Quiz</button>
-        </div>
-        
-        <!-- Module 3 -->
-        <div class="module" onclick="toggleContent('module3_3_content')">
-            <h3>Module 3: Creative Composition Techniques</h3>
-        </div>
-        <div id="module3_3_content" class="module-content">
-            <p>Learn various composition techniques to improve your songwriting and arrangement skills.</p>
-            <iframe src="https://www.youtube.com/embed/z3UwXCrUvsI" frameborder="0" allowfullscreen></iframe>
-            <button onclick="showQuiz('quiz3_3')">Take Quiz</button>
         </div>
     </div>
 
     <!-- Quizzes -->
     <div id="quiz1_1" class="quiz hidden">
         <h3>Quiz for Module 1: Introduction to Music Production</h3>
-        <p>Question 1: What does DAW stand for?</p>
-        <p>Answer: Digital Audio Workstation</p>
+        <div id="quiz1_1_questions">
+            <div class="question">
+                <p>Question 1: What does DAW stand for?</p>
+                <p><input type="radio" name="q1" value="1"> Digital Audio Workstation</p>
+                <p><input type="radio" name="q1" value="0"> Digital Audio Waveform</p>
+                <p><input type="radio" name="q1" value="0"> Digital Audio World</p>
+                <p><input type="radio" name="q1" value="0"> Digital Audio Workshop</p>
+            </div>
+            <div class="question">
+                <p>Question 2: Which role is essential in music production?</p>
+                <p><input type="radio" name="q2" value="0"> Beat Maker</p>
+                <p><input type="radio" name="q2" value="1"> Sound Engineer</p>
+                <p><input type="radio" name="q2" value="0"> Lyricist</p>
+                <p><input type="radio" name="q2" value="0"> Video Editor</p>
+            </div>
+            <div class="question">
+                <p>Question 3: Which of these best describes music production?</p>
+                <p><input type="radio" name="q3" value="0"> Just recording sounds</p>
+                <p><input type="radio" name="q3" value="1"> A process that includes composition and recording</p>
+                <p><input type="radio" name="q3" value="0"> A form of live performance</p>
+                <p><input type="radio" name="q3" value="0"> Simply mixing tracks</p>
+            </div>
+            <div class="question">
+                <p>Question 4: What is the purpose of arranging in music production?</p>
+                <p><input type="radio" name="q4" value="1"> To structure music logically</p>
+                <p><input type="radio" name="q4" value="0"> To add effects</p>
+                <p><input type="radio" name="q4" value="0"> To record instruments</p>
+                <p><input type="radio" name="q4" value="0"> To equalize tracks</p>
+            </div>
+            <div class="question">
+                <p>Question 5: Which of the following is a common form of music production?</p>
+                <p><input type="radio" name="q5" value="0"> Acapella</p>
+                <p><input type="radio" name="q5" value="1"> Studio recording</p>
+                <p><input type="radio" name="q5" value="0"> Live performance</p>
+                <p><input type="radio" name="q5" value="0"> Jamming</p>
+            </div>
+            <div class="question">
+                <p>Question 6: How does technology influence modern music production?</p>
+                <p><input type="radio" name="q6" value="1"> It has created new tools for composers</p>
+                <p><input type="radio" name="q6" value="0"> It has made music less popular</p>
+                <p><input type="radio" name="q6" value="0"> Technology has no influence</p>
+                <p><input type="radio" name="q6" value="0"> It is only useful for electronic music</p>
+            </div>
+            <div class="question">
+                <p>Question 7: What benefit does learning music theory provide?</p>
+                <p><input type="radio" name="q7" value="1"> It helps in songwriting and composition</p>
+                <p><input type="radio" name="q7" value="0"> It complicates the composing process</p>
+                <p><input type="radio" name="q7" value="0"> It is not useful for producers</p>
+                <p><input type="radio" name="q7" value="0"> It only applies to classical music</p>
+            </div>
+            <div class="question">
+                <p>Question 8: Which of the following is crucial for a music producer?</p>
+                <p><input type="radio" name="q8" value="0"> Being able to sing</p>
+                <p><input type="radio" name="q8" value="1"> Technical knowledge of recording</p>
+                <p><input type="radio" name="q8" value="0"> Playing every instrument</p>
+                <p><input type="radio" name="q8" value="0"> Only focusing on audio effects</p>
+            </div>
+            <div class="question">
+                <p>Question 9: Which statement about production roles is true?</p>
+                <p><input type="radio" name="q9" value="1"> The producer coordinates the creative process</p>
+                <p><input type="radio" name="q9" value="0"> The producer only mixes</p>
+                <p><input type="radio" name="q9" value="0"> The producer does not need to interact with others</p>
+                <p><input type="radio" name="q9" value="0"> Production roles are irrelevant</p>
+            </div>
+            <div class="question">
+                <p>Question 10: What is the key purpose of recording techniques?</p>
+                <p><input type="radio" name="q10" value="1"> To capture high-quality audio</p>
+                <p><input type="radio" name="q10" value="0"> To save storage</p>
+                <p><input type="radio" name="q10" value="0"> To enhance musical theory</p>
+                <p><input type="radio" name="q10" value="0"> To compose music just for fun</p>
+            </div>
+        </div>
+        <button onclick="checkQuiz('quiz1_1', 10)">Submit Quiz</button>
+        <div id="quiz1_1_result" class="hidden result"></div>
         <button onclick="returnToPrevious('course1')">Back to Course 1</button>
     </div>
 
     <div id="quiz1_2" class="quiz hidden">
         <h3>Quiz for Module 2: Setting Up Your DAW</h3>
-        <p>Question 1: What is the first step in setting up your DAW?</p>
-        <p>Answer: Creating or opening an audio project.</p>
+        <div id="quiz1_2_questions">
+            <div class="question">
+                <p>Question 1: What is the first step in setting up your DAW?</p>
+                <p><input type="radio" name="q1" value="1"> Creating or opening an audio project.</p>
+                <p><input type="radio" name="q1" value="0"> Picking a genre.</p>
+                <p><input type="radio" name="q1" value="0"> Installing plugins.</p>
+                <p><input type="radio" name="q1" value="0"> Adjusting audio preferences.</p>
+            </div>
+            <div class="question">
+                <p>Question 2: Which of the following best describes what an audio interface does?</p>
+                <p><input type="radio" name="q2" value="1"> It converts analog signals to digital and vice versa.</p>
+                <p><input type="radio" name="q2" value="0"> It only adjusts the volume.</p>
+                <p><input type="radio" name="q2" value="0"> It is used for recording video.</p>
+                <p><input type="radio" name="q2" value="0"> It is not necessary for DAW setups.</p>
+            </div>
+            <div class="question">
+                <p>Question 3: When organizing a project in your DAW, what is the first thing you should do?</p>
+                <p><input type="radio" name="q3" value="1"> Set up your folder structure correctly.</p>
+                <p><input type="radio" name="q3" value="0"> Start recording right away.</p>
+                <p><input type="radio" name="q3" value="0"> Apply audio effects immediately.</p>
+                <p><input type="radio" name="q3" value="0"> Choose a theme.</p>
+            </div>
+            <div class="question">
+                <p>Question 4: Which MIDI device is primarily used for music production?</p>
+                <p><input type="radio" name="q4" value="0"> Digital Mixer</p>
+                <p><input type="radio" name="q4" value="1"> MIDI Keyboard</p>
+                <p><input type="radio" name="q4" value="0"> Audio Interface</p>
+                <p><input type="radio" name="q4" value="0"> Microphone</p>
+            </div>
+            <div class="question">
+                <p>Question 5: Which of the following is considered good practice when working on a music project?</p>
+                <p><input type="radio" name="q5" value="1"> Saving regularly</p>
+                <p><input type="radio" name="q5" value="0"> Not labeling tracks</p>
+                <p><input type="radio" name="q5" value="0"> Avoiding templates</p>
+                <p><input type="radio" name="q5" value="0"> Limiting the use of effects</p>
+            </div>
+            <div class="question">
+                <p>Question 6: How can templates be useful in a DAW?</p>
+                <p><input type="radio" name="q6" value="1"> They save setup time for future projects.</p>
+                <p><input type="radio" name="q6" value="0"> They restrict creativity.</p>
+                <p><input type="radio" name="q6" value="0"> They only apply to specific genres.</p>
+                <p><input type="radio" name="q6" value="0"> They are not needed.</p>
+            </div>
+            <div class="question">
+                <p>Question 7: What is a key benefit of using virtual instruments?</p>
+                <p><input type="radio" name="q7" value="1"> They allow for a wide range of sound options without physical instruments.</p>
+                <p><input type="radio" name="q7" value="0"> They require big studio setups only.</p>
+                <p><input type="radio" name="q7" value="0"> They are less versatile than real instruments.</p>
+                <p><input type="radio" name="q7" value="0"> They cannot be edited.</p>
+            </div>
+            <div class="question">
+                <p>Question 8: What do you typically do when adjusting audio preferences in a DAW?</p>
+                <p><input type="radio" name="q8" value="1"> Set your sample rate and buffer size.</p>
+                <p><input type="radio" name="q8" value="0"> Start recording immediately.</p>
+                <p><input type="radio" name="q8" value="0"> Remove all effects.</p>
+                <p><input type="radio" name="q8" value="0"> Choose a song to play.</p>
+            </div>
+            <div class="question">
+                <p>Question 9: When might you need to adjust your MIDI settings in your DAW?</p>
+                <p><input type="radio" name="q9" value="1"> When your MIDI device isn’t responding.</p>
+                <p><input type="radio" name="q9" value="0"> When editing audio files.</p>
+                <p><input type="radio" name="q9" value="0"> When applying effects.</p>
+                <p><input type="radio" name="q9" value="0"> When recording vocals.</p>
+            </div>
+            <div class="question">
+                <p>Question 10: How does a DAW facilitate the production process?</p>
+                <p><input type="radio" name="q10" value="1"> By providing a workspace to arrange, edit, and mix audio.</p>
+                <p><input type="radio" name="q10" value="0"> By recording only live instruments.</p>
+                <p><input type="radio" name="q10" value="0"> By focusing solely on live performance.</p>
+                <p><input type="radio" name="q10" value="0"> By limiting possibilities.</p>
+            </div>
+        </div>
+        <button onclick="checkQuiz('quiz1_2', 10)">Submit Quiz</button>
+        <div id="quiz1_2_result" class="hidden result"></div>
         <button onclick="returnToPrevious('course1')">Back to Course 1</button>
     </div>
 
     <div id="quiz1_3" class="quiz hidden">
         <h3>Quiz for Module 3: Basic Recording Techniques</h3>
-        <p>Question 1: What is gain staging?</p>
-        <p>Answer: The process of managing the levels in your recording pathway to avoid distortion.</p>
+        <div id="quiz1_3_questions">
+            <div class="question">
+                <p>Question 1: What is gain staging?</p>
+                <p><input type="radio" name="q1" value="1"> The adjustment of audio levels throughout the recording process to avoid distortion.</p>
+                <p><input type="radio" name="q1" value="0"> The placement of microphones.</p>
+                <p><input type="radio" name="q1" value="0"> The process of mixing audio.</p>
+                <p><input type="radio" name="q1" value="0"> The playback quality of speakers.</p>
+            </div>
+            <div class="question">
+                <p>Question 2: Which is true regarding microphone types?</p>
+                <p><input type="radio" name="q2" value="1"> Each microphone type has distinct characteristics.</p>
+                <p><input type="radio" name="q2" value="0"> All microphones have the same sound quality.</p>
+                <p><input type="radio" name="q2" value="0"> Microphone type does not affect recording.</p>
+                <p><input type="radio" name="q2" value="0"> Only one type of microphone is needed.</p>
+            </div>
+            <div class="question">
+                <p>Question 3: What is the primary purpose of monitoring levels during recording?</p>
+                <p><input type="radio" name="q3" value="1"> To ensure optimal recording without distortion.</p>
+                <p><input type="radio" name="q3" value="0"> To improve playback quality.</p>
+                <p><input type="radio" name="q3" value="0"> To adjust audio settings post-recording.</p>
+                <p><input type="radio" name="q3" value="0"> To sync with video.</p>
+            </div>
+            <div class="question">
+                <p>Question 4: Which aspect of recording audio is crucial for capturing sound quality?</p>
+                <p><input type="radio" name="q4" value="1"> Microphone placement</p>
+                <p><input type="radio" name="q4" value="0"> Using high input gain</p>
+                <p><input type="radio" name="q4" value="0"> Recording all instruments on one track</p>
+                <p><input type="radio" name="q4" value="0"> Ignoring background noise</p>
+            </div>
+            <div class="question">
+                <p>Question 5: What is the first consideration when setting up a recording session?</p>
+                <p><input type="radio" name="q5" value="1"> Selecting the right microphone for the sound source.</p>
+                <p><input type="radio" name="q5" value="0"> Choosing the final mix style.</p>
+                <p><input type="radio" name="q5" value="0"> Picking a song to record.</p>
+                <p><input type="radio" name="q5" value="0"> Determining the tempo.</p>
+            </div>
+            <div class="question">
+                <p>Question 6: Why is it important to test different microphone placements?</p>
+                <p><input type="radio" name="q6" value="1"> To find the best sound for the recording environment.</p>
+                <p><input type="radio" name="q6" value="0"> To create a standard sound.</p>
+                <p><input type="radio" name="q6" value="0"> To reduce recording time.</p>
+                <p><input type="radio" name="q6" value="0"> To avoid using different mics.</p>
+            </div>
+            <div class="question">
+                <p>Question 7: What common mistake should be avoided when recording vocals?</p>
+                <p><input type="radio" name="q7" value="1"> Not considering the acoustics of the room.</p>
+                <p><input type="radio" name="q7" value="0"> Using graphic equalizers.</p>
+                <p><input type="radio" name="q7" value="0"> Using a good microphone.</p>
+                <p><input type="radio" name="q7" value="0"> Not monitoring the recording process.</p>
+            </div>
+            <div class="question">
+                <p>Question 8: How important is headphone monitoring during recording?</p>
+                <p><input type="radio" name="q8" value="1"> It is essential to avoid latency issues.</p>
+                <p><input type="radio" name="q8" value="0"> It is only important for musicians.</p>
+                <p><input type="radio" name="q8" value="0"> It complicates the recording process.</p>
+                <p><input type="radio" name="q8" value="0"> It is not commonly used.</p>
+            </div>
+            <div class="question">
+                <p>Question 9: What role does environment play in audio recording?</p>
+                <p><input type="radio" name="q9" value="1"> It can affect the sound quality dramatically.</p>
+                <p><input type="radio" name="q9" value="0"> It does not matter as long as you have the right equipment.</p>
+                <p><input type="radio" name="q9" value="0"> Only the type of microphone matters.</p>
+                <p><input type="radio" name="q9" value="0"> It is only relevant for live performances.</p>
+            </div>
+            <div class="question">
+                <p>Question 10: What is one benefit of proper gain staging?</p>
+                <p><input type="radio" name="q10" value="1"> It avoids noise and distortion in recordings.</p>
+                <p><input type="radio" name="q10" value="0"> It simplifies the mixing process.</p>
+                <p><input type="radio" name="q10" value="0"> It increases volume.</p>
+                <p><input type="radio" name="q10" value="0"> It makes songs sound better live.</p>
+            </div>
+        </div>
+        <button onclick="checkQuiz('quiz1_3', 10)">Submit Quiz</button>
+        <div id="quiz1_3_result" class="hidden result"></div>
         <button onclick="returnToPrevious('course1')">Back to Course 1</button>
     </div>
 
     <div id="quiz2_1" class="quiz hidden">
         <h3>Quiz for Module 1: Understanding Audio Mixing</h3>
-        <p>Question 1: What is the purpose of panning in a mix?</p>
-        <p>Answer: To position sounds within the stereo field.</p>
+        <div id="quiz2_1_questions">
+            <div class="question">
+                <p>Question 1: What is the purpose of panning in a mix?</p>
+                <p><input type="radio" name="q1" value="1"> To position sounds within the stereo field.</p>
+                <p><input type="radio" name="q1" value="0"> To emphasize the bass frequencies.</p>
+                <p><input type="radio" name="q1" value="0"> To increase the loudness of a track.</p>
+                <p><input type="radio" name="q1" value="0"> To add reverb to vocals.</p>
+            </div>
+            <div class="question">
+                <p>Question 2: What is the first step in mixing?</p>
+                <p><input type="radio" name="q2" value="1"> Setting the levels of each track.</p>
+                <p><input type="radio" name="q2" value="0"> Adding effects.</p>
+                <p><input type="radio" name="q2" value="0"> Finalizing the track.</p>
+                <p><input type="radio" name="q2" value="0"> Preparing for mastering.</p>
+            </div>
+            <div class="question">
+                <p>Question 3: How does EQ help in a mix?</p>
+                <p><input type="radio" name="q3" value="1"> It allows frequency adjustments to enhance clarity.</p>
+                <p><input type="radio" name="q3" value="0"> It adds spontaneous notes.</p>
+                <p><input type="radio" name="q3" value="0"> It is only for mastering.</p>
+                <p><input type="radio" name="q3" value="0"> It affects the tempo of a track.</p>
+            </div>
+            <div class="question">
+                <p>Question 4: What does compression do in mixing?</p>
+                <p><input type="radio" name="q4" value="1"> It controls the dynamic range of a sound.</p>
+                <p><input type="radio" name="q4" value="0"> It makes sounds louder.</p>
+                <p><input type="radio" name="q4" value="0"> It removes all frequencies.</p>
+                <p><input type="radio" name="q4" value="0"> It only applies to live performance.</p>
+            </div>
+            <div class="question">
+                <p>Question 5: What is the function of a mixer?</p>
+                <p><input type="radio" name="q5" value="1"> To adjust levels and effects on multiple tracks simultaneously.</p>
+                <p><input type="radio" name="q5" value="0"> To record vocals only.</p>
+                <p><input type="radio" name="q5" value="0"> To output audio to speakers.</p>
+                <p><input type="radio" name="q5" value="0"> To automate tracks only.</p>
+            </div>
+            <div class="question">
+                <p>Question 6: Why is referencing important in mixing?</p>
+                <p><input type="radio" name="q6" value="1"> It helps ensure your mix translates well to other systems.</p>
+                <p><input type="radio" name="q6" value="0"> It takes time to listen to other tracks.</p>
+                <p><input type="radio" name="q6" value="0"> It can help in choosing genre.</p>
+                <p><input type="radio" name="q6" value="0"> It is only useful for professionals.</p>
+            </div>
+            <div class="question">
+                <p>Question 7: How can stereo width enhance a mix?</p>
+                <p><input type="radio" name="q7" value="1"> It adds spatial depth and dimension to the sound.</p>
+                <p><input type="radio" name="q7" value="0"> It only increases volume.</p>
+                <p><input type="radio" name="q7" value="0"> It reduces the need for reverb.</p>
+                <p><input type="radio" name="q7" value="0"> It can create distortion.</p>
+            </div>
+            <div class="question">
+                <p>Question 8: What does a low-pass filter do?</p>
+                <p><input type="radio" name="q8" value="1"> It allows low frequencies to pass while attenuating high frequencies.</p>
+                <p><input type="radio" name="q8" value="0"> It does the opposite of a high-pass filter.</p>
+                <p><input type="radio" name="q8" value="0"> It adds effects.</p>
+                <p><input type="radio" name="q8" value="0"> It is used only in mastering.</p>
+            </div>
+            <div class="question">
+                <p>Question 9: Which of the following is NOT a characteristic you typically modify in a mix?</p>
+                <p><input type="radio" name="q9" value="1"> The lyrics</p>
+                <p><input type="radio" name="q9" value="0"> The fader levels</p>
+                <p><input type="radio" name="q9" value="0"> Panning positions</p>
+                <p><input type="radio" name="q9" value="0"> Effects settings</p>
+            </div>
+            <div class="question">
+                <p>Question 10: What does a limiter do?</p>
+                <p><input type="radio" name="q10" value="1"> It prevents audio signals from exceeding a set level.</p>
+                <p><input type="radio" name="q10" value="0"> It enhances the natural dynamics.</p>
+                <p><input type="radio" name="q10" value="0"> It creates echoes.</p>
+                <p><input type="radio" name="q10" value="0"> It only applies to live recordings.</p>
+            </div>
+        </div>
+        <button onclick="checkQuiz('quiz2_1', 10)">Submit Quiz</button>
+        <div id="quiz2_1_result" class="hidden result"></div>
         <button onclick="returnToPrevious('course2')">Back to Course 2</button>
     </div>
 
     <div id="quiz2_2" class="quiz hidden">
         <h3>Quiz for Module 2: Essential Audio Effects</h3>
-        <p>Question 1: What does EQ allow you to do?</p>
-        <p>Answer: Adjust the balance of different frequency components in an audio signal.</p>
+        <div id="quiz2_2_questions">
+            <div class="question">
+                <p>Question 1: What role does reverb play in a mix?</p>
+                <p><input type="radio" name="q1" value="1"> It simulates the acoustics of a space.</p>
+                <p><input type="radio" name="q1" value="0"> It creates distortion.</p>
+                <p><input type="radio" name="q1" value="0"> It increases volume.</p>
+                <p><input type="radio" name="q1" value="0"> It eliminates background noise.</p>
+            </div>
+            <div class="question">
+                <p>Question 2: Which effect can add rhythmic interest to a sound?</p>
+                <p><input type="radio" name="q2" value="1"> Delay</p>
+                <p><input type="radio" name="q2" value="0"> Equalization</p>
+                <p><input type="radio" name="q2" value="0"> Compression</p>
+                <p><input type="radio" name="q2" value="0"> Reverb</p>
+            </div>
+            <div class="question">
+                <p>Question 3: Compression is used in a mix for which main reason?</p>
+                <p><input type="radio" name="q3" value="1"> To control dynamic range.</p>
+                <p><input type="radio" name="q3" value="0"> To raise the pitch.</p>
+                <p><input type="radio" name="q3" value="0"> To amplify bass levels.</p>
+                <p><input type="radio" name="q3" value="0"> To create stereo width.</p>
+            </div>
+            <div class="question">
+                <p>Question 4: How does a flanger effect change the sound?</p>
+                <p><input type="radio" name="q4" value="1"> By modulating the delay time.</p>
+                <p><input type="radio" name="q4" value="0"> By distorting frequencies.</p>
+                <p><input type="radio" name="q4" value="0"> By compressing audio.</p>
+                <p><input type="radio" name="q4" value="0"> By adding harmonics.</p>
+            </div>
+            <div class="question">
+                <p>Question 5: Why is it essential to use effects judiciously?</p>
+                <p><input type="radio" name="q5" value="1"> To avoid muddy or cluttered mixes.</p>
+                <p><input type="radio" name="q5" value="0"> To make music sound repetitive.</p>
+                <p><input type="radio" name="q5" value="0"> To prioritize volume over clarity.</p>
+                <p><input type="radio" name="q5" value="0"> To increase recording time.</p>
+            </div>
+            <div class="question">
+                <p>Question 6: How can EQ be used creatively in mixing?</p>
+                <p><input type="radio" name="q6" value="1"> To carve out space for each element in the mix.</p>
+                <p><input type="radio" name="q6" value="0"> To make a track louder.</p>
+                <p><input type="radio" name="q6" value="0"> To automate dynamics.</p>
+                <p><input type="radio" name="q6" value="0"> To time-align tracks.</p>
+            </div>
+            <div class="question">
+                <p>Question 7: Why is it important to understand how effects work?</p>
+                <p><input type="radio" name="q7" value="1"> To use them effectively in your mixes.</p>
+                <p><input type="radio" name="q7" value="0"> To create more tracks.</p>
+                <p><input type="radio" name="q7" value="0"> To focus on melody only.</p>
+                <p><input type="radio" name="q7" value="0"> To avoid using them.</p>
+            </div>
+            <div class="question">
+                <p>Question 8: What does a high pass filter do?</p>
+                <p><input type="radio" name="q8" value="1"> It allows high frequencies to pass and cuts low frequencies.</p>
+                <p><input type="radio" name="q8" value="0"> It enhances bass energy.</p>
+                <p><input type="radio" name="q8" value="0"> It adds distortion.</p>
+                <p><input type="radio" name="q8" value="0"> It eliminates all frequencies.</p>
+            </div>
+            <div class="question">
+                <p>Question 9: How can distortion be used in mixing?</p>
+                <p><input type="radio" name="q9" value="1"> To add harmonic richness to sound.</p>
+                <p><input type="radio" name="q9" value="0"> It can only be used for heavy rock music.</p>
+                <p><input type="radio" name="q9" value="0"> It reduces clarity in a mix.</p>
+                <p><input type="radio" name="q9" value="0"> It should be avoided.</p>
+            </div>
+            <div class="question">
+                <p>Question 10: What should be the priority when applying effects?</p>
+                <p><input type="radio" name="q10" value="1"> Keeping the mix clear and well-defined.</p>
+                <p><input type="radio" name="q10" value="0"> Making every track as loud as possible.</p>
+                <p><input type="radio" name="q10" value="0"> Adding as many effects as possible.</p>
+                <p><input type="radio" name="q10" value="0"> Ignoring the arrangement.</p>
+            </div>
+        </div>
+        <button onclick="checkQuiz('quiz2_2', 10)">Submit Quiz</button>
+        <div id="quiz2_2_result" class="hidden result"></div>
         <button onclick="returnToPrevious('course2')">Back to Course 2</button>
     </div>
 
     <div id="quiz2_3" class="quiz hidden">
         <h3>Quiz for Module 3: Introduction to MIDI</h3>
-        <p>Question 1: How does MIDI transmit information?</p>
-        <p>Answer: By sending messages indicating which notes are played, how hard, and when.</p>
+        <div id="quiz2_3_questions">
+            <div class="question">
+                <p>Question 1: What does MIDI stand for?</p>
+                <p><input type="radio" name="q1" value="1"> Musical Instrument Digital Interface</p>
+                <p><input type="radio" name="q1" value="0"> Music Installation Digital Interface</p>
+                <p><input type="radio" name="q1" value="0"> Medium Instrument Digital Interface</p>
+                <p><input type="radio" name="q1" value="0"> Multiple Instrument Digital Input</p>
+            </div>
+            <div class="question">
+                <p>Question 2: What is a MIDI controller?</p>
+                <p><input type="radio" name="q2" value="1"> A device that sends MIDI signals to your DAW.</p>
+                <p><input type="radio" name="q2" value="0"> A microphone.</p>
+                <p><input type="radio" name="q2" value="0"> A type of software.</p>
+                <p><input type="radio" name="q2" value="0"> An audio interface.</p>
+            </div>
+            <div class="question">
+                <p>Question 3: How does MIDI differ from audio?</p>
+                <p><input type="radio" name="q3" value="1"> MIDI transmits performance data, not sound.</p>
+                <p><input type="radio" name="q3" value="0"> MIDI is only for vocals.</p>
+                <p><input type="radio" name="q3" value="0"> Audio is weaker than MIDI.</p>
+                <p><input type="radio" name="q3" value="0"> MIDI and audio are the same.</p>
+            </div>
+            <div class="question">
+                <p>Question 4: Which parameter does MIDI control for each note?</p>
+                <p><input type="radio" name="q4" value="1"> Pitch</p>
+                <p><input type="radio" name="q4" value="0"> Volume only</p>
+                <p><input type="radio" name="q4" value="0"> Speed only</p>
+                <p><input type="radio" name="q4" value="0"> Effects only</p>
+            </div>
+            <div class="question">
+                <p>Question 5: MIDI performance can include which of the following?</p>
+                <p><input type="radio" name="q5" value="1"> Velocities, note lengths, and pedal actions.</p>
+                <p><input type="radio" name="q5" value="0"> Audio recordings.</p>
+                <p><input type="radio" name="q5" value="0"> Visual cues only.</p>
+                <p><input type="radio" name="q5" value="0"> Frequency adjustments.</p>
+            </div>
+            <div class="question">
+                <p>Question 6: Which device is common for MIDI input?</p>
+                <p><input type="radio" name="q6" value="1"> MIDI keyboard</p>
+                <p><input type="radio" name="q6" value="0"> Audio recorder</p>
+                <p><input type="radio" name="q6" value="0"> Synthesizer only</p>
+                <p><input type="radio" name="q6" value="0"> Computer mouse</p>
+            </div>
+            <div class="question">
+                <p>Question 7: Which of the following is a benefit of MIDI?</p>
+                <p><input type="radio" name="q7" value="1"> MIDI data is easily editable and flexible.</p>
+                <p><input type="radio" name="q7" value="0"> MIDI sounds better than audio.</p>
+                <p><input type="radio" name="q7" value="0"> MIDI has a fixed tonal range.</p>
+                <p><input type="radio" name="q7" value="0"> MIDI requires no instruments.</p>
+            </div>
+            <div class="question">
+                <p>Question 8: How can MIDI help in a collaborative project?</p>
+                <p><input type="radio" name="q8" value="1"> MIDI can be shared and edited easily among different software.</p>
+                <p><input type="radio" name="q8" value="0"> MIDI requires a set team to work.</p>
+                <p><input type="radio" name="q8" value="0"> Only audio files can be shared.</p>
+                <p><input type="radio" name="q8" value="0"> MIDI has no significance in collaboration.</p>
+            </div>
+            <div class="question">
+                <p>Question 9: What does MIDI automation allow you to do?</p>
+                <p><input type="radio" name="q9" value="1"> Control various parameters automatically during playback.</p>
+                <p><input type="radio" name="q9" value="0"> Change MIDI notes manually only.</p>
+                <p><input type="radio" name="q9" value="0"> Avoid using software instruments.</p>
+                <p><input type="radio" name="q9" value="0"> Limit performance data.</p>
+            </div>
+            <div class="question">
+                <p>Question 10: What impact does MIDI have on live performance?</p>
+                <p><input type="radio" name="q10" value="1"> It provides syncing capabilities between devices.</p>
+                <p><input type="radio" name="q10" value="0"> It eliminates the need for musicians.</p>
+                <p><input type="radio" name="q10" value="0"> It restricts sound options.</p>
+                <p><input type="radio" name="q10" value="0"> It reduces creativity.</p>
+            </div>
+        </div>
+        <button onclick="checkQuiz('quiz2_3', 10)">Submit Quiz</button>
+        <div id="quiz2_3_result" class="hidden result"></div>
         <button onclick="returnToPrevious('course2')">Back to Course 2</button>
     </div>
 
-    <div id="quiz3_1" class="quiz hidden">
-        <h3>Quiz for Module 1: Advanced Sound Design</h3>
-        <p>Question 1: What is subtractive synthesis?</p>
-        <p>Answer: A synthesis method that generates sound by removing frequencies from a waveform.</p>
-        <button onclick="returnToPrevious('course3')">Back to Course 3</button>
-    </div>
-
-    <div id="quiz3_2" class="quiz hidden">
-        <h3>Quiz for Module 2: Mastering Your Tracks</h3>
-        <p>Question 1: What is the goal of mastering?</p>
-        <p>Answer: To make the track sound cohesive and polished for distribution.</p>
-        <button onclick="returnToPrevious('course3')">Back to Course 3</button>
-    </div>
-
-    <div id="quiz3_3" class="quiz hidden">
-        <h3>Quiz for Module 3: Creative Composition Techniques</h3>
-        <p>Question 1: What is the significance of a hook in songwriting?</p>
-        <p>Answer: A hook is designed to catch the listener's attention and be memorable.</p>
-        <button onclick="returnToPrevious('course3')">Back to Course 3</button>
-    </div>
 </div>
 
 <script>
     function showSection(course) {
         hideAll();
         document.getElementById(course).style.display = "block";
+        const courseButtons = document.querySelectorAll('button:not(.tool-button)');
+        courseButtons.forEach(button => button.style.display = 'none');
     }
 
     function toggleContent(contentId) {
@@ -290,15 +684,19 @@
         const courses = document.querySelectorAll('.course');
         const modulesContent = document.querySelectorAll('.module-content');
         const quizzes = document.querySelectorAll('.quiz');
-        
+        const results = document.querySelectorAll('.result');
+
         courses.forEach(course => course.style.display = 'none');
         modulesContent.forEach(content => content.style.display = 'none');
         quizzes.forEach(quiz => quiz.style.display = 'none');
+        results.forEach(result => result.style.display = 'none');
     }
 
     function returnToHome() {
         hideAll();
         document.querySelector('.header').scrollIntoView();
+        const courseButtons = document.querySelectorAll('button:not(.tool-button)');
+        courseButtons.forEach(button => button.style.display = 'block');
     }
 
     function returnToPrevious(course) {
@@ -306,7 +704,21 @@
         document.getElementById(course).style.display = "block";
         document.getElementById(course).scrollIntoView();
     }
+
+    function checkQuiz(quizId, totalQuestions) {
+        const questions = document.querySelectorAll(`#${quizId}_questions .question input:checked`);
+        let score = 0;
+
+        questions.forEach((question) => {
+            score += parseInt(question.value);
+        });
+
+        const percentage = (score / totalQuestions) * 100;
+        const resultContainer = document.getElementById(`${quizId}_result`);
+        resultContainer.innerHTML = `You scored ${score} out of ${totalQuestions} (${percentage.toFixed(2)}%)`;
+        resultContainer.classList.remove('hidden');
+    }
 </script>
 
 </body>
-</html>
+                       </html>

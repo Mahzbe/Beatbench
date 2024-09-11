@@ -179,186 +179,105 @@
                 <li><strong>Preparation:</strong> Ensuring your mix is of high quality and properly exported.</li>
                 <li><strong>Analyzing:</strong> Using tools to analyze the frequency spectrum and dynamics of your mix.</li>
                 <li><strong>Adjusting Levels:</strong> Balancing the overall volume and making sure your track is competitive with others in the market.</li>
-                <li><strong>Final Touches:</strong> Applying any finishing touches, including compression and limiting to enhance the track's loudness.</li>
+                <li><strong>Finalizing:</strong> Exporting the master for distribution across various platforms.</li>
             </ul>
             </p>
-            <button onclick="window.open('https://youtu.be/h8wVwsrEPKc?si=2csumxG8CSRJT-3t', '_blank')">Watch YouTube Tutorial</button>
+            <button onclick="window.open('https://youtu.be/5whm8jW1MSs?si=nW6hpOx1osqmc3tE', '_blank')">Watch YouTube Tutorial</button>
             <button onclick="showQuiz('quiz2_2')">Take Quiz</button>
         </div>
     </div>
 
-    <!-- Quizzes -->
+    <!-- Quiz Section -->
     <div id="quiz1" class="quiz hidden">
-        <h3>Quiz for Module 1: Introduction to Music Production</h3>
-        <div id="quiz1_questions">
-            <div class="question">
-                <p>Question 1: What does DAW stand for?</p>
-                <p><input type="radio" name="q1" value="1"> Digital Audio Workstation</p>
-                <p><input type="radio" name="q1" value="0"> Digital Audio Waveform</p>
-                <p><input type="radio" name="q1" value="0"> Digital Audio World</p>
-                <p><input type="radio" name="q1" value="0"> Digital Audio Workshop</p>
-            </div>
-            <div class="question">
-                <p>Question 2: Which of the following is a primary goal of music production?</p>
-                <p><input type="radio" name="q2" value="1"> To create and capture audio that sounds polished</p>
-                <p><input type="radio" name="q2" value="0"> To perform live music only</p>
-                <p><input type="radio" name="q2" value="0"> To write lyrics for songs</p>
-                <p><input type="radio" name="q2" value="0"> To sell music tracks exclusively</p>
-            </div>
-            <div class="question">
-                <p>Question 3: What does mastering in music production entail?</p>
-                <p><input type="radio" name="q3" value="1"> Finalizing a track for distribution</p>
-                <p><input type="radio" name="q3" value="0"> Mixing different tracks together</p>
-                <p><input type="radio" name="q3" value="0"> Composing new music</p>
-                <p><input type="radio" name="q3" value="0"> Recording live performances</p>
-            </div>
+        <h3>Quiz: Music Production Basics</h3>
+        <div class="question">
+            <p>Question 1: What does a Digital Audio Workstation (DAW) help you do?</p>
+            <p><input type="radio" name="q1" value="1"> To record, edit, and produce music</p>
+            <p><input type="radio" name="q1" value="0"> To perform live shows</p>
+            <p><input type="radio" name="q1" value="0"> To sell music online</p>
+            <p><input type="radio" name="q1" value="0"> To manage social media</p>
         </div>
-        <button onclick="checkQuiz('quiz1', 3)">Submit Quiz</button>
-        <div id="quiz1_result" class="hidden result"></div>
+        <div class="question">
+            <p>Question 2: What is an audio interface used for?</p>
+            <p><input type="radio" name="q2" value="1"> To connect microphones and instruments to a computer</p>
+            <p><input type="radio" name="q2" value="0"> To create music videos</p>
+            <p><input type="radio" name="q2" value="0"> To play back audio tracks</p>
+            <p><input type="radio" name="q2" value="0"> To sell music tracks</p>
+        </div>
+        <div class="question">
+            <p>Question 3: What is the difference between mixing and mastering?</p>
+            <p><input type="radio" name="q3" value="1"> Mixing involves balancing tracks, mastering ensures they sound good on all systems</p>
+            <p><input type="radio" name="q3" value="0"> Mastering involves creating new tracks, mixing blends them together</p>
+            <p><input type="radio" name="q3" value="0"> Mixing is about volume, mastering adds effects</p>
+            <p><input type="radio" name="q3" value="0"> There is no difference</p>
+        </div>
+        <button onclick="checkAnswers()">Submit Answers</button>
     </div>
 
     <div id="quiz1_2" class="quiz hidden">
-        <h3>Quiz for Module 2: Essential Equipment and Software</h3>
-        <div id="quiz1_2_questions">
-            <div class="question">
-                <p>Question 1: What is the purpose of a Digital Audio Workstation (DAW)?</p>
-                <p><input type="radio" name="q1" value="1"> To record, edit, and produce audio tracks</p>
-                <p><input type="radio" name="q1" value="0"> To provide live sound reinforcement</p>
-                <p><input type="radio" name="q1" value="0"> To compose sheet music</p>
-                <p><input type="radio" name="q1" value="0"> To distribute songs to streaming platforms</p>
-            </div>
-            <div class="question">
-                <p>Question 2: Which piece of equipment is essential for connecting microphones to a computer?</p>
-                <p><input type="radio" name="q2" value="1"> Audio Interface</p>
-                <p><input type="radio" name="q2" value="0"> MIDI Controller</p>
-                <p><input type="radio" name="q2" value="0"> Mixer</p>
-                <p><input type="radio" name="q2" value="0"> Headphones</p>
-            </div>
-            <div class="question">
-                <p>Question 3: What kind of input does a MIDI controller provide?</p>
-                <p><input type="radio" name="q3" value="1"> Musical input into a DAW</p>
-                <p><input type="radio" name="q3" value="0"> Audio mixing capabilities</p>
-                <p><input type="radio" name="q3" value="0"> Live sound amplification</p>
-                <p><input type="radio" name="q3" value="0"> Video editing features</p>
-            </div>
+        <h3>Quiz: Essential Equipment and Software</h3>
+        <div class="question">
+            <p>Question 1: What software is used to create and edit music?</p>
+            <p><input type="radio" name="q1_2" value="1"> Digital Audio Workstation (DAW)</p>
+            <p><input type="radio" name="q1_2" value="0"> Photo Editing Software</p>
+            <p><input type="radio" name="q1_2" value="0"> Word Processor</p>
+            <p><input type="radio" name="q1_2" value="0"> Video Editing Software</p>
         </div>
-        <button onclick="checkQuiz('quiz1_2', 3)">Submit Quiz</button>
-        <div id="quiz1_2_result" class="hidden result"></div>
+        <div class="question">
+            <p>Question 2: What device connects your instruments to your computer?</p>
+            <p><input type="radio" name="q2_2" value="1"> Audio Interface</p>
+            <p><input type="radio" name="q2_2" value="0"> Mouse</p>
+            <p><input type="radio" name="q2_2" value="0"> Keyboard</p>
+            <p><input type="radio" name="q2_2" value="0"> Monitor</p>
+        </div>
+        <div class="question">
+            <p>Question 3: What is a MIDI controller?</p>
+            <p><input type="radio" name="q3_2" value="1"> A device that lets you input music into your DAW</p>
+            <p><input type="radio" name="q3_2" value="0"> A speaker system for music production</p>
+            <p><input type="radio" name="q3_2" value="0"> A tool to manage sound levels</p>
+            <p><input type="radio" name="q3_2" value="0"> A type of microphone</p>
+        </div>
+        <button onclick="checkAnswers()">Submit Answers</button>
     </div>
 
-    <div id="quiz2" class="quiz hidden">
-        <h3>Quiz for Module 1: Understanding Audio Mixing</h3>
-        <div id="quiz2_questions">
-            <div class="question">
-                <p>Question 1: What is the primary purpose of mixing?</p>
-                <p><input type="radio" name="q1" value="1"> To balance sound levels across multiple tracks</p>
-                <p><input type="radio" name="q1" value="0"> To create a rough demo of a song</p>
-                <p><input type="radio" name="q1" value="0"> To write song lyrics</p>
-                <p><input type="radio" name="q1" value="0"> To perform music live</p>
-            </div>
-            <div class="question">
-                <p>Question 2: How does panning improve a mix?</p>
-                <p><input type="radio" name="q2" value="1"> It creates a sense of space by moving sounds between left and right channels.</p>
-                <p><input type="radio" name="q2" value="0"> It increases the volume of tracks.</p>
-                <p><input type="radio" name="q2" value="0"> It adds distortion to the sound.</p>
-                <p><input type="radio" name="q2" value="0"> It removes background noise.</p>
-            </div>
-            <div class="question">
-                <p>Question 3: What tool would you use to adjust the bass and treble of a track?</p>
-                <p><input type="radio" name="q3" value="1"> Equalizer (EQ)</p>
-                <p><input type="radio" name="q3" value="0"> Compressor</p>
-                <p><input type="radio" name="q3" value="0"> Reverb</p>
-                <p><input type="radio" name="q3" value="0"> Mixer</p>
-            </div>
-        </div>
-        <button onclick="checkQuiz('quiz2', 3)">Submit Quiz</button>
-        <div id="quiz2_result" class="hidden result"></div>
-    </div>
-
-    <div id="quiz2_2" class="quiz hidden">
-        <h3>Quiz for Module 2: Mastering Your Mix</h3>
-        <div id="quiz2_2_questions">
-            <div class="question">
-                <p>Question 1: What is the primary aim of mastering?</p>
-                <p><input type="radio" name="q1" value="1"> To prepare a mix for distribution and ensure consistency</p>
-                <p><input type="radio" name="q1" value="0"> To record new performances</p>
-                <p><input type="radio" name="q1" value="0"> To create sheet music</p>
-                <p><input type="radio" name="q1" value="0"> To balance levels of a mix</p>
-            </div>
-            <div class="question">
-                <p>Question 2: Analyzing the frequency spectrum is part of what process?</p>
-                <p><input type="radio" name="q2" value="1"> Mastering</p>
-                <p><input type="radio" name="q2" value="0"> Recording</p>
-                <p><input type="radio" name="q2" value="0"> Editing</p>
-                <p><input type="radio" name="q2" value="0"> Mixing</p>
-            </div>
-            <div class="question">
-                <p>Question 3: Which technique is commonly used in mastering to enhance loudness?</p>
-                <p><input type="radio" name="q3" value="1"> Limiting</p>
-                <p><input type="radio" name="q3" value="0"> Sampling</p>
-                <p><input type="radio" name="q3" value="0"> Panning</p>
-                <p><input type="radio" name="q3" value="0"> EQ</p>
-            </div>
-        </div>
-        <button onclick="checkQuiz('quiz2_2', 3)">Submit Quiz</button>
-        <div id="quiz2_2_result" class="hidden result"></div>
-    </div>
-
+    <!-- Results Section -->
+    <div id="result" class="result hidden"></div>
 </div>
 
 <script>
-    function showSection(course) {
-        hideAll();
-        document.getElementById(course).style.display = "block";
-        const courseButtons = document.querySelectorAll('button:not(.tool-button)');
-        courseButtons.forEach(button => button.style.display = 'none');
+    function showSection(courseId) {
+        document.querySelectorAll('.course').forEach(course => course.classList.add('hidden'));
+        document.getElementById(courseId).classList.remove('hidden');
     }
 
     function toggleContent(contentId) {
-        const content = document.getElementById(contentId);
-        content.style.display = content.style.display === "block" ? "none" : "block";
+        document.getElementById(contentId).classList.toggle('hidden');
     }
 
-    function showQuiz(quiz) {
-        hideAll();
-        document.getElementById(quiz).style.display = "block";
+    function showQuiz(quizId) {
+        document.querySelectorAll('.quiz').forEach(quiz => quiz.classList.add('hidden'));
+        document.getElementById(quizId).classList.remove('hidden');
     }
 
-    function hideAll() {
-        const courses = document.querySelectorAll('.course');
-        const modulesContent = document.querySelectorAll('.module-content');
-        const quizzes = document.querySelectorAll('.quiz');
-        const results = document.querySelectorAll('.result');
+    function checkAnswers() {
+        let score = 0;
+        const totalQuestions = 3;
+        
+        const answers = document.querySelectorAll('input[type="radio"]:checked');
+        
+        answers.forEach(answer => {
+            score += parseInt(answer.value);
+        });
 
-        courses.forEach(course => course.style.display = 'none');
-        modulesContent.forEach(content => content.style.display = 'none');
-        quizzes.forEach(quiz => quiz.style.display = 'none');
-        results.forEach(result => result.style.display = 'none');
+        const result = document.getElementById('result');
+        result.classList.remove('hidden');
+        result.innerHTML = `You scored ${score} out of ${totalQuestions}`;
     }
 
     function returnToHome() {
-        hideAll();
-        document.querySelector('.header').scrollIntoView();
-        const courseButtons = document.querySelectorAll('button:not(.tool-button)');
-        courseButtons.forEach(button => button.style.display = 'block');
-    }
-
-    function checkQuiz(quizId, totalQuestions) {
-        const questions = document.querySelectorAll(`#${quizId}_questions .question input:checked`);
-        let score = 0;
-
-        questions.forEach((question) => {
-            score += parseInt(question.value);
-        });
-
-        const percentage = (score / totalQuestions) * 100;
-        const resultContainer = document.getElementById(`${quizId}_result`);
-        resultContainer.innerHTML = `You scored ${score} out of ${totalQuestions} (${percentage.toFixed(2)}%)`;
-        resultContainer.classList.remove('hidden');
-
-        // Reset quiz for next attempt and hide others
-        const inputs = document.querySelectorAll(`#${quizId}_questions .question input`);
-        inputs.forEach(input => input.checked = false);
+        document.querySelectorAll('.course').forEach(course => course.classList.add('hidden'));
+        document.querySelectorAll('.quiz').forEach(quiz => quiz.classList.add('hidden'));
+        document.getElementById('result').classList.add('hidden');
     }
 </script>
 

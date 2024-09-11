@@ -94,12 +94,10 @@
             align-items: center;
             flex-direction: column;
         }
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -118,9 +116,13 @@
     
     <p>WracA is a free music academy dedicated to empowering budding musicians with the skills and knowledge needed for music production. Explore our comprehensive courses that cover a range of topics from basic production techniques to advanced composition.</p>
 
+    <div class="button-container">
+        <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
+        <button onclick="returnToHome()">Return to Home</button>
+    </div>
+
     <button onclick="showSection('course1')">Music Production Basics</button>
     <button onclick="showSection('course2')">Music Production Fundamentals</button>
-    <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
 
     <!-- Course 1: Music Production Basics -->
     <div id="course1" class="course hidden">
@@ -162,10 +164,6 @@
         </div>
     </div>
 </div>
-
-<footer>
-    &copy; 2024 WracA Music Academy | Owner: Beatbench
-</footer>
 
 <script>
     function showSection(course) {

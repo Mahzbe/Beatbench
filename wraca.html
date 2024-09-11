@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WracA Music Academy</title>
     <style>
-        /* Existing CSS */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -24,6 +23,24 @@
         .main-container {
             max-width: 800px;
             margin: auto;
+        }
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+            border-radius: 4px;
         }
         .course {
             margin: 20px 0;
@@ -88,20 +105,20 @@
         .question {
             margin: 10px 0;
         }
-        .home-button {
-            margin-bottom: 20px;
-            background-color: #007bff;
-        }
     </style>
 </head>
 <body>
 
+<div class="navbar">
+    <h1>WracA Music Academy</h1>
+    <a href="#" onclick="returnToHome()">Home</a>
+</div>
+
 <div class="main-container">
     <div class="header">
-        <h1>Welcome to WracA Music Academy</h1>
         <img src="wraca.png" alt="WracA Logo" class="logo">
     </div>
-    <button class="home-button" onclick="returnToHome()">Home</button>
+    
     <p>WracA is a free music academy dedicated to empowering budding musicians with the skills and knowledge needed for music production. Explore our comprehensive courses that cover a range of topics from basic production techniques to advanced composition.</p>
 
     <button onclick="showSection('course1')">Music Production Basics</button>

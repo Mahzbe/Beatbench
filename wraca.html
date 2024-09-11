@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WracA Music Academy</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .main-container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .course {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .module, .quiz {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .module:hover, .quiz:hover {
+            background-color: #d3d3d3;
+        }
+        .module-content, .quiz-content {
+            display: none;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin: 5px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .tool-button {
+            background-color: #007bff;
+        }
+        .tool-button:hover {
+            background-color: #0056b3;
+        }
+        iframe {
+            width: 100%;
+            height: 315px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <h1>Welcome to WracA Music Academy</h1>
+    
+    <button onclick="showSection('course1')">Music Production Basics</button>
+    <button onclick="showSection('course2')">Music Production Fundamentals</button>
+    <button onclick="showSection('course3')">Music Production Specialization</button>
+
+    <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
+
+    <!-- Course 1: Music Production Basics -->
+    <div id="course1" class="course">
+        <h2>Course 1: Music Production Basics</h2>
+        
+        <!-- Module 1 -->
+        <div class="module" onclick="toggleContent('module1_1_content')">
+            <h3>Module 1: Introduction to Music Production</h3>
+        </div>
+        <div id="module1_1_content" class="module-content">
+            <p>This module covers the fundamentals of music production including its history, key terms, and basic concepts. Understanding the importance of different roles in music production is crucial for aspiring producers.</p>
+            <iframe src="https://www.youtube.com/embed/LgsxN4FNgwU" frameborder="0" allowfullscreen></iframe>
+            <button onclick="showQuiz('quiz1_1')">Take Quiz</button>
+        </div>
+        
+        <!-- Module 2 -->
+        <div class="module" onclick="toggleContent('module1_2_content')">
+            <h3>Module 2: Setting Up Your DAW</h3>
+        </div>
+        <div id="module1_2_content" class="module-content">
+            <p>Learn how to set up and configure your Digital Audio Workstation (DAW) for optimal music production. This includes essential plugins, recording techniques and navigating the software interface.</p>
+            <iframe src="https://www.youtube.com/embed/qCROzUb5y9Q" frameborder="0" allowfullscreen></iframe>
+            <button onclick="showQuiz('quiz1_2')">Take Quiz</button>
+        </div>
+        
+        <!-- Module 3 -->
+        <div class="module" onclick="toggleContent('module1_3_content')">
+            <h3>Module 3: Basic Recording Techniques</h3>
+        </div>
+        <div id="module1_3_content" class="module-content">
+            <p>Explore the basic techniques of recording audio, including microphone placement, gain staging, and monitoring levels.</p>
+            <iframe src="https://www.youtube.com/embed/tWhQgu9ESFg" frameborder="0" allowfullscreen></iframe>
+            <button onclick="showQuiz('quiz1_3')">Take Quiz</button>
+        </div>
+    </div>
+
+    <!-- Course 2: Music Production Fundamentals -->
+    <div id="course2" class="course" style="display: none;">
+        <h2>Course 2: Music Production Fundamentals</h2>
+        
+        <!-- Module 1 -->
+        <div class="module" onclick="toggleContent('module2_1_content')">
+            <h3>Module 1: Understanding Audio Mixing</h3>
+        </div>
+        <div id="module2_1_content" class="module-content">
+            <p>This module explains the basics of audio mixing including levels, panning, and introducing effects. Key concepts include the importance of balance in a mix.</p>
+            <iframe src="https://www.youtube.com/embed/5z3J9W6Rtc4" frameborder="0" allowfullscreen></iframe>
+            <button onclick="showQuiz('quiz2_1')">Take Quiz</button>
+        </div>
+        
+        <!-- Module 2 -->
+        <div class="module" onclick="toggleContent('module2_2_content')">
+            <h3>Module 2: Essential Audio Effects</h3>
+        </div>
+        <div id="module2_2_content" class="module-content">
+            <p>Learn about essential audio effects like reverb, delay, compression, and EQ. This module dives into how these effects can enhance your mixes.</p>
+            <iframe src="https://www.youtube.com/embed/cna4v0BU1lU" frameborder="0" allowfullscreen></iframe>
+            <button onclick="showQuiz('quiz2_2')">Take Quiz</button>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="module" onclick="toggleContent('module2_3_content')">
+            <h3>Module 3: Introduction to MIDI</h3>
+        </div>
+        <div id="module2_3_content" class="module-content">
+            <p>Understand the fundamentals of MIDI, including how to use MIDI controllers and basic MIDI programming within your DAW.</p>
+            <iframe src="https://www.youtube.com/embed/A_h8yO-73Vg" frameborder="0" allowfullscreen></iframe>
+            <button onclick="showQuiz('quiz2_3')">Take Quiz</button>
+        </div>
+    </div>
+
+    <!-- Course 3: Music Production Specialization -->
+    <div id="course3" class="course" style="display: none;">
+        <h2>Course 3: Music Production Specialization</h2>
+        
+        <!-- Module 1 -->
+        <div class="module" onclick="toggleContent('module3_1_content')">
+            <h3>Module 1: Advanced Sound Design</h3>
+        </div>
+        <div id="module3_1_content" class="module-content">
+            <p>Explore advanced sound design techniques using software synths, including oscillators and filters to create unique sounds.</p>
+            <iframe src="https://www.youtube.com/embed/r9TEFvovskiM" frameborder="0" allowfullscreen></iframe>
+            <button onclick="showQuiz('quiz3_1')">Take Quiz</button>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="module" onclick="toggleContent('module3_2_content')">
+            <h3>Module 2: Mastering Your Tracks</h3>
+        </div>
+        <div id="module3_2_content" class="module-content">
+            <p>Learn the essentials of mastering your music. Understand the importance of dynamic range, loudness, and finalizing your mixes for distribution.</p>
+            <iframe src="https://www.youtube.com/embed/2KENzKqhFfw" frameborder="0" allowfullscreen></iframe>
+            <button onclick="showQuiz('quiz3_2')">Take Quiz</button>
+        </div>
+        
+        <!-- Module 3 -->
+        <div class="module" onclick="toggleContent('module3_3_content')">
+            <h3>Module 3: Creative Composition Techniques</h3>
+        </div>
+        <div id="module3_3_content" class="module-content">
+            <p>Learn various composition techniques to improve your songwriting and arrangement skills.</p>
+            <iframe src="https://www.youtube.com/embed/z3UwXCrUvsI" frameborder="0" allowfullscreen></iframe>
+            <button onclick="showQuiz('quiz3_3')">Take Quiz</button>
+        </div>
+    </div>
+
+    <!-- Quizzes -->
+    <div id="quiz1_1" class="quiz" style="display: none;">
+        <h3>Quiz for Module 1: Introduction to Music Production</h3>
+        <p>Question 1: What does DAW stand for?</p>
+        <p>Answer: Digital Audio Workstation</p>
+        <button onclick="hideAll()">Back to Course 1</button>
+    </div>
+
+    <div id="quiz1_2" class="quiz" style="display: none;">
+        <h3>Quiz for Module 2: Setting Up Your DAW</h3>
+        <p>Question 1: What is the first step in setting up your DAW?</p>
+        <p>Answer: Creating or opening an audio project.</p>
+        <button onclick="hideAll()">Back to Course 1</button>
+    </div>
+
+    <div id="quiz1_3" class="quiz" style="display: none;">
+        <h3>Quiz for Module 3: Basic Recording Techniques</h3>
+        <p>Question 1: What is gain staging?</p>
+        <p>Answer: The process of managing the levels in your recording pathway to avoid distortion.</p>
+        <button onclick="hideAll()">Back to Course 1</button>
+    </div>
+
+    <div id="quiz2_1" class="quiz" style="display: none;">
+        <h3>Quiz for Module 1: Understanding Audio Mixing</h3>
+        <p>Question 1: What is the purpose of panning in a mix?</p>
+        <p>Answer: To position sounds within the stereo field.</p>
+        <button onclick="hideAll()">Back to Course 2</button>
+    </div>
+
+    <div id="quiz2_2" class="quiz" style="display: none;">
+        <h3>Quiz for Module 2: Essential Audio Effects</h3>
+        <p>Question 1: What does EQ allow you to do?</p>
+        <p>Answer: Adjust the balance of different frequency components in an audio signal.</p>
+        <button onclick="hideAll()">Back to Course 2</button>
+    </div>
+
+    <div id="quiz2_3" class="quiz" style="display: none;">
+        <h3>Quiz for Module 3: Introduction to MIDI</h3>
+        <p>Question 1: How does MIDI transmit information?</p>
+        <p>Answer: By sending messages indicating which notes are played, how hard, and when.</p>
+        <button onclick="hideAll()">Back to Course 2</button>
+    </div>
+
+    <div id="quiz3_1" class="quiz" style="display: none;">
+        <h3>Quiz for Module 1: Advanced Sound Design</h3>
+        <p>Question 1: What is a subtractive synthesis?</p>
+        <p>Answer: A synthesis method that generates sound by removing frequencies from a waveform.</p>
+        <button onclick="hideAll()">Back to Course 3</button>
+    </div>
+
+    <div id="quiz3_2" class="quiz" style="display: none;">
+        <h3>Quiz for Module 2: Mastering Your Tracks</h3>
+        <p>Question 1: What is the goal of mastering?</p>
+        <p>Answer: To make the track sound cohesive and polished for distribution.</p>
+        <button onclick="hideAll()">Back to Course 3</button>
+    </div>
+
+    <div id="quiz3_3" class="quiz" style="display: none;">
+        <h3>Quiz for Module 3: Creative Composition Techniques</h3>
+        <p>Question 1: What is the significance of a hook in songwriting?</p>
+        <p>Answer: A hook is designed to catch the listener's attention and be memorable.</p>
+        <button onclick="hideAll()">Back to Course 3</button>
+    </div>
+</div>
+
+<script>
+    function showSection(course) {
+        hideAll();
+        document.getElementById(course).style.display = "block";
+    }
+
+    function toggleContent(contentId) {
+        const content = document.getElementById(contentId);
+        content.style.display = content.style.display === "block" ? "none" : "block";
+    }
+
+    function showQuiz(quiz) {
+        hideAll();
+        document.getElementById(quiz).style.display = "block";
+    }
+
+    function hideAll() {
+        const courses = document.querySelectorAll('.course');
+        const modulesContent = document.querySelectorAll('.module-content');
+        const quizzes = document.querySelectorAll('.quiz');
+        
+        courses.forEach(course => course.style.display = 'none');
+        modulesContent.forEach(content => content.style.display = 'none');
+        quizzes.forEach(quiz => quiz.style.display = 'none');
+    }
+</script>
+
+</body>
+      </html>

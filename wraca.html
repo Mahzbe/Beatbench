@@ -156,6 +156,8 @@
     <div class="course-list">
         <button onclick="showSection('course1')">Music Production Basics</button>
         <button onclick="showSection('course2')">Music Production Fundamentals</button>
+        <button id="takeQuiz1" onclick="toggleQuiz('quiz1')">Take Quiz for Course 1</button>
+        <button id="takeQuiz2" onclick="toggleQuiz('quiz2')">Take Quiz for Course 2</button>
         <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
         <button id="returnHomeButton" class="hidden" onclick="returnToHome()">Return to Home</button>
     </div>
@@ -207,28 +209,29 @@
     <div class="quiz-section" id="quiz1">
         <h4>Quiz for Course 1: Introduction to Music Production</h4>
         <p>1. What is the primary purpose of mixing?</p>
-        <p><input type="radio" name="q1" value="a"> To write melodies and harmonies.</p>
-        <p><input type="radio" name="q1" value="b"> To combine all audio tracks into a cohesive whole.</p>
-        <p><input type="radio" name="q1" value="c"> To capture the performance of musicians.</p>
-        <p>2. What does an audio interface do?</p>
-        <p><input type="radio" name="q2" value="a"> Converts digital signals into analog data.</p>
-        <p><input type="radio" name="q2" value="b"> Connects instruments and microphones to your computer.</p>
-        <p><input type="radio" name="q2" value="c"> Plays back recorded audio.</p>
+        <p><input type="radio" name="q1_1" value="a"> To write melodies and harmonies.</p>
+        <p><input type="radio" name="q1_1" value="b"> To capture audio recordings.</p>
+        <p><input type="radio" name="q1_1" value="c"> To combine and balance audio tracks.</p>
+        <p>2. What does mastering involve?</p>
+        <p><input type="radio" name="q1_2" value="a"> Editing the recorded material.</p>
+        <p><input type="radio" name="q1_2" value="b"> Preparing the final mix for distribution.</p>
+        <p><input type="radio" name="q1_2" value="c"> Capturing the performance of musicians.</p>
         <button onclick="submitQuiz('quiz1')">Submit</button>
     </div>
 
     <div class="quiz-section" id="quiz2">
         <h4>Quiz for Course 2: Music Production Fundamentals</h4>
         <p>1. What is the purpose of an audio interface?</p>
-        <p><input type="radio" name="q1" value="a"> To convert digital signals into analog data.</p>
-        <p><input type="radio" name="q1" value="b"> To connect instruments and microphones to your computer.</p>
-        <p><input type="radio" name="q1" value="c"> To play back recorded audio.</p>
+        <p><input type="radio" name="q2_1" value="a"> To convert digital signals into analog data.</p>
+        <p><input type="radio" name="q2_1" value="b"> To connect instruments and microphones to your computer.</p>
+        <p><input type="radio" name="q2_1" value="c"> To play back recorded audio.</p>
         <p>2. Which type of microphone is best for studio vocals?</p>
-        <p><input type="radio" name="q2" value="a"> Dynamic Microphone</p>
-        <p><input type="radio" name="q2" value="b"> Condenser Microphone</p>
-        <p><input type="radio" name="q2" value="c"> Ribbon Microphone</p>
+        <p><input type="radio" name="q2_2" value="a"> Dynamic Microphone</p>
+        <p><input type="radio" name="q2_2" value="b"> Condenser Microphone</p>
+        <p><input type="radio" name="q2_2" value="c"> Ribbon Microphone</p>
         <button onclick="submitQuiz('quiz2')">Submit</button>
     </div>
+
 </div>
 
 <footer>
@@ -254,9 +257,19 @@
         content.style.display = content.style.display === 'none' ? 'block' : 'none';
     }
 
+    function toggleQuiz(quizId) {
+        const quizzes = document.querySelectorAll('.quiz-section');
+        quizzes.forEach(quiz => {
+            if (quiz.id === quizId) {
+                quiz.classList.toggle('active');
+            } else {
+                quiz.classList.remove('active');
+            }
+        });
+    }
+
     function submitQuiz(quizId) {
-        const quiz = document.getElementById(quizId);
-        quiz.style.display = 'block';
+        alert(`Quiz ${quizId} submitted`);
     }
 
     function returnToHome() {

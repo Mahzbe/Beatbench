@@ -101,9 +101,10 @@
             text-align: center;
         }
         .home-button {
-            display: none;
+            display: inline-block;
             background-color: #dc3545;
             color: white;
+            margin-left: 10px;
         }
         .home-button:hover {
             background-color: #c82333;
@@ -127,7 +128,11 @@
 
 <div class="navbar">
     <h1>WracA Music Academy</h1>
-    <a href="#" onclick="returnToHome()">Home</a>
+    <div>
+        <a href="#" onclick="returnToHome()">Home</a>
+        <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
+        <button class="home-button" id="returnHomeButton" onclick="returnToHome()">Return to Home</button>
+    </div>
 </div>
 
 <div class="main-container">
@@ -139,8 +144,6 @@
 
     <button onclick="showSection('course1')">Music Production Basics</button>
     <button onclick="showSection('course2')">Music Production Fundamentals</button>
-    <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
-    <button class="home-button" id="returnHomeButton" onclick="returnToHome()">Return to Home</button>
 
     <!-- Course 1: Music Production Basics -->
     <div id="course1" class="course hidden">
@@ -197,9 +200,9 @@
                 <input type="radio" id="q1c" name="q1" value="c">
                 <label for="q1c">c) To prepare the final mix for distribution and ensure it sounds polished</label><br>
                 <input type="radio" id="q1d" name="q1" value="d">
-                <label for="q1d">d) To balance levels and apply effects</label><br>
+                <label for="q1d">d) To combine all audio tracks into a cohesive whole</label><br>
 
-                <p><strong>2. Which equipment is essential for capturing sound in a studio setting?</strong></p>
+                <p><strong>2. Which piece of equipment converts analog signals into digital data?</strong></p>
                 <input type="radio" id="q2a" name="q2" value="a">
                 <label for="q2a">a) Studio Monitors</label><br>
                 <input type="radio" id="q2b" name="q2" value="b">
@@ -308,7 +311,12 @@
     }
 
     function submitQuiz(quizId) {
-        alert('Quiz submitted!');
+        const quiz = document.getElementById(quizId);
+        if (quiz.style.display === 'none') {
+            quiz.style.display = 'block';
+        } else {
+            quiz.style.display = 'none';
+        }
     }
 
     function returnToHome() {

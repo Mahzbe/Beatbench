@@ -201,17 +201,43 @@
     <!-- Course 2: Music Production Fundamentals -->
     <div id="course2" class="course hidden">
         <h2>Course 2: Music Production Fundamentals</h2>
-        <!-- Similar structure as Course 1 -->
-        <!-- Add modules here -->
+
+        <div class="module" onclick="toggleContent('module2_1_content')">
+            <h3>Module 1: Advanced Music Theory</h3>
+        </div>
+        <div id="module2_1_content" class="module-content">
+            <p>Advanced music theory dives deeper into complex musical concepts that enhance composition and arrangement skills:</p>
+            <ul>
+                <li><strong>Harmony:</strong> Understanding complex chord structures and their uses in different musical genres.</li>
+                <li><strong>Counterpoint:</strong> The art of combining independent melodic lines to create harmonious music.</li>
+                <li><strong>Form and Analysis:</strong> Studying the structure of compositions and understanding different musical forms such as sonata form and rondo form.</li>
+                <li><strong>Orchestration:</strong> Learning how to arrange music for various instruments and ensembles.</li>
+            </ul>
+            <p>Mastering these concepts will elevate your music composition and arrangement skills, making your productions more sophisticated and engaging.</p>
+        </div>
+
+        <div class="module" onclick="toggleContent('module2_2_content')">
+            <h3>Module 2: Mixing and Mastering Techniques</h3>
+        </div>
+        <div id="module2_2_content" class="module-content">
+            <p>Mixing and mastering are crucial stages in music production that ensure your tracks sound polished and professional:</p>
+            <ul>
+                <li><strong>Mixing:</strong> Involves balancing the levels of individual tracks, panning, EQ adjustments, and applying effects such as reverb and delay. Aim for a clear, balanced mix that highlights the best aspects of each element.</li>
+                <li><strong>Automation:</strong> Allows you to adjust volume, panning, and effects over time, adding dynamics and interest to your mix.</li>
+                <li><strong>Mastering:</strong> The final step in production, where the mixed track is processed to ensure it sounds consistent across different playback systems. This includes equalization, compression, and limiting.</li>
+                <li><strong>Reference Tracks:</strong> Comparing your mix to professionally produced tracks can help you achieve a competitive sound. Use reference tracks to guide your mixing and mastering decisions.</li>
+            </ul>
+            <p>Applying these techniques effectively will result in a polished final product ready for distribution.</p>
+        </div>
     </div>
 
-    <!-- Quiz Section -->
+    <!-- Quizzes -->
     <div class="quiz-section" id="quiz1">
-        <h4>Quiz for Course 1: Introduction to Music Production</h4>
-        <p>1. What is the primary purpose of mixing?</p>
-        <p><input type="radio" name="q1_1" value="a"> To write melodies and harmonies.</p>
-        <p><input type="radio" name="q1_1" value="b"> To capture audio recordings.</p>
-        <p><input type="radio" name="q1_1" value="c"> To combine and balance audio tracks.</p>
+        <h4>Quiz for Course 1: Music Production Basics</h4>
+        <p>1. What is the purpose of mixing in music production?</p>
+        <p><input type="radio" name="q1_1" value="a"> To capture audio recordings.</p>
+        <p><input type="radio" name="q1_1" value="b"> To combine and balance audio tracks.</p>
+        <p><input type="radio" name="q1_1" value="c"> To prepare the final mix for distribution.</p>
         <p>2. What does mastering involve?</p>
         <p><input type="radio" name="q1_2" value="a"> Editing the recorded material.</p>
         <p><input type="radio" name="q1_2" value="b"> Preparing the final mix for distribution.</p>

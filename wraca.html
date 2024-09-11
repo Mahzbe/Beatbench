@@ -92,6 +92,10 @@
         .question {
             margin: 10px 0;
         }
+        .home-button {
+            margin-bottom: 20px;
+            background-color: #007bff;
+        }
     </style>
 </head>
 <body>
@@ -101,6 +105,7 @@
         <h1>Welcome to WracA Music Academy</h1>
         <img src="wraca.png" alt="WracA Logo" class="logo">
     </div>
+    <button class="home-button" onclick="returnToHome()">Home</button>
     <p>WracA is a free music academy dedicated to empowering budding musicians with the skills and knowledge needed for music production. Explore our comprehensive courses that cover a range of topics from basic production techniques to advanced composition.</p>
 
     <button onclick="showSection('course1')">Music Production Basics</button>
@@ -110,7 +115,7 @@
     <!-- Course 1: Music Production Basics -->
     <div id="course1" class="course hidden">
         <h2>Course 1: Music Production Basics</h2>
-        <button onclick="returnToHome()">Return to Home</button>
+        <button class="home-button" onclick="returnToHome()">Return to Home</button>
 
         <!-- Module 1 -->
         <div class="module" onclick="toggleContent('module1_1_content')">
@@ -118,7 +123,7 @@
         </div>
         <div id="module1_1_content" class="module-content">
             <p>This module covers the fundamentals of music production including its history, key terms, and basic concepts.</p>
-            <iframe src="https://www.youtube.com/embed/jISjO1Zai7M" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://youtu.be/Hi72cCOPUQU?si=7wIHfTd89VCPMn6N" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz1_1')">Take Quiz</button>
         </div>
         
@@ -128,7 +133,7 @@
         </div>
         <div id="module1_2_content" class="module-content">
             <p>Learn how to set up and configure your Digital Audio Workstation (DAW) for optimal music production.</p>
-            <iframe src="https://www.youtube.com/embed/8U5MbHbIC3A" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://youtu.be/_emgDYEAJhI?si=GFir2l38Oa9f0BMQ" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz1_2')">Take Quiz</button>
         </div>
         
@@ -138,7 +143,7 @@
         </div>
         <div id="module1_3_content" class="module-content">
             <p>Explore the basic techniques of recording audio, including microphone placement and monitoring levels.</p>
-            <iframe src="https://www.youtube.com/embed/2V2pHOCoLg4" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://youtu.be/h8wVwsrEPKc?si=2csumxG8CSRJT-3t" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz1_3')">Take Quiz</button>
         </div>
     </div>
@@ -146,7 +151,7 @@
     <!-- Course 2: Music Production Fundamentals -->
     <div id="course2" class="course hidden">
         <h2>Course 2: Music Production Fundamentals</h2>
-        <button onclick="returnToHome()">Return to Home</button>
+        <button class="home-button" onclick="returnToHome()">Return to Home</button>
         
         <!-- Module 1 -->
         <div class="module" onclick="toggleContent('module2_1_content')">
@@ -154,7 +159,7 @@
         </div>
         <div id="module2_1_content" class="module-content">
             <p>This module explains the basics of audio mixing, including levels, panning, and introducing effects.</p>
-            <iframe src="https://www.youtube.com/embed/MxvDe5z6k0U" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://youtu.be/Szv32PCJfs0?si=WQwedxQql7QZOa_r" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz2_1')">Take Quiz</button>
         </div>
         
@@ -164,7 +169,7 @@
         </div>
         <div id="module2_2_content" class="module-content">
             <p>Learn about essential audio effects like reverb, delay, compression, and EQ.</p>
-            <iframe src="https://www.youtube.com/embed/JH91f8mc7gw" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://youtu.be/LrzPMKg4dyU?si=cfSF0PNcquZYSIJ8" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz2_2')">Take Quiz</button>
         </div>
 
@@ -174,7 +179,7 @@
         </div>
         <div id="module2_3_content" class="module-content">
             <p>Understand the fundamentals of MIDI, including how to use MIDI controllers and basic MIDI programming.</p>
-            <iframe src="https://www.youtube.com/embed/qyWg-8ZIRWg" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://youtu.be/2nVoAM5seVw?si=U2yw1ozJ0zdU76A9" frameborder="0" allowfullscreen></iframe>
             <button onclick="showQuiz('quiz2_3')">Take Quiz</button>
         </div>
     </div>
@@ -256,7 +261,6 @@
         </div>
         <button onclick="checkQuiz('quiz1_1', 10)">Submit Quiz</button>
         <div id="quiz1_1_result" class="hidden result"></div>
-        <button onclick="returnToPrevious('course1')">Back to Course 1</button>
     </div>
 
     <div id="quiz1_2" class="quiz hidden">
@@ -335,7 +339,6 @@
         </div>
         <button onclick="checkQuiz('quiz1_2', 10)">Submit Quiz</button>
         <div id="quiz1_2_result" class="hidden result"></div>
-        <button onclick="returnToPrevious('course1')">Back to Course 1</button>
     </div>
 
     <div id="quiz1_3" class="quiz hidden">
@@ -414,7 +417,6 @@
         </div>
         <button onclick="checkQuiz('quiz1_3', 10)">Submit Quiz</button>
         <div id="quiz1_3_result" class="hidden result"></div>
-        <button onclick="returnToPrevious('course1')">Back to Course 1</button>
     </div>
 
     <div id="quiz2_1" class="quiz hidden">
@@ -493,7 +495,7 @@
         </div>
         <button onclick="checkQuiz('quiz2_1', 10)">Submit Quiz</button>
         <div id="quiz2_1_result" class="hidden result"></div>
-        <button onclick="returnToPrevious('course2')">Back to Course 2</button>
+        <button class="home-button" onclick="returnToHome()">Return to Home</button>
     </div>
 
     <div id="quiz2_2" class="quiz hidden">
@@ -572,7 +574,7 @@
         </div>
         <button onclick="checkQuiz('quiz2_2', 10)">Submit Quiz</button>
         <div id="quiz2_2_result" class="hidden result"></div>
-        <button onclick="returnToPrevious('course2')">Back to Course 2</button>
+        <button class="home-button" onclick="returnToHome()">Return to Home</button>
     </div>
 
     <div id="quiz2_3" class="quiz hidden">
@@ -651,7 +653,7 @@
         </div>
         <button onclick="checkQuiz('quiz2_3', 10)">Submit Quiz</button>
         <div id="quiz2_3_result" class="hidden result"></div>
-        <button onclick="returnToPrevious('course2')">Back to Course 2</button>
+        <button class="home-button" onclick="returnToHome()">Return to Home</button>
     </div>
 
 </div>
@@ -715,4 +717,4 @@
 </script>
 
 </body>
-                                                        </html>
+                    </html>

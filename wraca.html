@@ -15,6 +15,11 @@
         h1, h2, h3 {
             color: #2c3e50;
         }
+        .logo {
+            width: 80px; /* Size it to fit the width of two fingers */
+            height: auto; /* Maintain aspect ratio */
+            vertical-align: middle; /* Align with text */
+        }
         .main-container {
             max-width: 800px;
             margin: auto;
@@ -63,18 +68,29 @@
         .tool-button:hover {
             background-color: #0056b3;
         }
+        .hidden {
+            display: none;
+        }
         iframe {
             width: 100%;
             height: 315px;
             margin-top: 10px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
 <body>
 
 <div class="main-container">
-    <h1>Welcome to WracA Music Academy</h1>
-    
+    <div class="header">
+        <img src="wraca.png" alt="WracA Logo" class="logo">
+        <h1>Welcome to WracA Music Academy</h1>
+    </div>
+    <p>WracA is a free music academy dedicated to empowering budding musicians with the skills and knowledge needed for music production. Explore our comprehensive courses that cover a range of topics from basic production techniques to advanced specialization.</p>
+
     <button onclick="showSection('course1')">Music Production Basics</button>
     <button onclick="showSection('course2')">Music Production Fundamentals</button>
     <button onclick="showSection('course3')">Music Production Specialization</button>
@@ -82,8 +98,9 @@
     <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
 
     <!-- Course 1: Music Production Basics -->
-    <div id="course1" class="course">
+    <div id="course1" class="course hidden">
         <h2>Course 1: Music Production Basics</h2>
+        <button onclick="returnToHome()">Return to Home</button>
         
         <!-- Module 1 -->
         <div class="module" onclick="toggleContent('module1_1_content')">
@@ -117,8 +134,9 @@
     </div>
 
     <!-- Course 2: Music Production Fundamentals -->
-    <div id="course2" class="course" style="display: none;">
+    <div id="course2" class="course hidden">
         <h2>Course 2: Music Production Fundamentals</h2>
+        <button onclick="returnToHome()">Return to Home</button>
         
         <!-- Module 1 -->
         <div class="module" onclick="toggleContent('module2_1_content')">
@@ -152,8 +170,9 @@
     </div>
 
     <!-- Course 3: Music Production Specialization -->
-    <div id="course3" class="course" style="display: none;">
+    <div id="course3" class="course hidden">
         <h2>Course 3: Music Production Specialization</h2>
+        <button onclick="returnToHome()">Return to Home</button>
         
         <!-- Module 1 -->
         <div class="module" onclick="toggleContent('module3_1_content')">
@@ -187,67 +206,67 @@
     </div>
 
     <!-- Quizzes -->
-    <div id="quiz1_1" class="quiz" style="display: none;">
+    <div id="quiz1_1" class="quiz hidden">
         <h3>Quiz for Module 1: Introduction to Music Production</h3>
         <p>Question 1: What does DAW stand for?</p>
         <p>Answer: Digital Audio Workstation</p>
-        <button onclick="hideAll()">Back to Course 1</button>
+        <button onclick="returnToPrevious('course1')">Back to Course 1</button>
     </div>
 
-    <div id="quiz1_2" class="quiz" style="display: none;">
+    <div id="quiz1_2" class="quiz hidden">
         <h3>Quiz for Module 2: Setting Up Your DAW</h3>
         <p>Question 1: What is the first step in setting up your DAW?</p>
         <p>Answer: Creating or opening an audio project.</p>
-        <button onclick="hideAll()">Back to Course 1</button>
+        <button onclick="returnToPrevious('course1')">Back to Course 1</button>
     </div>
 
-    <div id="quiz1_3" class="quiz" style="display: none;">
+    <div id="quiz1_3" class="quiz hidden">
         <h3>Quiz for Module 3: Basic Recording Techniques</h3>
         <p>Question 1: What is gain staging?</p>
         <p>Answer: The process of managing the levels in your recording pathway to avoid distortion.</p>
-        <button onclick="hideAll()">Back to Course 1</button>
+        <button onclick="returnToPrevious('course1')">Back to Course 1</button>
     </div>
 
-    <div id="quiz2_1" class="quiz" style="display: none;">
+    <div id="quiz2_1" class="quiz hidden">
         <h3>Quiz for Module 1: Understanding Audio Mixing</h3>
         <p>Question 1: What is the purpose of panning in a mix?</p>
         <p>Answer: To position sounds within the stereo field.</p>
-        <button onclick="hideAll()">Back to Course 2</button>
+        <button onclick="returnToPrevious('course2')">Back to Course 2</button>
     </div>
 
-    <div id="quiz2_2" class="quiz" style="display: none;">
+    <div id="quiz2_2" class="quiz hidden">
         <h3>Quiz for Module 2: Essential Audio Effects</h3>
         <p>Question 1: What does EQ allow you to do?</p>
         <p>Answer: Adjust the balance of different frequency components in an audio signal.</p>
-        <button onclick="hideAll()">Back to Course 2</button>
+        <button onclick="returnToPrevious('course2')">Back to Course 2</button>
     </div>
 
-    <div id="quiz2_3" class="quiz" style="display: none;">
+    <div id="quiz2_3" class="quiz hidden">
         <h3>Quiz for Module 3: Introduction to MIDI</h3>
         <p>Question 1: How does MIDI transmit information?</p>
         <p>Answer: By sending messages indicating which notes are played, how hard, and when.</p>
-        <button onclick="hideAll()">Back to Course 2</button>
+        <button onclick="returnToPrevious('course2')">Back to Course 2</button>
     </div>
 
-    <div id="quiz3_1" class="quiz" style="display: none;">
+    <div id="quiz3_1" class="quiz hidden">
         <h3>Quiz for Module 1: Advanced Sound Design</h3>
-        <p>Question 1: What is a subtractive synthesis?</p>
+        <p>Question 1: What is subtractive synthesis?</p>
         <p>Answer: A synthesis method that generates sound by removing frequencies from a waveform.</p>
-        <button onclick="hideAll()">Back to Course 3</button>
+        <button onclick="returnToPrevious('course3')">Back to Course 3</button>
     </div>
 
-    <div id="quiz3_2" class="quiz" style="display: none;">
+    <div id="quiz3_2" class="quiz hidden">
         <h3>Quiz for Module 2: Mastering Your Tracks</h3>
         <p>Question 1: What is the goal of mastering?</p>
         <p>Answer: To make the track sound cohesive and polished for distribution.</p>
-        <button onclick="hideAll()">Back to Course 3</button>
+        <button onclick="returnToPrevious('course3')">Back to Course 3</button>
     </div>
 
-    <div id="quiz3_3" class="quiz" style="display: none;">
+    <div id="quiz3_3" class="quiz hidden">
         <h3>Quiz for Module 3: Creative Composition Techniques</h3>
         <p>Question 1: What is the significance of a hook in songwriting?</p>
         <p>Answer: A hook is designed to catch the listener's attention and be memorable.</p>
-        <button onclick="hideAll()">Back to Course 3</button>
+        <button onclick="returnToPrevious('course3')">Back to Course 3</button>
     </div>
 </div>
 
@@ -276,7 +295,18 @@
         modulesContent.forEach(content => content.style.display = 'none');
         quizzes.forEach(quiz => quiz.style.display = 'none');
     }
+
+    function returnToHome() {
+        hideAll();
+        document.querySelector('.header').scrollIntoView();
+    }
+
+    function returnToPrevious(course) {
+        hideAll();
+        document.getElementById(course).style.display = "block";
+        document.getElementById(course).scrollIntoView();
+    }
 </script>
 
 </body>
-      </html>
+</html>

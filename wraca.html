@@ -122,7 +122,7 @@
         .return-home-buttons {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin: 20px 0;
         }
         .return-home-buttons button {
             margin: 0 5px;
@@ -165,7 +165,9 @@
     <!-- Course 1: Music Production Basics -->
     <div id="course1" class="course hidden">
         <h2>Course 1: Music Production Basics</h2>
-
+        <div class="return-home-buttons">
+            <button id="returnHomeButton1" onclick="returnToHome()">Return to Home</button>
+        </div>
         <div class="module" onclick="toggleContent('module1_content')">
             <h3>Module 1: Introduction to Music Production</h3>
         </div>
@@ -201,14 +203,15 @@
     <!-- Course 2: Music Production Fundamentals -->
     <div id="course2" class="course hidden">
         <h2>Course 2: Music Production Fundamentals</h2>
-
+        <div class="return-home-buttons">
+            <button id="returnHomeButton2" onclick="returnToHome()">Return to Home</button>
+        </div>
         <div class="module" onclick="toggleContent('module2_1_content')">
             <h3>Module 1: Advanced Music Theory</h3>
         </div>
         <div id="module2_1_content" class="module-content">
-            <p>Advanced music theory dives deeper into complex musical concepts that enhance composition and arrangement skills:</p>
+            <p>To create complex and engaging music, understanding advanced music theory concepts is essential:</p>
             <ul>
-                <li><strong>Harmony:</strong> Understanding complex chord structures and their uses in different musical genres.</li>
                 <li><strong>Counterpoint:</strong> The art of combining independent melodic lines to create harmonious music.</li>
                 <li><strong>Form and Analysis:</strong> Studying the structure of compositions and understanding different musical forms such as sonata form and rondo form.</li>
                 <li><strong>Orchestration:</strong> Learning how to arrange music for various instruments and ensembles.</li>
@@ -243,6 +246,7 @@
         <p><input type="radio" name="q1_2" value="b"> Preparing the final mix for distribution.</p>
         <p><input type="radio" name="q1_2" value="c"> Capturing the performance of musicians.</p>
         <button onclick="submitQuiz('quiz1')">Submit</button>
+        <div id="quiz1_score" class="hidden"></div>
     </div>
 
     <div class="quiz-section" id="quiz2">
@@ -256,6 +260,7 @@
         <p><input type="radio" name="q2_2" value="b"> Condenser Microphone</p>
         <p><input type="radio" name="q2_2" value="c"> Ribbon Microphone</p>
         <button onclick="submitQuiz('quiz2')">Submit</button>
+        <div id="quiz2_score" class="hidden"></div>
     </div>
 
 </div>
@@ -295,7 +300,26 @@
     }
 
     function submitQuiz(quizId) {
-        alert(`Quiz ${quizId} submitted`);
+        let score = 0;
+        let totalQuestions = 2;
+
+        if (quizId === 'quiz1') {
+            const q1_1 = document.querySelector('input[name="q1_1"]:checked');
+            const q1_2 = document.querySelector('input[name="q1_2"]:checked');
+            if (q1_1 && q1_1.value === 'b') score++;
+            if (q1_2 && q1_2.value === 'b') score++;
+            document.getElementById('quiz1_score').textContent = `Your score: ${score} / ${totalQuestions}`;
+            document.getElementById('quiz1_score').classList.remove('hidden');
+        }
+
+        if (quizId === 'quiz2') {
+            const q2_1 = document.querySelector('input[name="q2_1"]:checked');
+            const q2_2 = document.querySelector('input[name="q2_2"]:checked');
+            if (q2_1 && q2_1.value === 'b') score++;
+            if (q2_2 && q2_2.value === 'b') score++;
+            document.getElementById('quiz2_score').textContent = `Your score: ${score} / ${totalQuestions}`;
+            document.getElementById('quiz2_score').classList.remove('hidden');
+        }
     }
 
     function returnToHome() {

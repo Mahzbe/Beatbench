@@ -138,6 +138,13 @@
         .quiz-section.active {
             display: block;
         }
+        .course-image {
+            display: block;
+            margin: 10px auto;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -154,7 +161,9 @@
     <p>WracA is a free music academy dedicated to empowering budding musicians with the skills and knowledge needed for music production. Explore our comprehensive courses that cover a range of topics from basic production techniques to advanced composition.</p>
 
     <div class="course-list">
+        <img src="into.jpg" alt="Course 1" class="course-image">
         <button onclick="showSection('course1')">Music Production Basics</button>
+        <img src="fundamental.jpg" alt="Course 2" class="course-image">
         <button onclick="showSection('course2')">Music Production Fundamentals</button>
         <button id="takeQuiz1" onclick="toggleQuiz('quiz1')">Take Quiz for Course 1</button>
         <button id="takeQuiz2" onclick="toggleQuiz('quiz2')">Take Quiz for Course 2</button>
@@ -207,7 +216,7 @@
             <button id="returnHomeButton2" onclick="returnToHome()">Return to Home</button>
         </div>
         <div class="module" onclick="toggleContent('module2_1_content')">
-            <h3>Module 1: Advanced Music Theory</h3>
+            <h3>Module 1: Advanced Music Theory Concepts</h3>
         </div>
         <div id="module2_1_content" class="module-content">
             <p>To create complex and engaging music, understanding advanced music theory concepts is essential:</p>
@@ -245,6 +254,18 @@
         <p><input type="radio" name="q1_2" value="a"> Editing the recorded material.</p>
         <p><input type="radio" name="q1_2" value="b"> Preparing the final mix for distribution.</p>
         <p><input type="radio" name="q1_2" value="c"> Capturing the performance of musicians.</p>
+        <p>3. What is the role of an audio interface?</p>
+        <p><input type="radio" name="q1_3" value="a"> To record MIDI data.</p>
+        <p><input type="radio" name="q1_3" value="b"> To convert analog signals to digital data.</p>
+        <p><input type="radio" name="q1_3" value="c"> To enhance the sound of studio monitors.</p>
+        <p>4. What is automation used for in mixing?</p>
+        <p><input type="radio" name="q1_4" value="a"> Adjusting the balance of individual tracks.</p>
+        <p><input type="radio" name="q1_4" value="b"> Adding dynamics and movement to the mix.</p>
+        <p><input type="radio" name="q1_4" value="c"> Applying equalization and compression.</p>
+        <p>5. Which plugin type is commonly used for adding reverb?</p>
+        <p><input type="radio" name="q1_5" value="a"> EQ Plugin</p>
+        <p><input type="radio" name="q1_5" value="b"> Compressor Plugin</p>
+        <p><input type="radio" name="q1_5" value="c"> Reverb Plugin</p>
         <button onclick="submitQuiz('quiz1')">Submit</button>
         <div id="quiz1_score" class="hidden"></div>
     </div>
@@ -259,10 +280,21 @@
         <p><input type="radio" name="q2_2" value="a"> Dynamic Microphone</p>
         <p><input type="radio" name="q2_2" value="b"> Condenser Microphone</p>
         <p><input type="radio" name="q2_2" value="c"> Ribbon Microphone</p>
+        <p>3. What is the purpose of a DAW?</p>
+        <p><input type="radio" name="q2_3" value="a"> To record live performances.</p>
+        <p><input type="radio" name="q2_3" value="b"> To edit and mix audio tracks.</p>
+        <p><input type="radio" name="q2_3" value="c"> To enhance the sound of studio monitors.</p>
+        <p>4. Which type of effect is commonly used to add depth to a mix?</p>
+        <p><input type="radio" name="q2_4" value="a"> Delay</p>
+        <p><input type="radio" name="q2_4" value="b"> Reverb</p>
+        <p><input type="radio" name="q2_4" value="c"> Equalization</p>
+        <p>5. What does the term "EQ" stand for?</p>
+        <p><input type="radio" name="q2_5" value="a"> Equalization</p>
+        <p><input type="radio" name="q2_5" value="b"> Equalizer</p>
+        <p><input type="radio" name="q2_5" value="c"> Equal Quality</p>
         <button onclick="submitQuiz('quiz2')">Submit</button>
         <div id="quiz2_score" class="hidden"></div>
     </div>
-
 </div>
 
 <footer>
@@ -301,31 +333,42 @@
 
     function submitQuiz(quizId) {
         let score = 0;
-        let totalQuestions = 2;
+        let totalQuestions = 5;
 
         if (quizId === 'quiz1') {
             const q1_1 = document.querySelector('input[name="q1_1"]:checked');
             const q1_2 = document.querySelector('input[name="q1_2"]:checked');
+            const q1_3 = document.querySelector('input[name="q1_3"]:checked');
+            const q1_4 = document.querySelector('input[name="q1_4"]:checked');
+            const q1_5 = document.querySelector('input[name="q1_5"]:checked');
             if (q1_1 && q1_1.value === 'b') score++;
             if (q1_2 && q1_2.value === 'b') score++;
-            document.getElementById('quiz1_score').textContent = `Your score: ${score} / ${totalQuestions}`;
-            document.getElementById('quiz1_score').classList.remove('hidden');
-        }
-
-        if (quizId === 'quiz2') {
+            if (q1_3 && q1_3.value === 'b') score++;
+            if (q1_4 && q1_4.value === 'b') score++;
+            if (q1_5 && q1_5.value === 'c') score++;
+        } else if (quizId === 'quiz2') {
             const q2_1 = document.querySelector('input[name="q2_1"]:checked');
             const q2_2 = document.querySelector('input[name="q2_2"]:checked');
+            const q2_3 = document.querySelector('input[name="q2_3"]:checked');
+            const q2_4 = document.querySelector('input[name="q2_4"]:checked');
+            const q2_5 = document.querySelector('input[name="q2_5"]:checked');
             if (q2_1 && q2_1.value === 'b') score++;
             if (q2_2 && q2_2.value === 'b') score++;
-            document.getElementById('quiz2_score').textContent = `Your score: ${score} / ${totalQuestions}`;
-            document.getElementById('quiz2_score').classList.remove('hidden');
+            if (q2_3 && q2_3.value === 'b') score++;
+            if (q2_4 && q2_4.value === 'b') score++;
+            if (q2_5 && q2_5.value === 'a') score++;
         }
+
+        const resultDiv = document.getElementById(quizId + '_score');
+        resultDiv.textContent = `You scored ${score} out of ${totalQuestions}.`;
+        resultDiv.classList.remove('hidden');
     }
 
     function returnToHome() {
-        window.location.href = 'wraca.html'; // Redirects to the WracA home page
+        showSection('home');
+        document.getElementById('returnHomeButton').classList.add('hidden');
+        document.querySelectorAll('.course-list button').forEach(button => button.classList.remove('hidden'));
     }
 </script>
-
 </body>
 </html>

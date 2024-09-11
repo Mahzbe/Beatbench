@@ -43,11 +43,12 @@
         }
         .course-list {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             margin-bottom: 20px;
         }
         .course-list button {
-            margin: 0 5px;
+            margin: 5px 0;
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -118,31 +119,24 @@
             color: #fff;
             text-align: center;
         }
-        .home-button {
-            display: inline-block;
-            background-color: #dc3545;
-            color: white;
-            margin-left: 10px;
-        }
-        .home-button:hover {
-            background-color: #c82333;
-        }
-        .quiz {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-        }
-        .quiz h4 {
-            margin-bottom: 10px;
-        }
-        .quiz input[type="radio"] {
-            margin-right: 10px;
-        }
         .return-home-buttons {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
+        }
+        .return-home-buttons button {
+            margin: 0 5px;
+        }
+        .quiz-section {
+            display: none;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .quiz-section.active {
+            display: block;
         }
     </style>
 </head>
@@ -152,17 +146,20 @@
     <h1>WracA Music Academy</h1>
 </div>
 
-<div class="course-list">
-    <button id="course1Button" onclick="showSection('course1')">Music Production Basics</button>
-    <button id="course2Button" onclick="showSection('course2')">Music Production Fundamentals</button>
-</div>
-
-<div class="return-home-buttons hidden">
-    <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
-    <button class="home-button" id="returnHomeButton" onclick="returnToHome()">Return to Home</button>
-</div>
-
 <div class="main-container">
+    <div class="header">
+        <img src="wraca.png" alt="WracA Logo" class="logo">
+    </div>
+    
+    <p>WracA is a free music academy dedicated to empowering budding musicians with the skills and knowledge needed for music production. Explore our comprehensive courses that cover a range of topics from basic production techniques to advanced composition.</p>
+
+    <div class="course-list">
+        <button onclick="showSection('course1')">Music Production Basics</button>
+        <button onclick="showSection('course2')">Music Production Fundamentals</button>
+        <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
+        <button id="returnHomeButton" class="hidden" onclick="returnToHome()">Return to Home</button>
+    </div>
+
     <!-- Course 1: Music Production Basics -->
     <div id="course1" class="course hidden">
         <h2>Course 1: Music Production Basics</h2>
@@ -171,9 +168,7 @@
             <h3>Module 1: Introduction to Music Production</h3>
         </div>
         <div id="module1_content" class="module-content">
-            <p>
-                Music production is the process of creating and assembling music. It involves several key stages, including:
-            </p>
+            <p>Music production is the process of creating and assembling music. It involves several key stages, including:</p>
             <ul>
                 <li><strong>Composition:</strong> Writing the musical material, including melodies, harmonies, and rhythms.</li>
                 <li><strong>Recording:</strong> Capturing the performance of the musicians or vocalists using microphones and audio interfaces.</li>
@@ -181,18 +176,14 @@
                 <li><strong>Mixing:</strong> Combining all the audio tracks into a cohesive whole, balancing levels, and applying effects.</li>
                 <li><strong>Mastering:</strong> Preparing the final mix for distribution, ensuring it sounds polished and consistent across various playback systems.</li>
             </ul>
-            <p>
-                Each of these stages plays a crucial role in creating a high-quality final product. Understanding how to navigate these stages is essential for any aspiring music producer.
-            </p>
+            <p>Each of these stages plays a crucial role in creating a high-quality final product. Understanding how to navigate these stages is essential for any aspiring music producer.</p>
         </div>
 
         <div class="module" onclick="toggleContent('module1_2_content')">
             <h3>Module 2: Essential Equipment and Software</h3>
         </div>
         <div id="module1_2_content" class="module-content">
-            <p>
-                To get started with music production, you'll need some basic equipment and software:
-            </p>
+            <p>To get started with music production, you'll need some basic equipment and software:</p>
             <ul>
                 <li><strong>Microphones:</strong> Capture sound. Condenser microphones are great for studio vocals, while dynamic microphones are suitable for live performances.</li>
                 <li><strong>Audio Interfaces:</strong> Connect your instruments and microphones to your computer, converting analog signals into digital data. Look for interfaces with good preamps and multiple inputs.</li>
@@ -201,114 +192,47 @@
                 <li><strong>Digital Audio Workstations (DAWs):</strong> Software used for recording, editing, mixing, and mastering. Popular DAWs include Ableton Live, FL Studio, and Logic Pro X. Choose one that fits your workflow and budget.</li>
                 <li><strong>Plugins and Virtual Instruments:</strong> Enhance your DAW with effects and instruments. Common plugins include equalizers, compressors, and reverb. Virtual instruments range from synthesizers to sample libraries.</li>
             </ul>
-            <p>
-                Investing in quality equipment and software can greatly impact the quality of your productions. Each tool has its purpose and contributes to the overall production process.
-            </p>
-        </div>
-        
-        <!-- Quiz for Course 1 -->
-        <div class="quiz" id="quiz1" style="display: none;">
-            <h4>Quiz: Music Production Basics</h4>
-            <form>
-                <p><strong>1. What is the main purpose of mastering in music production?</strong></p>
-                <input type="radio" id="q1a" name="q1" value="a">
-                <label for="q1a">a) To record vocals and instruments</label><br>
-                <input type="radio" id="q1b" name="q1" value="b">
-                <label for="q1b">b) To refine the recorded material by removing mistakes</label><br>
-                <input type="radio" id="q1c" name="q1" value="c">
-                <label for="q1c">c) To prepare the final mix for distribution and ensure it sounds polished</label><br>
-                <input type="radio" id="q1d" name="q1" value="d">
-                <label for="q1d">d) To combine all audio tracks into a cohesive whole</label><br>
-
-                <p><strong>2. Which piece of equipment converts analog signals into digital data?</strong></p>
-                <input type="radio" id="q2a" name="q2" value="a">
-                <label for="q2a">a) Studio Monitors</label><br>
-                <input type="radio" id="q2b" name="q2" value="b">
-                <label for="q2b">b) Audio Interfaces</label><br>
-                <input type="radio" id="q2c" name="q2" value="c">
-                <label for="q2c">c) Headphones</label><br>
-                <input type="radio" id="q2d" name="q2" value="d">
-                <label for="q2d">d) Microphones</label><br>
-
-                <button type="button" class="quiz-submit" onclick="submitQuiz('quiz1')">Submit Quiz</button>
-            </form>
+            <p>Investing in quality equipment and software can greatly impact the quality of your productions. Each tool has its purpose and contributes to the overall production process.</p>
         </div>
     </div>
 
     <!-- Course 2: Music Production Fundamentals -->
     <div id="course2" class="course hidden">
         <h2>Course 2: Music Production Fundamentals</h2>
+        <!-- Similar structure as Course 1 -->
+        <!-- Add modules here -->
+    </div>
 
-        <div class="module" onclick="toggleContent('module2_content')">
-            <h3>Module 1: Advanced Mixing Techniques</h3>
-        </div>
-        <div id="module2_content" class="module-content">
-            <p>
-                Advanced mixing techniques involve a deeper understanding of audio processing and creative effects:
-            </p>
-            <ul>
-                <li><strong>Equalization (EQ):</strong> Adjust the frequency balance of individual tracks. Use EQ to cut unwanted frequencies and enhance important ones.</li>
-                <li><strong>Compression:</strong> Control the dynamic range of a track. Apply compression to even out volume levels and add sustain to instruments.</li>
-                <li><strong>Reverb:</strong> Add depth and space to your mix. Reverb simulates the effect of sound reflecting off surfaces in a physical space.</li>
-                <li><strong>Automation:</strong> Adjust parameters over time. Automate volume, panning, and effect levels to create dynamic changes in the mix.</li>
-                <li><strong>Mix Buss Processing:</strong> Apply effects to the entire mix. Use tools like buss compression and saturation to glue the mix together.</li>
-            </ul>
-            <p>
-                Mastering these techniques will help you achieve a professional-sounding mix. Practice and experimentation are key to developing your mixing skills.
-            </p>
-        </div>
+    <!-- Quiz Section -->
+    <div class="quiz-section" id="quiz1">
+        <h4>Quiz for Course 1: Introduction to Music Production</h4>
+        <p>1. What is the primary purpose of mixing?</p>
+        <p><input type="radio" name="q1" value="a"> To write melodies and harmonies.</p>
+        <p><input type="radio" name="q1" value="b"> To combine all audio tracks into a cohesive whole.</p>
+        <p><input type="radio" name="q1" value="c"> To capture the performance of musicians.</p>
+        <p>2. What does an audio interface do?</p>
+        <p><input type="radio" name="q2" value="a"> Converts digital signals into analog data.</p>
+        <p><input type="radio" name="q2" value="b"> Connects instruments and microphones to your computer.</p>
+        <p><input type="radio" name="q2" value="c"> Plays back recorded audio.</p>
+        <button onclick="submitQuiz('quiz1')">Submit</button>
+    </div>
 
-        <div class="module" onclick="toggleContent('module2_2_content')">
-            <h3>Module 2: Creative Sound Design</h3>
-        </div>
-        <div id="module2_2_content" class="module-content">
-            <p>
-                Creative sound design involves crafting unique sounds and textures to enhance your productions:
-            </p>
-            <ul>
-                <li><strong>Synthesis:</strong> Create sounds from scratch using synthesizers. Experiment with different waveforms, filters, and modulation to design custom sounds.</li>
-                <li><strong>Sampling:</strong> Use pre-recorded sounds or create your own samples. Manipulate samples by changing pitch, tempo, and applying effects.</li>
-                <li><strong>Granular Synthesis:</strong> Break down sounds into small grains and rearrange them to create complex textures and effects.</li>
-                <li><strong>Layering Sounds:</strong> Combine multiple sounds to create rich, textured audio. Layering can add depth and complexity to your tracks.</li>
-                <li><strong>Field Recording:</strong> Capture real-world sounds to use in your music. Field recordings can add unique elements and textures to your productions.</li>
-            </ul>
-            <p>
-                Exploring creative sound design techniques will expand your sonic palette and allow you to produce more innovative and engaging music.
-            </p>
-        </div>
-        
-        <!-- Quiz for Course 2 -->
-        <div class="quiz" id="quiz2" style="display: none;">
-            <h4>Quiz: Music Production Fundamentals</h4>
-            <form>
-                <p><strong>1. What is the primary purpose of using equalization (EQ) in mixing?</strong></p>
-                <input type="radio" id="q3a" name="q3" value="a">
-                <label for="q3a">a) To add reverb to a track</label><br>
-                <input type="radio" id="q3b" name="q3" value="b">
-                <label for="q3b">b) To control the dynamic range of a track</label><br>
-                <input type="radio" id="q3c" name="q3" value="c">
-                <label for="q3c">c) To adjust the frequency balance of individual tracks</label><br>
-                <input type="radio" id="q3d" name="q3" value="d">
-                <label for="q3d">d) To automate volume levels</label><br>
-
-                <p><strong>2. Which technique involves creating sounds from scratch using synthesizers?</strong></p>
-                <input type="radio" id="q4a" name="q4" value="a">
-                <label for="q4a">a) Sampling</label><br>
-                <input type="radio" id="q4b" name="q4" value="b">
-                <label for="q4b">b) Granular Synthesis</label><br>
-                <input type="radio" id="q4c" name="q4" value="c">
-                <label for="q4c">c) Field Recording</label><br>
-                <input type="radio" id="q4d" name="q4" value="d">
-                <label for="q4d">d) Synthesis</label><br>
-
-                <button type="button" class="quiz-submit" onclick="submitQuiz('quiz2')">Submit Quiz</button>
-            </form>
-        </div>
+    <div class="quiz-section" id="quiz2">
+        <h4>Quiz for Course 2: Music Production Fundamentals</h4>
+        <p>1. What is the purpose of an audio interface?</p>
+        <p><input type="radio" name="q1" value="a"> To convert digital signals into analog data.</p>
+        <p><input type="radio" name="q1" value="b"> To connect instruments and microphones to your computer.</p>
+        <p><input type="radio" name="q1" value="c"> To play back recorded audio.</p>
+        <p>2. Which type of microphone is best for studio vocals?</p>
+        <p><input type="radio" name="q2" value="a"> Dynamic Microphone</p>
+        <p><input type="radio" name="q2" value="b"> Condenser Microphone</p>
+        <p><input type="radio" name="q2" value="c"> Ribbon Microphone</p>
+        <button onclick="submitQuiz('quiz2')">Submit</button>
     </div>
 </div>
 
 <footer>
-    &copy; 2024 WracA Music Academy. All rights reserved.
+    <p>&copy; 2024 WracA Music Academy. All rights reserved.</p>
 </footer>
 
 <script>
@@ -316,8 +240,8 @@
         const sections = document.querySelectorAll('.course');
         sections.forEach(section => {
             if (section.id === id) {
-                section.classList.toggle('hidden');
-                document.querySelector('.return-home-buttons').classList.remove('hidden');
+                section.classList.remove('hidden');
+                document.getElementById('returnHomeButton').classList.remove('hidden');
                 document.querySelectorAll('.course-list button').forEach(button => button.classList.add('hidden'));
             } else {
                 section.classList.add('hidden');
@@ -336,7 +260,7 @@
     }
 
     function returnToHome() {
-        window.location.href = 'index.html';
+        window.location.href = 'wraca.html'; // Redirects to the WracA home page
     }
 </script>
 

@@ -65,15 +65,6 @@
             color: #007bff;
             text-decoration: none;
             font-weight: bold;
-            display: block;
-            margin: 10px 0;
-        }
-
-        .sampling-pack img {
-            width: 200px;
-            height: 200px;
-            margin: 10px auto;
-            display: block;
         }
 
         @keyframes colorCycle {
@@ -196,29 +187,16 @@
         <div id="instructions">
             <h3>Downloading Instructions</h3>
             <p>After clicking a sample pack link, you will be taken to an ad link.</p>
-            <p>Wait 3 seconds and then click back to be redirected to your downloads.</p>
+            <p>Wait 10 seconds and then click back to be redirected to your downloads.</p>
         </div>
         <p>
-            <a href="#" onclick="startAdTimer('https://file.io/krdMh6QDIBVR')">Afro-beat-2-e2936e0-sample-pack.zip</a>
+            <a href="#" onclick="startAdRedirect('https://file.io/krdMh6QDIBVR')">Afro-beat-2-e2936e0-sample-pack.zip</a>
         </p>
         <p>
-            <a href="#" onclick="startAdTimer('https://file.io/vKaEE35Z35Jj')">European-house-music-2-bb785eb-sample-pack.zip</a>
+            <a href="#" onclick="startAdRedirect('https://file.io/vKaEE35Z35Jj')">European-house-music-2-bb785eb-sample-pack.zip</a>
         </p>
         <p>
-            <a href="#" onclick="startAdTimer('https://file.io/RCf3iIBs3fsi')">Hip-hop/Trap-sampling-pack.zip</a>
-        </p>
-        <!-- Existing sample packs -->
-        <p>
-            <a href="#" onclick="startAdTimer('https://file.io/huPcZ1vEFmmF')">1-Drum-Hits-Punchy-kicks-crisp-4-sample-pack.zip</a>
-        </p>
-        <p>
-            <a href="#" onclick="startAdTimer('https://file.io/HRcgxkm4YnYA')">1-Drum-Hits-Punchy-kicks-crisp-4-a52d112-sample-pack.zip</a>
-        </p>
-        <p>
-            <a href="#" onclick="startAdTimer('https://file.io/exOL0VXSM41j')">1-Drum-Hits-Punchy-kicks-crisp-3-9b0f553-sample-pack.zip</a>
-        </p>
-        <p>
-            <a href="#" onclick="startAdTimer('https://file.io/eBEQKxLFitWQ')">Piano-and-Keys-Soulful-jazzy-sample-pack.zip</a>
+            <a href="#" onclick="startAdRedirect('https://file.io/RCf3iIBs3fsi')">Hip-hop/Trap-sampling-pack.zip</a>
         </p>
     </div>
 
@@ -230,74 +208,73 @@
     </div>
 
     <div class="footer">
-        <p>For feedback or inquiries, contact us at <a href="mailto:info@beatbench.com">info@beatbench.com</a></p>
+        <p>Beatbench is founded by Thabang Mosoana, formerly known as Mahzbe and now Italian Gogo. After my sangoma initiation, I have dedicated my musical skills to aiding others in their music paths.</p>
+        <p>© 2024 Thabang Mosoana. All rights reserved.</p>
     </div>
 
     <div id="popup">
-        <h3>Redirecting...</h3>
-        <p>You will be redirected to the download link shortly.</p>
-        <div id="popup-timer">3</div>
+        <h3>Viewing Advertisement</h3>
+        <p>You will be taken to an advertisement link.</p>
+        <p>After <span id="popup-timer">10</span> seconds, please click back to return to your download link.</p>
+        <p>Please wait...</p>
     </div>
 
     <script>
-        let countdownTimer;
-        let popupTimer;
+        function startAdRedirect(downloadUrl) {
+            // Show the popup
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
 
-        function startAdTimer(downloadUrl) {
-            document.getElementById('popup').style.display = 'block';
-            let timer = 3;
+            let timer = 10; // Countdown for 10 seconds
             document.getElementById('popup-timer').textContent = timer;
-            popupTimer = setInterval(() => {
+
+            const countdownInterval = setInterval(() => {
                 timer--;
                 document.getElementById('popup-timer').textContent = timer;
-                if (timer === 0) {
-                    clearInterval(popupTimer);
-                    document.getElementById('popup').style.display = 'none';
-                    window.location.href = downloadUrl;
+
+                if (timer <= 0) {
+                    clearInterval(countdownInterval);
+                    popup.style.display = 'none';
+                    // Open the ad link in a new tab
+                    window.open('https://upodaitie.net/4/8077055', '_blank');
+                    
+                    // Redirect to the download link after 10 seconds
+                    setTimeout(() => {
+                        window.open(downloadUrl, '_blank'); // Open download URL in a new tab
+                    }, 10000); // Delay to allow ad page to load
                 }
             }, 1000);
-        }
-
-        function uploadAndMaster() {
-            const fileInput = document.getElementById('upload');
-            const file = fileInput.files[0];
-            if (file) {
-                document.getElementById('result').style.display = 'block';
-                document.getElementById('audioPlayer').src = URL.createObjectURL(file);
-                document.getElementById('downloadLink').style.display = 'block';
-                document.getElementById('downloadLink').href = URL.createObjectURL(file);
-                startCountdown();
-            }
-        }
-
-        function startCountdown() {
-            let seconds = 600;
-            document.getElementById('countdown').textContent = formatTime(seconds);
-            countdownTimer = setInterval(() => {
-                seconds--;
-                document.getElementById('countdown').textContent = formatTime(seconds);
-                if (seconds <= 0) {
-                    clearInterval(countdownTimer);
-                }
-            }, 1000);
-        }
-
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            seconds = seconds % 60;
-            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         }
 
         function chooseGenre() {
             const genre = document.getElementById('genreSelect').value;
-            document.getElementById('uploadAndMasterBtn').disabled = genre === '';
+            console.log('Selected genre:', genre);
+            // You can add additional logic here if needed
+        }
+
+        function uploadAndMaster() {
+            const fileInput = document.getElementById('upload');
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const genre = document.getElementById('genreSelect').value;
+                // Process file and genre
+                console.log('Uploading and mastering file:', file, 'Genre:', genre);
+                document.getElementById('uploadAndMasterBtn').disabled = true;
+
+                // Simulate processing and update the result
+                setTimeout(() => {
+                    document.getElementById('result').classList.remove('hidden');
+                    const audioPlayer = document.getElementById('audioPlayer');
+                    audioPlayer.src = URL.createObjectURL(file);
+                    document.getElementById('downloadLink').style.display = 'inline';
+                }, 2000);
+            }
         }
 
         function downloadMasteredTrack() {
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(document.getElementById('audioPlayer').src);
-            link.download = 'mastered_track.mp3';
-            link.click();
+            // Example link, update with the actual mastered track URL
+            const masteredTrackUrl = 'https://example.com/mastered-track.mp3';
+            window.open(masteredTrackUrl, '_blank');
         }
     </script>
 </body>

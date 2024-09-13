@@ -271,6 +271,7 @@
             <p>Investing in quality equipment and software can greatly impact the quality of your productions. Each tool has its purpose and contributes to the overall production process.</p>
         </div>
 
+        <button onclick="toggleQuiz('quiz1')">Start Quiz for Course 1</button>
         <div class="quiz-section" id="quiz1">
             <h4>Quiz for Course 1: Music Production Basics</h4>
             <p>1. What is the purpose of mixing in music production?</p>
@@ -293,7 +294,6 @@
             <p><input type="radio" name="q1_5" value="a"> EQ Plugin</p>
             <p><input type="radio" name="q1_5" value="b"> Compressor Plugin</p>
             <p><input type="radio" name="q1_5" value="c"> Reverb Plugin</p>
-            <!-- Additional 5 questions for Course 1 quiz -->
             <p>6. Which of these is not a part of the music production process?</p>
             <p><input type="radio" name="q1_6" value="a"> Composition</p>
             <p><input type="radio" name="q1_6" value="b"> Distribution</p>
@@ -349,6 +349,7 @@
             <p>Applying these techniques effectively will result in a polished final product ready for distribution.</p>
         </div>
 
+        <button onclick="toggleQuiz('quiz2')">Start Quiz for Course 2</button>
         <div class="quiz-section" id="quiz2">
             <h4>Quiz for Course 2: Music Production Fundamentals</h4>
             <p>1. What is the purpose of an audio interface?</p>
@@ -371,7 +372,6 @@
             <p><input type="radio" name="q2_5" value="a"> Equalization</p>
             <p><input type="radio" name="q2_5" value="b"> Equalizer</p>
             <p><input type="radio" name="q2_5" value="c"> Equal Quality</p>
-            <!-- Additional 5 questions for Course 2 quiz -->
             <p>6. What is the main goal of mastering?</p>
             <p><input type="radio" name="q2_6" value="a"> To make the track sound louder.</p>
             <p><input type="radio" name="q2_6" value="b"> To make the track sound polished.</p>
@@ -439,6 +439,11 @@
         content.style.display = content.style.display === 'none' ? 'block' : 'none';
     }
 
+    function toggleQuiz(quizId) {
+        const quiz = document.getElementById(quizId);
+        quiz.classList.toggle('active'); // Toggle visibility of quiz
+    }
+
     function submitQuiz(quizId) {
         let score = 0;
         const totalQuestions = 10; // Set total questions for both quizzes
@@ -500,4 +505,4 @@
     }
 </script>
 </body>
-    </html>
+</html>

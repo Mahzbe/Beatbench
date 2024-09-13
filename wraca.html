@@ -60,7 +60,7 @@
             object-fit: cover;
             border-radius: 50%;
         }
-        .course-list button {
+        .course-list button, .return-home-buttons button {
             margin: 5px 0;
             padding: 10px;
             border: none;
@@ -70,7 +70,7 @@
             color: white;
             transition: background-color 0.3s;
         }
-        .course-list button:hover {
+        .course-list button:hover, .return-home-buttons button:hover {
             background-color: #0056b3;
         }
         .course {
@@ -98,47 +98,12 @@
             border-radius: 5px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
-        button {
-            margin: 5px 0;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #28a745;
-            color: white;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        .tool-button {
-            background-color: #007bff;
-        }
-        .tool-button:hover {
-            background-color: #0056b3;
-        }
-        .hidden {
-            display: none;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-        }
         footer {
             margin-top: 20px;
             padding: 10px;
             background-color: #333;
             color: #fff;
             text-align: center;
-        }
-        .return-home-buttons {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .return-home-buttons button {
-            margin: 0 5px;
         }
         .quiz-section {
             display: none;
@@ -151,61 +116,17 @@
         .quiz-section.active {
             display: block;
         }
-
-        /* Visual feedback for incorrect answers */
-        .incorrect {
-            border: 2px solid red; /* Highlight incorrect answers */
+        .hidden {
+            display: none;
         }
-
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .course-item {
                 width: calc(100% - 20px); /* Full width on smaller screens */
             }
         }
-
-        @media (max-width: 480px) {
-            .navbar h1 {
-                font-size: 1.5em; /* Resize logo text on smaller screens */
-            }
-            .logo {
-                width: 60px; /* Smaller logo */
-            }
-        }
-
-        /* Under Construction Circle */
-        .under-construction {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .animated-circle {
-            width: 100px; /* Circle diameter */
-            height: 100px; /* Circle diameter */
-            border-radius: 50%;
-            background-color: #007bff; /* Circle color */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
-            animation: rotating 2s linear infinite; /* Animation for rotating effect */
-        }
-
-        @keyframes rotating {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
     </style>
 </head>
-    <script src="https://alwingulla.com/88/tag.min.js" data-zone="100172" async data-cfasync="false"></script>
 <body>
 
 <div class="navbar">
@@ -255,45 +176,12 @@
             </ul>
             <p>Each of these stages plays a crucial role in creating a high-quality final product. Understanding how to navigate these stages is essential for any aspiring music producer.</p>
         </div>
-
-        <div class="module" onclick="toggleContent('module1_2_content')">
-            <h3>Module 2: Essential Equipment and Software</h3>
-        </div>
-        <div id="module1_2_content" class="module-content">
-            <p>To get started with music production, you'll need some basic equipment and software:</p>
-            <ul>
-                <li><strong>Microphones:</strong> Capture sound. Condenser microphones are great for studio vocals, while dynamic microphones are suitable for live performances.</li>
-                <li><strong>Audio Interfaces:</strong> Connect your instruments and microphones to your computer, converting analog signals into digital data. Look for interfaces with good preamps and multiple inputs.</li>
-                <li><strong>Studio Monitors:</strong> Provide accurate sound reproduction. Unlike regular speakers, they are designed for mixing and mastering, offering a flat frequency response.</li>
-                <li><strong>Headphones:</strong> For detailed listening and mixing. Studio headphones should have a flat frequency response to accurately hear the mix.</li>
-                <li><strong>Digital Audio Workstations (DAWs):</strong> Software used for recording, editing, mixing, and mastering. Popular DAWs include Ableton Live, FL Studio, and Logic Pro X. Choose one that fits your workflow and budget.</li>
-                <li><strong>Plugins and Virtual Instruments:</strong> Enhance your DAW with effects and instruments. Common plugins include equalizers, compressors, and reverb. Virtual instruments range from synthesizers to sample libraries.</li>
-            </ul>
-            <p>Investing in quality equipment and software can greatly impact the quality of your productions. Each tool has its purpose and contributes to the overall production process.</p>
-        </div>
-
         <div class="quiz-section" id="quiz1">
             <h4>Quiz for Course 1: Music Production Basics</h4>
             <p>1. What is the purpose of mixing in music production?</p>
             <p><input type="radio" name="q1_1" value="a"> To capture audio recordings.</p>
             <p><input type="radio" name="q1_1" value="b"> To combine and balance audio tracks.</p>
             <p><input type="radio" name="q1_1" value="c"> To prepare the final mix for distribution.</p>
-            <p>2. What does mastering involve?</p>
-            <p><input type="radio" name="q1_2" value="a"> Editing the recorded material.</p>
-            <p><input type="radio" name="q1_2" value="b"> Preparing the final mix for distribution.</p>
-            <p><input type="radio" name="q1_2" value="c"> Capturing the performance of musicians.</p>
-            <p>3. What is the role of an audio interface?</p>
-            <p><input type="radio" name="q1_3" value="a"> To record MIDI data.</p>
-            <p><input type="radio" name="q1_3" value="b"> To convert analog signals to digital data.</p>
-            <p><input type="radio" name="q1_3" value="c"> To enhance the sound of studio monitors.</p>
-            <p>4. What is automation used for in mixing?</p>
-            <p><input type="radio" name="q1_4" value="a"> Adjusting the balance of individual tracks.</p>
-            <p><input type="radio" name="q1_4" value="b"> Adding dynamics and movement to the mix.</p>
-            <p><input type="radio" name="q1_4" value="c"> Applying equalization and compression.</p>
-            <p>5. Which plugin type is commonly used for adding reverb?</p>
-            <p><input type="radio" name="q1_5" value="a"> EQ Plugin</p>
-            <p><input type="radio" name="q1_5" value="b"> Compressor Plugin</p>
-            <p><input type="radio" name="q1_5" value="c"> Reverb Plugin</p>
             <button onclick="submitQuiz('quiz1')">Submit</button>
             <div id="quiz1_score" class="hidden"></div>
         </div>
@@ -314,51 +202,19 @@
             </ul>
             <p>Mastering these concepts will elevate your music composition and arrangement skills, making your productions more sophisticated and engaging.</p>
         </div>
-
-        <div class="module" onclick="toggleContent('module2_2_content')">
-            <h3>Module 2: Mixing and Mastering Techniques</h3>
-        </div>
-        <div id="module2_2_content" class="module-content">
-            <p>Mixing and mastering are crucial stages in music production that ensure your tracks sound polished and professional:</p>
-            <ul>
-                <li><strong>Mixing:</strong> Involves balancing the levels of individual tracks, panning, EQ adjustments, and applying effects such as reverb and delay. Aim for a clear, balanced mix that highlights the best aspects of each element.</li>
-                <li><strong>Automation:</strong> Allows you to adjust volume, panning, and effects over time, adding dynamics and interest to your mix.</li>
-                <li><strong>Mastering:</strong> The final step in production, where the mixed track is processed to ensure it sounds consistent across different playback systems. This includes equalization, compression, and limiting.</li>
-                <li><strong>Reference Tracks:</strong> Comparing your mix to professionally produced tracks can help you achieve a competitive sound. Use reference tracks to guide your mixing and mastering decisions.</li>
-            </ul>
-            <p>Applying these techniques effectively will result in a polished final product ready for distribution.</p>
-        </div>
-
         <div class="quiz-section" id="quiz2">
             <h4>Quiz for Course 2: Music Production Fundamentals</h4>
             <p>1. What is the purpose of an audio interface?</p>
             <p><input type="radio" name="q2_1" value="a"> To convert digital signals into analog data.</p>
             <p><input type="radio" name="q2_1" value="b"> To connect instruments and microphones to your computer.</p>
             <p><input type="radio" name="q2_1" value="c"> To play back recorded audio.</p>
-            <p>2. Which type of microphone is best for studio vocals?</p>
-            <p><input type="radio" name="q2_2" value="a"> Dynamic Microphone</p>
-            <p><input type="radio" name="q2_2" value="b"> Condenser Microphone</p>
-            <p><input type="radio" name="q2_2" value="c"> Ribbon Microphone</p>
-            <p>3. What is the purpose of a DAW?</p>
-            <p><input type="radio" name="q2_3" value="a"> To record live performances.</p>
-            <p><input type="radio" name="q2_3" value="b"> To edit and mix audio tracks.</p>
-            <p><input type="radio" name="q2_3" value="c"> To enhance the sound of studio monitors.</p>
-            <p>4. Which type of effect is commonly used to add depth to a mix?</p>
-            <p><input type="radio" name="q2_4" value="a"> Delay</p>
-            <p><input type="radio" name="q2_4" value="b"> Reverb</p>
-            <p><input type="radio" name="q2_4" value="c"> Equalization</p>
-            <p>5. What does the term "EQ" stand for?</p>
-            <p><input type="radio" name="q2_5" value="a"> Equalization</p>
-            <p><input type="radio" name="q2_5" value="b"> Equalizer</p>
-            <p><input type="radio" name="q2_5" value="c"> Equal Quality</p>
             <button onclick="submitQuiz('quiz2')">Submit</button>
             <div id="quiz2_score" class="hidden"></div>
         </div>
     </div>
 
-    <!-- New Header for ConvoHTML Course -->
     <h2>Basic ConvoHTML Crush Course</h2>
-
+    
     <!-- Animated Circle with Under Construction Message -->
     <div class="under-construction">
         <div class="animated-circle">
@@ -376,7 +232,6 @@
         hideAllSections();
         hideAllCourseItems(); // Hide course images and buttons
         document.getElementById(id).classList.remove('hidden');
-        document.getElementById('returnHomeButton').classList.remove('hidden');
     }
 
     function hideAllSections() {
@@ -399,80 +254,20 @@
         content.style.display = content.style.display === 'none' ? 'block' : 'none';
     }
 
-    function toggleQuiz(quizId) {
-        const quizzes = document.querySelectorAll('.quiz-section');
-        quizzes.forEach(quiz => {
-            if (quiz.id === quizId) {
-                quiz.classList.toggle('active');
-                resetQuizVisuals(quizId); // Reset visuals on opening/closing the quiz
-            } else {
-                quiz.classList.remove('active');
-            }
-        });
-    }
-
-    function resetQuizVisuals(quizId) {
-        const quiz = document.getElementById(quizId);
-        quiz.querySelectorAll('input[type="radio"]').forEach(input => {
-            input.classList.remove('incorrect'); // Reset any incorrect classes
-        });
-        const resultDiv = document.getElementById(quizId + '_score');
-        resultDiv.classList.add('hidden'); // Hide previous score
-    }
-
     function submitQuiz(quizId) {
         let score = 0;
-        const totalQuestions = 5;
+        const totalQuestions = 1; // Adjust this based on your quiz
 
-        if (quizId === 'quiz1') {
-            score = checkAnswers(quizId, [
-                { name: 'q1_1', correct: 'b' },
-                { name: 'q1_2', correct: 'b' },
-                { name: 'q1_3', correct: 'b' },
-                { name: 'q1_4', correct: 'b' },
-                { name: 'q1_5', correct: 'c' },
-            ]);
-        } else if (quizId === 'quiz2') {
-            score = checkAnswers(quizId, [
-                { name: 'q2_1', correct: 'b' },
-                { name: 'q2_2', correct: 'b' },
-                { name: 'q2_3', correct: 'b' },
-                { name: 'q2_4', correct: 'b' },
-                { name: 'q2_5', correct: 'a' },
-            ]);
-        }
+        // Add quiz logic here...
 
-        showQuizScore(quizId, score, totalQuestions);
-    }
-
-    function checkAnswers(quizId, questions) {
-        let score = 0;
-        questions.forEach(q => {
-            const selected = document.querySelector(`input[name="${q.name}"]:checked`);
-            if (selected) {
-                if (selected.value === q.correct) {
-                    score++;
-                } else {
-                    selected.classList.add('incorrect'); // Provide visual feedback for incorrect answers
-                }
-            }
-        });
-        return score;
-    }
-
-    function showQuizScore(quizId, score, totalQuestions) {
+        // Show result
         const resultDiv = document.getElementById(quizId + '_score');
         resultDiv.textContent = `You scored ${score} out of ${totalQuestions}.`;
         resultDiv.classList.remove('hidden');
     }
 
     function returnToHome() {
-        hideAllSections();
-        hideAllCourseItems(); // Show course images and buttons again
-        document.getElementById('returnHomeButton').classList.add('hidden');
-        // Reset visibility of course quizzes
-        const quizzes = document.querySelectorAll('.quiz-section');
-        quizzes.forEach(quiz => quiz.classList.remove('active'));
+        window.location.href = 'wraca.html'; // Change to your home page
     }
 </script>
 </body>

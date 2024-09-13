@@ -43,9 +43,14 @@
         }
         .course-list {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: space-around; /* Align items */
+            flex-wrap: wrap; /* Make it responsive */
             margin-bottom: 20px;
+        }
+        .course-item {
+            text-align: center; /* Center align text and buttons */
+            margin: 10px; /* Add some spacing between items */
+            width: calc(30% - 20px); /* Adjust the width according to your design */
         }
         .course-list button {
             margin: 5px 0;
@@ -162,12 +167,16 @@
     <p>WracA is a free music academy dedicated to empowering budding musicians with the skills and knowledge needed for music production. Explore our comprehensive courses that cover a range of topics from basic production techniques to advanced composition.</p>
 
     <div class="course-list">
-        <img src="into.jpg" alt="Course 1" class="course-image">
-        <button onclick="showSection('course1')">Music Production Basics</button>
-        <img src="fundamental.jpg" alt="Course 2" class="course-image">
-        <button onclick="showSection('course2')">Music Production Fundamentals</button>
-        <button id="takeQuiz1" onclick="toggleQuiz('quiz1')">Take Quiz for Course 1</button>
-        <button id="takeQuiz2" onclick="toggleQuiz('quiz2')">Take Quiz for Course 2</button>
+        <div class="course-item">
+            <img src="into.jpg" alt="Course 1" class="course-image">
+            <button onclick="showSection('course1')">Music Production Basics</button>
+            <button id="takeQuiz1" onclick="toggleQuiz('quiz1')">Take Quiz for Course 1</button>
+        </div>
+        <div class="course-item">
+            <img src="fundamental.jpg" alt="Course 2" class="course-image">
+            <button onclick="showSection('course2')">Music Production Fundamentals</button>
+            <button id="takeQuiz2" onclick="toggleQuiz('quiz2')">Take Quiz for Course 2</button>
+        </div>
         <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
         <button id="returnHomeButton" class="hidden" onclick="returnToHome()">Return to Home</button>
     </div>
@@ -299,7 +308,7 @@
 </div>
 
 <footer>
-    <p>&copy; 2024 WracA Music Academy. All rights reserved.</p>
+    <p>© 2024 WracA Music Academy. All rights reserved.</p>
 </footer>
 
 <script>

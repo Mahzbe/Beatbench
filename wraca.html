@@ -384,9 +384,9 @@
 <script>
     function showSection(id) {
         hideAllSections();
+        hideAllCourseItems(); // Hide course images and buttons
         document.getElementById(id).classList.remove('hidden');
         document.getElementById('returnHomeButton').classList.remove('hidden');
-        hideAllButtons();
     }
 
     function hideAllSections() {
@@ -394,8 +394,14 @@
         sections.forEach(section => section.classList.add('hidden'));
     }
 
-    function hideAllButtons() {
-        document.querySelectorAll('.course-list button').forEach(button => button.classList.add('hidden'));
+    function hideAllCourseItems() {
+        const courseItems = document.querySelectorAll('.course-item');
+        courseItems.forEach(item => {
+            const image = item.querySelector('.course-image');
+            const button = item.querySelector('button');
+            if (image) image.style.display = 'none'; // Hide course images
+            if (button) button.style.display = 'none'; // Hide buttons
+        });
     }
 
     function toggleContent(id) {
@@ -409,6 +415,7 @@
             if (quiz.id === quizId) {
                 quiz.classList.toggle('active');
                 resetQuizVisuals(quizId); // Reset visuals on opening/closing the quiz
+                hideAllCourseItems(); // Hide items when quiz is clicked
             } else {
                 quiz.classList.remove('active');
             }
@@ -472,6 +479,7 @@
 
     function returnToHome() {
         hideAllSections();
+        hideAllCourseItems(); // Show course images and buttons again
         document.getElementById('returnHomeButton').classList.add('hidden');
         showSection('home'); // Assuming you have a section with id "home"
         // Show course buttons

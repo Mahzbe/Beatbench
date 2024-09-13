@@ -50,7 +50,7 @@
         .course-item {
             text-align: center;
             margin: 10px;
-            width: calc(30% - 20px);
+            width: calc(45% - 20px); /* Adjusted for two columns */
         }
         .course-image {
             display: block;
@@ -160,19 +160,14 @@
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .course-item {
-                width: calc(45% - 20px); /* Two items in a row */
+                width: calc(100% - 20px); /* Full width on smaller screens */
             }
         }
 
         @media (max-width: 480px) {
-            .course-item {
-                width: 100%; /* Single column on very small screens */
-            }
-
             .navbar h1 {
                 font-size: 1.5em; /* Resize logo text on smaller screens */
             }
-
             .logo {
                 width: 60px; /* Smaller logo */
             }
@@ -210,6 +205,7 @@
 
     </style>
 </head>
+    <script src="https://alwingulla.com/88/tag.min.js" data-zone="100172" async data-cfasync="false"></script>
 <body>
 
 <div class="navbar">
@@ -223,40 +219,28 @@
     
     <p>WracA is a free academy dedicated to empowering individuals with the skills and knowledge needed for self-improvement. Explore our comprehensive courses covering a range of topics from music production to coding. All courses are offered at no cost!</p>
 
-    <!-- New Header -->
     <h2>Basic Music Crush Courses</h2>
     
     <div class="course-list">
         <div class="course-item">
             <img src="into.jpg" alt="Course 1" class="course-image">
             <button onclick="showSection('course1')">Music Production Basics</button>
-            <button id="takeQuiz1" onclick="toggleQuiz('quiz1')">Take Quiz for Course 1</button>
+            <div class="return-home-buttons">
+                <button id="returnHomeButton1" onclick="returnToHome()">Return to Home</button>
+            </div>
         </div>
         <div class="course-item">
             <img src="fundamental.jpg" alt="Course 2" class="course-image">
             <button onclick="showSection('course2')">Music Production Fundamentals</button>
-            <button id="takeQuiz2" onclick="toggleQuiz('quiz2')">Take Quiz for Course 2</button>
-        </div>
-        <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
-        <button id="returnHomeButton" class="hidden" onclick="returnToHome()">Return to Home</button>
-    </div>
-
-    <!-- New Header for ConvoHTML Course -->
-    <h2>Basic ConvoHTML Crush Course</h2>
-
-    <!-- Animated Circle with Under Construction Message -->
-    <div class="under-construction">
-        <div class="animated-circle">
-            <p>Under Construction</p>
+            <div class="return-home-buttons">
+                <button id="returnHomeButton2" onclick="returnToHome()">Return to Home</button>
+            </div>
         </div>
     </div>
 
     <!-- Course 1: Music Production Basics -->
     <div id="course1" class="course hidden">
         <h2>Course 1: Music Production Basics</h2>
-        <div class="return-home-buttons">
-            <button id="returnHomeButton1" onclick="returnToHome()">Return to Home</button>
-        </div>
         <div class="module" onclick="toggleContent('module1_content')">
             <h3>Module 1: Introduction to Music Production</h3>
         </div>
@@ -287,14 +271,37 @@
             </ul>
             <p>Investing in quality equipment and software can greatly impact the quality of your productions. Each tool has its purpose and contributes to the overall production process.</p>
         </div>
+
+        <div class="quiz-section" id="quiz1">
+            <h4>Quiz for Course 1: Music Production Basics</h4>
+            <p>1. What is the purpose of mixing in music production?</p>
+            <p><input type="radio" name="q1_1" value="a"> To capture audio recordings.</p>
+            <p><input type="radio" name="q1_1" value="b"> To combine and balance audio tracks.</p>
+            <p><input type="radio" name="q1_1" value="c"> To prepare the final mix for distribution.</p>
+            <p>2. What does mastering involve?</p>
+            <p><input type="radio" name="q1_2" value="a"> Editing the recorded material.</p>
+            <p><input type="radio" name="q1_2" value="b"> Preparing the final mix for distribution.</p>
+            <p><input type="radio" name="q1_2" value="c"> Capturing the performance of musicians.</p>
+            <p>3. What is the role of an audio interface?</p>
+            <p><input type="radio" name="q1_3" value="a"> To record MIDI data.</p>
+            <p><input type="radio" name="q1_3" value="b"> To convert analog signals to digital data.</p>
+            <p><input type="radio" name="q1_3" value="c"> To enhance the sound of studio monitors.</p>
+            <p>4. What is automation used for in mixing?</p>
+            <p><input type="radio" name="q1_4" value="a"> Adjusting the balance of individual tracks.</p>
+            <p><input type="radio" name="q1_4" value="b"> Adding dynamics and movement to the mix.</p>
+            <p><input type="radio" name="q1_4" value="c"> Applying equalization and compression.</p>
+            <p>5. Which plugin type is commonly used for adding reverb?</p>
+            <p><input type="radio" name="q1_5" value="a"> EQ Plugin</p>
+            <p><input type="radio" name="q1_5" value="b"> Compressor Plugin</p>
+            <p><input type="radio" name="q1_5" value="c"> Reverb Plugin</p>
+            <button onclick="submitQuiz('quiz1')">Submit</button>
+            <div id="quiz1_score" class="hidden"></div>
+        </div>
     </div>
 
     <!-- Course 2: Music Production Fundamentals -->
     <div id="course2" class="course hidden">
         <h2>Course 2: Music Production Fundamentals</h2>
-        <div class="return-home-buttons">
-            <button id="returnHomeButton2" onclick="returnToHome()">Return to Home</button>
-        </div>
         <div class="module" onclick="toggleContent('module2_1_content')">
             <h3>Module 1: Advanced Music Theory Concepts</h3>
         </div>
@@ -321,59 +328,42 @@
             </ul>
             <p>Applying these techniques effectively will result in a polished final product ready for distribution.</p>
         </div>
+
+        <div class="quiz-section" id="quiz2">
+            <h4>Quiz for Course 2: Music Production Fundamentals</h4>
+            <p>1. What is the purpose of an audio interface?</p>
+            <p><input type="radio" name="q2_1" value="a"> To convert digital signals into analog data.</p>
+            <p><input type="radio" name="q2_1" value="b"> To connect instruments and microphones to your computer.</p>
+            <p><input type="radio" name="q2_1" value="c"> To play back recorded audio.</p>
+            <p>2. Which type of microphone is best for studio vocals?</p>
+            <p><input type="radio" name="q2_2" value="a"> Dynamic Microphone</p>
+            <p><input type="radio" name="q2_2" value="b"> Condenser Microphone</p>
+            <p><input type="radio" name="q2_2" value="c"> Ribbon Microphone</p>
+            <p>3. What is the purpose of a DAW?</p>
+            <p><input type="radio" name="q2_3" value="a"> To record live performances.</p>
+            <p><input type="radio" name="q2_3" value="b"> To edit and mix audio tracks.</p>
+            <p><input type="radio" name="q2_3" value="c"> To enhance the sound of studio monitors.</p>
+            <p>4. Which type of effect is commonly used to add depth to a mix?</p>
+            <p><input type="radio" name="q2_4" value="a"> Delay</p>
+            <p><input type="radio" name="q2_4" value="b"> Reverb</p>
+            <p><input type="radio" name="q2_4" value="c"> Equalization</p>
+            <p>5. What does the term "EQ" stand for?</p>
+            <p><input type="radio" name="q2_5" value="a"> Equalization</p>
+            <p><input type="radio" name="q2_5" value="b"> Equalizer</p>
+            <p><input type="radio" name="q2_5" value="c"> Equal Quality</p>
+            <button onclick="submitQuiz('quiz2')">Submit</button>
+            <div id="quiz2_score" class="hidden"></div>
+        </div>
     </div>
 
-    <!-- Quizzes -->
-    <div class="quiz-section" id="quiz1">
-        <h4>Quiz for Course 1: Music Production Basics</h4>
-        <p>1. What is the purpose of mixing in music production?</p>
-        <p><input type="radio" name="q1_1" value="a"> To capture audio recordings.</p>
-        <p><input type="radio" name="q1_1" value="b"> To combine and balance audio tracks.</p>
-        <p><input type="radio" name="q1_1" value="c"> To prepare the final mix for distribution.</p>
-        <p>2. What does mastering involve?</p>
-        <p><input type="radio" name="q1_2" value="a"> Editing the recorded material.</p>
-        <p><input type="radio" name="q1_2" value="b"> Preparing the final mix for distribution.</p>
-        <p><input type="radio" name="q1_2" value="c"> Capturing the performance of musicians.</p>
-        <p>3. What is the role of an audio interface?</p>
-        <p><input type="radio" name="q1_3" value="a"> To record MIDI data.</p>
-        <p><input type="radio" name="q1_3" value="b"> To convert analog signals to digital data.</p>
-        <p><input type="radio" name="q1_3" value="c"> To enhance the sound of studio monitors.</p>
-        <p>4. What is automation used for in mixing?</p>
-        <p><input type="radio" name="q1_4" value="a"> Adjusting the balance of individual tracks.</p>
-        <p><input type="radio" name="q1_4" value="b"> Adding dynamics and movement to the mix.</p>
-        <p><input type="radio" name="q1_4" value="c"> Applying equalization and compression.</p>
-        <p>5. Which plugin type is commonly used for adding reverb?</p>
-        <p><input type="radio" name="q1_5" value="a"> EQ Plugin</p>
-        <p><input type="radio" name="q1_5" value="b"> Compressor Plugin</p>
-        <p><input type="radio" name="q1_5" value="c"> Reverb Plugin</p>
-        <button onclick="submitQuiz('quiz1')">Submit</button>
-        <div id="quiz1_score" class="hidden"></div>
-    </div>
+    <!-- New Header for ConvoHTML Course -->
+    <h2>Basic ConvoHTML Crush Course</h2>
 
-    <div class="quiz-section" id="quiz2">
-        <h4>Quiz for Course 2: Music Production Fundamentals</h4>
-        <p>1. What is the purpose of an audio interface?</p>
-        <p><input type="radio" name="q2_1" value="a"> To convert digital signals into analog data.</p>
-        <p><input type="radio" name="q2_1" value="b"> To connect instruments and microphones to your computer.</p>
-        <p><input type="radio" name="q2_1" value="c"> To play back recorded audio.</p>
-        <p>2. Which type of microphone is best for studio vocals?</p>
-        <p><input type="radio" name="q2_2" value="a"> Dynamic Microphone</p>
-        <p><input type="radio" name="q2_2" value="b"> Condenser Microphone</p>
-        <p><input type="radio" name="q2_2" value="c"> Ribbon Microphone</p>
-        <p>3. What is the purpose of a DAW?</p>
-        <p><input type="radio" name="q2_3" value="a"> To record live performances.</p>
-        <p><input type="radio" name="q2_3" value="b"> To edit and mix audio tracks.</p>
-        <p><input type="radio" name="q2_3" value="c"> To enhance the sound of studio monitors.</p>
-        <p>4. Which type of effect is commonly used to add depth to a mix?</p>
-        <p><input type="radio" name="q2_4" value="a"> Delay</p>
-        <p><input type="radio" name="q2_4" value="b"> Reverb</p>
-        <p><input type="radio" name="q2_4" value="c"> Equalization</p>
-        <p>5. What does the term "EQ" stand for?</p>
-        <p><input type="radio" name="q2_5" value="a"> Equalization</p>
-        <p><input type="radio" name="q2_5" value="b"> Equalizer</p>
-        <p><input type="radio" name="q2_5" value="c"> Equal Quality</p>
-        <button onclick="submitQuiz('quiz2')">Submit</button>
-        <div id="quiz2_score" class="hidden"></div>
+    <!-- Animated Circle with Under Construction Message -->
+    <div class="under-construction">
+        <div class="animated-circle">
+            <p>Under Construction</p>
+        </div>
     </div>
 </div>
 
@@ -415,7 +405,6 @@
             if (quiz.id === quizId) {
                 quiz.classList.toggle('active');
                 resetQuizVisuals(quizId); // Reset visuals on opening/closing the quiz
-                hideAllCourseItems(); // Hide items when quiz is clicked
             } else {
                 quiz.classList.remove('active');
             }
@@ -481,9 +470,9 @@
         hideAllSections();
         hideAllCourseItems(); // Show course images and buttons again
         document.getElementById('returnHomeButton').classList.add('hidden');
-        showSection('home'); // Assuming you have a section with id "home"
-        // Show course buttons
-        document.querySelectorAll('.course-list button').forEach(button => button.classList.remove('hidden'));
+        // Reset visibility of course quizzes
+        const quizzes = document.querySelectorAll('.quiz-section');
+        quizzes.forEach(quiz => quiz.classList.remove('active'));
     }
 </script>
 </body>

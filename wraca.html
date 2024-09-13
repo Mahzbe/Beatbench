@@ -50,7 +50,7 @@
         .course-item {
             text-align: center;
             margin: 10px;
-            width: calc(45% - 20px); /* Adjusted for two columns */
+            width: calc(45% - 20px); 
         }
         .course-image {
             display: block;
@@ -154,22 +154,22 @@
 
         /* Visual feedback for incorrect answers */
         .incorrect {
-            border: 2px solid red; /* Highlight incorrect answers */
+            border: 2px solid red; 
         }
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .course-item {
-                width: calc(100% - 20px); /* Full width on smaller screens */
+                width: calc(100% - 20px); 
             }
         }
 
         @media (max-width: 480px) {
             .navbar h1 {
-                font-size: 1.5em; /* Resize logo text on smaller screens */
+                font-size: 1.5em; 
             }
             .logo {
-                width: 60px; /* Smaller logo */
+                width: 60px; 
             }
         }
 
@@ -182,16 +182,16 @@
         }
 
         .animated-circle {
-            width: 100px; /* Circle diameter */
-            height: 100px; /* Circle diameter */
+            width: 100px; 
+            height: 100px; 
             border-radius: 50%;
-            background-color: #007bff; /* Circle color */
+            background-color: #007bff; 
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
             font-weight: bold;
-            animation: rotating 2s linear infinite; /* Animation for rotating effect */
+            animation: rotating 2s linear infinite; 
         }
 
         @keyframes rotating {
@@ -234,6 +234,13 @@
             <div class="return-home-buttons">
                 <button id="returnHomeButton2" onclick="returnToHome()">Return to Home</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Open Beatbench Tool Button -->
+    <div class="course-list">
+        <div class="course-item">
+            <button class="tool-button" onclick="window.open('https://beatbench.vercel.app', '_blank')">Open Beatbench Tool</button>
         </div>
     </div>
 
@@ -406,6 +413,13 @@
             <p>Under Construction</p>
         </div>
     </div>
+
+    <!-- Open Convo IDE Button -->
+    <div class="course-list">
+        <div class="course-item">
+            <button class="tool-button" onclick="window.open('https://convo-ide.vercel.app', '_blank')">Open Convo IDE</button>
+        </div>
+    </div>
 </div>
 
 <footer>
@@ -415,7 +429,7 @@
 <script>
     function showSection(id) {
         hideAllSections();
-        hideAllCourseItems(); // Hide course images and buttons
+        hideAllCourseItems(); 
         document.getElementById(id).classList.remove('hidden');
     }
 
@@ -429,8 +443,8 @@
         courseItems.forEach(item => {
             const image = item.querySelector('.course-image');
             const button = item.querySelector('button');
-            if (image) image.style.display = 'none'; // Hide course images
-            if (button) button.style.display = 'none'; // Hide buttons
+            if (image) image.style.display = 'none'; 
+            if (button) button.style.display = 'none'; 
         });
     }
 
@@ -441,12 +455,12 @@
 
     function toggleQuiz(quizId) {
         const quiz = document.getElementById(quizId);
-        quiz.classList.toggle('active'); // Toggle visibility of quiz
+        quiz.classList.toggle('active'); 
     }
 
     function submitQuiz(quizId) {
         let score = 0;
-        const totalQuestions = 10; // Set total questions for both quizzes
+        const totalQuestions = 10; 
 
         if (quizId === 'quiz1') {
             score = checkAnswers(quizId, [
@@ -487,7 +501,7 @@
                 if (selected.value === q.correct) {
                     score++;
                 } else {
-                    selected.classList.add('incorrect'); // Provide visual feedback for incorrect answers
+                    selected.classList.add('incorrect'); 
                 }
             }
         });
@@ -501,8 +515,8 @@
     }
 
     function returnToHome() {
-        window.location.href = 'wraca.html'; // Redirects to the homepage
+        window.location.href = 'wraca.html'; 
     }
 </script>
 </body>
-</html>
+                </html>

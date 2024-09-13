@@ -43,22 +43,22 @@
         }
         .course-list {
             display: flex;
-            justify-content: space-around; /* Align items */
-            flex-wrap: wrap; /* Make it responsive */
+            justify-content: space-around;
+            flex-wrap: wrap;
             margin-bottom: 20px;
         }
         .course-item {
-            text-align: center; /* Center align text and buttons */
-            margin: 10px; /* Add some spacing between items */
-            width: calc(30% - 20px); /* Adjust the width according to your design */
+            text-align: center;
+            margin: 10px;
+            width: calc(30% - 20px);
         }
         .course-image {
             display: block;
             margin: 10px auto;
-            width: 150px; /* Adjusted the size of images */
-            height: 150px; /* Adjusted the size of images */
+            width: 150px;
+            height: 150px;
             object-fit: cover;
-            border-radius: 50%; /* Circular image */
+            border-radius: 50%;
         }
         .course-list button {
             margin: 5px 0;
@@ -151,6 +151,63 @@
         .quiz-section.active {
             display: block;
         }
+
+        /* Visual feedback for incorrect answers */
+        .incorrect {
+            border: 2px solid red; /* Highlight incorrect answers */
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .course-item {
+                width: calc(45% - 20px); /* Two items in a row */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .course-item {
+                width: 100%; /* Single column on very small screens */
+            }
+
+            .navbar h1 {
+                font-size: 1.5em; /* Resize logo text on smaller screens */
+            }
+
+            .logo {
+                width: 60px; /* Smaller logo */
+            }
+        }
+
+        /* Under Construction Circle */
+        .under-construction {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .animated-circle {
+            width: 100px; /* Circle diameter */
+            height: 100px; /* Circle diameter */
+            border-radius: 50%;
+            background-color: #007bff; /* Circle color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            animation: rotating 2s linear infinite; /* Animation for rotating effect */
+        }
+
+        @keyframes rotating {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -166,6 +223,9 @@
     
     <p>WracA is a free academy dedicated to empowering individuals with the skills and knowledge needed for self-improvement. Explore our comprehensive courses covering a range of topics from music production to coding. All courses are offered at no cost!</p>
 
+    <!-- New Header -->
+    <h2>Basic Music Crush Courses</h2>
+    
     <div class="course-list">
         <div class="course-item">
             <img src="into.jpg" alt="Course 1" class="course-image">
@@ -179,6 +239,16 @@
         </div>
         <button class="tool-button" onclick="window.open('https://beatbench.vercel.app/#', '_blank')">Open Beatbench Tool</button>
         <button id="returnHomeButton" class="hidden" onclick="returnToHome()">Return to Home</button>
+    </div>
+
+    <!-- New Header for ConvoHTML Course -->
+    <h2>Basic ConvoHTML Crush Course</h2>
+
+    <!-- Animated Circle with Under Construction Message -->
+    <div class="under-construction">
+        <div class="animated-circle">
+            <p>Under Construction</p>
+        </div>
     </div>
 
     <!-- Course 1: Music Production Basics -->
@@ -313,16 +383,19 @@
 
 <script>
     function showSection(id) {
+        hideAllSections();
+        document.getElementById(id).classList.remove('hidden');
+        document.getElementById('returnHomeButton').classList.remove('hidden');
+        hideAllButtons();
+    }
+
+    function hideAllSections() {
         const sections = document.querySelectorAll('.course');
-        sections.forEach(section => {
-            if (section.id === id) {
-                section.classList.remove('hidden');
-                document.getElementById('returnHomeButton').classList.remove('hidden');
-                document.querySelectorAll('.course-list button').forEach(button => button.classList.add('hidden'));
-            } else {
-                section.classList.add('hidden');
-            }
-        });
+        sections.forEach(section => section.classList.add('hidden'));
+    }
+
+    function hideAllButtons() {
+        document.querySelectorAll('.course-list button').forEach(button => button.classList.add('hidden'));
     }
 
     function toggleContent(id) {
@@ -335,48 +408,73 @@
         quizzes.forEach(quiz => {
             if (quiz.id === quizId) {
                 quiz.classList.toggle('active');
+                resetQuizVisuals(quizId); // Reset visuals on opening/closing the quiz
             } else {
                 quiz.classList.remove('active');
             }
         });
     }
 
+    function resetQuizVisuals(quizId) {
+        const quiz = document.getElementById(quizId);
+        quiz.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.classList.remove('incorrect'); // Reset any incorrect classes
+        });
+        const resultDiv = document.getElementById(quizId + '_score');
+        resultDiv.classList.add('hidden'); // Hide previous score
+    }
+
     function submitQuiz(quizId) {
         let score = 0;
-        let totalQuestions = 5;
+        const totalQuestions = 5;
 
         if (quizId === 'quiz1') {
-            const q1_1 = document.querySelector('input[name="q1_1"]:checked');
-            const q1_2 = document.querySelector('input[name="q1_2"]:checked');
-            const q1_3 = document.querySelector('input[name="q1_3"]:checked');
-            const q1_4 = document.querySelector('input[name="q1_4"]:checked');
-            const q1_5 = document.querySelector('input[name="q1_5"]:checked');
-            if (q1_1 && q1_1.value === 'b') score++;
-            if (q1_2 && q1_2.value === 'b') score++;
-            if (q1_3 && q1_3.value === 'b') score++;
-            if (q1_4 && q1_4.value === 'b') score++;
-            if (q1_5 && q1_5.value === 'c') score++;
+            score = checkAnswers(quizId, [
+                { name: 'q1_1', correct: 'b' },
+                { name: 'q1_2', correct: 'b' },
+                { name: 'q1_3', correct: 'b' },
+                { name: 'q1_4', correct: 'b' },
+                { name: 'q1_5', correct: 'c' },
+            ]);
         } else if (quizId === 'quiz2') {
-            const q2_1 = document.querySelector('input[name="q2_1"]:checked');
-            const q2_2 = document.querySelector('input[name="q2_2"]:checked');
-            const q2_3 = document.querySelector('input[name="q2_3"]:checked');
-            const q2_4 = document.querySelector('input[name="q2_4"]:checked');
-            const q2_5 = document.querySelector('input[name="q2_5"]:checked');
-            if (q2_1 && q2_1.value === 'b') score++;
-            if (q2_2 && q2_2.value === 'b') score++;
-            if (q2_3 && q2_3.value === 'b') score++;
-            if (q2_4 && q2_4.value === 'b') score++;
-            if (q2_5 && q2_5.value === 'a') score++;
+            score = checkAnswers(quizId, [
+                { name: 'q2_1', correct: 'b' },
+                { name: 'q2_2', correct: 'b' },
+                { name: 'q2_3', correct: 'b' },
+                { name: 'q2_4', correct: 'b' },
+                { name: 'q2_5', correct: 'a' },
+            ]);
         }
 
+        showQuizScore(quizId, score, totalQuestions);
+    }
+
+    function checkAnswers(quizId, questions) {
+        let score = 0;
+        questions.forEach(q => {
+            const selected = document.querySelector(`input[name="${q.name}"]:checked`);
+            if (selected) {
+                if (selected.value === q.correct) {
+                    score++;
+                } else {
+                    selected.classList.add('incorrect'); // Provide visual feedback for incorrect answers
+                }
+            }
+        });
+        return score;
+    }
+
+    function showQuizScore(quizId, score, totalQuestions) {
         const resultDiv = document.getElementById(quizId + '_score');
         resultDiv.textContent = `You scored ${score} out of ${totalQuestions}.`;
         resultDiv.classList.remove('hidden');
     }
 
     function returnToHome() {
-        showSection('home');
+        hideAllSections();
         document.getElementById('returnHomeButton').classList.add('hidden');
+        showSection('home'); // Assuming you have a section with id "home"
+        // Show course buttons
         document.querySelectorAll('.course-list button').forEach(button => button.classList.remove('hidden'));
     }
 </script>

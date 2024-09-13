@@ -375,6 +375,7 @@
         hideAllSections();
         hideAllCourseItems(); // Hide course images and buttons
         document.getElementById(id).classList.remove('hidden');
+        document.getElementById('returnHomeButton').classList.remove('hidden');
     }
 
     function hideAllSections() {
@@ -397,9 +398,30 @@
         content.style.display = content.style.display === 'none' ? 'block' : 'none';
     }
 
+    function toggleQuiz(quizId) {
+        const quizzes = document.querySelectorAll('.quiz-section');
+        quizzes.forEach(quiz => {
+            if (quiz.id === quizId) {
+                quiz.classList.toggle('active');
+                resetQuizVisuals(quizId); // Reset visuals on opening/closing the quiz
+            } else {
+                quiz.classList.remove('active');
+            }
+        });
+    }
+
+    function resetQuizVisuals(quizId) {
+        const quiz = document.getElementById(quizId);
+        quiz.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.classList.remove('incorrect'); // Reset any incorrect classes
+        });
+        const resultDiv = document.getElementById(quizId + '_score');
+        resultDiv.classList.add('hidden'); // Hide previous score
+    }
+
     function submitQuiz(quizId) {
         let score = 0;
-        const totalQuestions = quizId === 'quiz1' ? 5 : 5; // Total questions for both quizzes
+        const totalQuestions = 5;
 
         if (quizId === 'quiz1') {
             score = checkAnswers(quizId, [
@@ -444,7 +466,12 @@
     }
 
     function returnToHome() {
-        window.location.href = 'wraca.html'; // Change to your home page
+        hideAllSections();
+        hideAllCourseItems(); // Show course images and buttons again
+        document.getElementById('returnHomeButton').classList.add('hidden');
+        // Reset visibility of course quizzes
+        const quizzes = document.querySelectorAll('.quiz-section');
+        quizzes.forEach(quiz => quiz.classList.remove('active'));
     }
 </script>
 </body>
